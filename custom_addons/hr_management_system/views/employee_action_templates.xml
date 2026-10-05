@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================
+         EMPLOYEE ACTION  (/employee-action)
+    ============================================================= -->
+    <template id="employee_action_page" name="Employee Action">
+        <t t-set="active" t-value="'employees'"/>
+        <t t-set="section" t-value="'Employees'"/>
+        <t t-set="page_name" t-value="'New action'"/>
+        <t t-call="hr_management_system.dashboard_layout">
+
+            <!-- Page header -->
+            <div class="ea-head">
+                <div>
+                    <h1 class="ea-head__title">Employee Action</h1>
+                    <p class="ea-head__sub">Record a promotion, transfer, increment, confirmation or other employment change. Submits for approval and updates the employee record on the effective date.</p>
+                </div>
+                <button type="button" class="btn-ghost">View action history</button>
+            </div>
+
+            <div class="ea-wrap">
+                <!-- ============ LEFT: FORM ============ -->
+                <div class="ea-main">
+                    <div class="ea-card">
+
+                        <!-- STEP 1: Select employee -->
+                        <div class="ea-step">
+                            <div class="ea-step__head">
+                                <span class="ea-step__num">1</span>
+                                <div>
+                                    <div class="ea-step__title">Select employee</div>
+                                    <div class="ea-step__sub">Search by name, ID, email or department.</div>
+                                </div>
+                            </div>
+                            <div class="ea-search">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg>
+                                <input type="text" placeholder="Start typing an employee name or ID, e.g. MV-074 ..."/>
+                                <span class="enter">↵</span>
+                            </div>
+
+                            <div class="ea-emp">
+                                <span class="ea-emp__av">MA</span>
+                                <div>
+                                    <div class="ea-emp__name">Muhammad Asim <span class="ea-emp__id">MV-074</span></div>
+                                    <div class="ea-emp__meta">Product Engineering · Senior Frontend Engineer · 📍 Lahore Office · 4F</div>
+                                    <div class="ea-emp__pay">PKR 385,000/mo</div>
+                                </div>
+                                <span class="ea-emp__x">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- STEP 2: Action type -->
+                        <div class="ea-step">
+                            <div class="ea-step__head">
+                                <span class="ea-step__num">2</span>
+                                <div>
+                                    <div class="ea-step__title">Action type</div>
+                                    <div class="ea-step__sub">Choose the change you're recording. Following fields adjust accordingly.</div>
+                                </div>
+                            </div>
+
+                            <div class="ea-types">
+                                <button type="button" class="ea-type is-active">
+                                    <span class="ea-type__check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"/></svg></span>
+                                    <span class="ea-type__icon ea-ic-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m6 15 6-6 6 6M6 9l6-6 6 6"/></svg></span>
+                                    <div class="ea-type__name">Promotion</div>
+                                    <div class="ea-type__desc">Move up in role or grade</div>
+                                </button>
+                                <button type="button" class="ea-type" data-type="transfer">
+                                    <span class="ea-type__icon ea-ic-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M16 3h5v5M21 3l-7 7M8 21H3v-5M3 21l7-7"/></svg></span>
+                                    <div class="ea-type__name">Transfer</div>
+                                    <div class="ea-type__desc">Change location or team</div>
+                                </button>
+                                <button type="button" class="ea-type" data-type="promo-transfer">
+                                    <span class="ea-type__icon ea-ic-teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m6 15 6-6 6 6"/><path d="M4 20h16"/></svg></span>
+                                    <div class="ea-type__name">Promotion &amp; Transfer</div>
+                                    <div class="ea-type__desc">Role change + relocation</div>
+                                </button>
+                                <button type="button" class="ea-type" data-type="probation">
+                                    <span class="ea-type__icon ea-ic-orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+                                    <div class="ea-type__name">Probation / Increment</div>
+                                    <div class="ea-type__desc">During probation period</div>
+                                </button>
+                                <button type="button" class="ea-type" data-type="increment">
+                                    <span class="ea-type__icon ea-ic-teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M3 17l6-6 4 4 7-7"/><path d="M17 8h4v4"/></svg></span>
+                                    <div class="ea-type__name">Annual Increment</div>
+                                    <div class="ea-type__desc">Yearly salary review</div>
+                                </button>
+                                <button type="button" class="ea-type" data-type="none">
+                                    <span class="ea-type__icon ea-ic-red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6M6 15l6 6 6-6"/></svg></span>
+                                    <div class="ea-type__name">Demotion</div>
+                                    <div class="ea-type__desc">Move down in role or grade</div>
+                                </button>
+                                <button type="button" class="ea-type" data-type="confirmation">
+                                    <span class="ea-type__icon ea-ic-purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"/></svg></span>
+                                    <div class="ea-type__name">Confirmation</div>
+                                    <div class="ea-type__desc">Probation → permanent</div>
+                                </button>
+                                <button type="button" class="ea-type">
+                                    <span class="ea-type__icon ea-ic-gray"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></span>
+                                    <div class="ea-type__name">Others</div>
+                                    <div class="ea-type__desc">Custom change</div>
+                                </button>
+                            </div>
+
+                            <div class="ea-pick">
+                                <div class="ea-pick__label">Or pick from list</div>
+                                <input type="text" value="Promotion" readonly="readonly" data-ea-pick="1"/>
+                            </div>
+                        </div>
+
+                        <!-- STEP 3: Action details -->
+                        <div class="ea-step" data-step-details="1">
+                            <div class="ea-step__head">
+                                <span class="ea-step__num">3</span>
+                                <div>
+                                    <div class="ea-step__title">Action details</div>
+                                    <div class="ea-step__sub" data-ea-subtitle="1">Promotion details — fill the fields below; the summary on the right updates live.</div>
+                                </div>
+                            </div>
+
+                            <div class="ea-grid" data-fields="promotion">
+                                <div class="ea-field">
+                                    <label class="ea-label">Effective date <span class="ea-req">*</span></label>
+                                    <input type="date" class="ea-input" value="2026-06-01"/>
+                                    <div class="ea-hint">Change takes effect on this date.</div>
+                                </div>
+                                <div class="ea-field">
+                                    <label class="ea-label">Reason</label>
+                                    <input type="text" class="ea-input" value="Other (specify in notes)"/>
+                                </div>
+
+                                <div class="ea-field">
+                                    <label class="ea-label">New designation <span class="ea-req">*</span></label>
+                                    <input type="text" class="ea-input" placeholder="e.g. Lead Frontend Engineer"/>
+                                    <div class="ea-chips">
+                                        <span class="ea-chip">Lead Frontend Engineer</span>
+                                        <span class="ea-chip">Principal Engineer</span>
+                                        <span class="ea-chip">Engineering Manager</span>
+                                    </div>
+                                </div>
+                                <div class="ea-field">
+                                    <label class="ea-label">New grade / band</label>
+                                    <input type="text" class="ea-input" value="L4 — Lead"/>
+                                </div>
+
+                                <div class="ea-field ea-field--full">
+                                    <label class="ea-label">Location <span class="ea-req">*</span></label>
+                                    <div class="ea-fromto">
+                                        <div class="ea-fromto__col">
+                                            <span class="ea-sublabel">Current (pre-saved)</span>
+                                            <input type="text" class="ea-input ea-input--ro" value="Lahore Office · 4F" readonly="readonly"/>
+                                        </div>
+                                        <span class="ea-fromto__arrow">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                                        </span>
+                                        <div class="ea-fromto__col">
+                                            <span class="ea-sublabel">New location</span>
+                                            <input type="text" class="ea-input" value="Lahore Office · 6F (Eng Wing)"/>
+                                        </div>
+                                    </div>
+                                    <div class="ea-warn">Transfer detected — please confirm relocation allowance in notes.</div>
+                                </div>
+
+                                <div class="ea-field ea-field--full">
+                                    <label class="ea-label">Salary <span class="ea-req">*</span></label>
+                                    <div class="ea-fromto">
+                                        <div class="ea-fromto__col">
+                                            <span class="ea-sublabel">Current monthly (pre-saved)</span>
+                                            <input type="text" class="ea-input ea-input--ro" value="PKR 385,000" readonly="readonly"/>
+                                        </div>
+                                        <span class="ea-fromto__arrow">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                                        </span>
+                                        <div class="ea-fromto__col">
+                                            <span class="ea-sublabel">New monthly</span>
+                                            <input type="text" class="ea-input" value="PKR 785,000"/>
+                                        </div>
+                                    </div>
+                                    <span class="ea-delta">▲ +103.9% · +PKR 400,000</span>
+                                </div>
+
+                                <div class="ea-field ea-field--full">
+                                    <label class="ea-label">Description / Notes <span class="ea-req">*</span></label>
+                                    <textarea class="ea-textarea" placeholder="Justification, scope of new role, relocation allowance, references to performance review, etc."></textarea>
+                                    <div class="ea-hint">Visible to approvers and stored on the employee timeline.</div>
+                                </div>
+
+                                <div class="ea-field ea-field--full">
+                                    <label class="ea-label">Notify on approval</label>
+                                    <div class="ea-notify">
+                                        <label class="ea-check"><input type="checkbox" checked="checked"/> Employee</label>
+                                        <label class="ea-check"><input type="checkbox" checked="checked"/> Current manager</label>
+                                        <label class="ea-check"><input type="checkbox" checked="checked"/> New manager</label>
+                                        <label class="ea-check"><input type="checkbox"/> Payroll team</label>
+                                        <label class="ea-check"><input type="checkbox"/> IT (badge / access)</label>
+                                    </div>
+                                </div>
+
+                                <div class="ea-field ea-field--full">
+                                    <label class="ea-label">Supporting documents</label>
+                                    <div class="ea-drop">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 15V3M8 7l4-4 4 4"/><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>
+                                        <div class="ea-drop__title">Drop offer letter, review form or approval email</div>
+                                        <div class="ea-drop__hint">PDF, DOCX or images up to 10 MB</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- TRANSFER fields (Transfer card select hone par dikhte hain) -->
+                            <div class="ea-grid" data-fields="transfer" style="display:none">
+                                <div class="ea-field">
+                                    <label class="ea-label">Effective date <span class="ea-req">*</span></label>
+                                    <input type="date" class="ea-input" value="2026-06-01"/>
+                                    <div class="ea-hint">Change takes effect on this date.</div>
+                                </div>
+                                <div class="ea-field">
+                                    <label class="ea-label">Reason</label>
+                                    <input type="text" class="ea-input" value="Other (specify in notes)"/>
+                                </div>
+
+                                <div class="ea-field ea-field--full">
+                                    <label class="ea-label">Location <span class="ea-req">*</span></label>
+                                    <div class="ea-fromto">
+                                        <div class="ea-fromto__col">
+                                            <span class="ea-sublabel">Current (pre-saved)</span>
+                                            <input type="text" class="ea-input ea-input--ro" value="Lahore Office · 4F" readonly="readonly"/>
+                                        </div>
+                                        <span class="ea-fromto__arrow">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                                        </span>
+                                        <div class="ea-fromto__col">
+                                            <span class="ea-sublabel">New location</span>
+                                            <input type="text" class="ea-input" value="Lahore Office · 6F (Eng Wing)"/>
+                                        </div>
+                                    </div>
+                                    <div class="ea-warn">Transfer detected — please confirm relocation allowance in notes.</div>
+                                </div>
+
+                                <div class="ea-field">
+                                    <label class="ea-label">New department</label>
+                                    <input type="text" class="ea-input" value="Product Engineering"/>
+                                </div>
+                                <div class="ea-field">
+                                    <label class="ea-label">New manager</label>
+                                    <input type="text" class="ea-input" value="Hamid Khan"/>
+                                </div>
+
+                                <div class="ea-field ea-field--full">
+                                    <label class="ea-label">Description / Notes <span class="ea-req">*</span></label>
+                                    <textarea class="ea-textarea" placeholder="Justification, scope of new role, relocation allowance, references to performance review, etc."></textarea>
+                                    <div class="ea-hint">Visible to approvers and stored on the employee timeline.</div>
+                                </div>
+
+                                <div class="ea-field ea-field--full">
+                                    <label class="ea-label">Notify on approval</label>
+                                    <div class="ea-notify">
+                                        <label class="ea-check"><input type="checkbox" checked="checked"/> Employee</label>
+                                        <label class="ea-check"><input type="checkbox" checked="checked"/> Current manager</label>
+                                        <label class="ea-check"><input type="checkbox" checked="checked"/> New manager</label>
+                                        <label class="ea-check"><input type="checkbox"/> Payroll team</label>
+                                        <label class="ea-check"><input type="checkbox"/> IT (badge / access)</label>
+                                    </div>
+                                </div>
+
+                                <div class="ea-field ea-field--full">
+                                    <label class="ea-label">Supporting documents</label>
+                                    <div class="ea-drop">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 15V3M8 7l4-4 4 4"/><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>
+                                        <div class="ea-drop__title">Drop offer letter, review form or approval email</div>
+                                        <div class="ea-drop__hint">PDF, DOCX or images up to 10 MB</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PROMOTION &amp; TRANSFER fields (dono ka combo) -->
+                            <div class="ea-grid" data-fields="promo-transfer" style="display:none">
+                                <div class="ea-field">
+                                    <label class="ea-label">Effective date <span class="ea-req">*</span></label>
+                                    <input type="date" class="ea-input" value="2026-06-01"/>
+                                    <div class="ea-hint">Change takes effect on this date.</div>
+                                </div>
+                                <div class="ea-field">
+                                    <label class="ea-label">Reason</label>
+                                    <input type="text" class="ea-input" value="Other (specify in notes)"/>
+                                </div>
+
+                                <div class="ea-field">
+                                    <label class="ea-label">New designation <span class="ea-req">*</span></label>
+                                    <input type="text" class="ea-input" placeholder="e.g. Lead Frontend Engineer"/>
+                                    <div class="ea-chips">
+                                        <span class="ea-chip">Lead Frontend Engineer</span>
+                                        <span class="ea-chip">Principal Engineer</span>
+                                        <span class="ea-chip">Engineering Manager</span>
+                                    </div>
+                                </div>
+                                <div class="ea-field">
+                                    <label class="ea-label">New grade / band</label>
+                                    <input type="text" class="ea-input" value="L4 — Lead"/>
+                                </div>
+
+                                <div class="ea-field ea-field--full">
+                                    <label class="ea-label">Location <span class="ea-req">*</span></label>
+                                    <div class="ea-fromto">
+                                        <div class="ea-fromto__col">
+                                            <span class="ea-sublabel">Current (pre-saved)</span>
+                                            <input type="text" class="ea-input ea-input--ro" value="Lahore Office · 4F" readonly="readonly"/>
+                                        </div>
+                                        <span class="ea-fromto__arrow">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                                        </span>
+                                        <div class="ea-fromto__col">
+                                            <span class="ea-sublabel">New location</span>
+                                            <input type="text" class="ea-input" value="Lahore Office · 6F (Eng Wing)"/>
+                                        </div>
+                                    </div>
+                                    <div class="ea-warn">Transfer detected — please confirm relocation allowance in notes.</div>
+                                </div>
+
+                                <div class="ea-field">
+                                    <label class="ea-label">New department</label>
+                                    <input type="text" class="ea-input" value="Product Engineering"/>
+                                </div>
+                                <div class="ea-field">
+                                    <label class="ea-label">New manager</label>
+                                    <input type="text" class="ea-input" value="Hamid Khan"/>
+                                </div>
+
+                                <div class="ea-field ea-field--full">
+                                    <label class="ea-label">Description / Notes <span class="ea-req">*</span></label>
+                                    <textarea class="ea-textarea" placeholder="Justification, scope of new role, relocation allowance, references to performance review, etc."></textarea>
+                                    <div class="ea-hint">Visible to approvers and stored on the employee timeline.</div>
+                                </div>
+
+                                <div class="ea-field ea-field--full">
+                                    <label class="ea-label">Notify on approval</label>
+                                    <div class="ea-notify">
+                                        <label class="ea-check"><input type="checkbox" checked="checked"/> Employee</label>
+                                        <label class="ea-check"><input type="checkbox" checked="checked"/> Current manager</label>
+                                        <label class="ea-check"><input type="checkbox" checked="checked"/> New manager</label>
+                                        <label class="ea-check"><input type="checkbox"/> Payroll team</label>
+                                        <label class="ea-check"><input type="checkbox"/> IT (badge / access)</label>
+                                    </div>
+                                </div>
+
+                                <div class="ea-field ea-field--full">
+                                    <label class="ea-label">Supporting documents</label>
+                                    <div class="ea-drop">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 15V3M8 7l4-4 4 4"/><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>
+                                        <div class="ea-drop__title">Drop offer letter, review form or approval email</div>
+                                        <div class="ea-drop__hint">PDF, DOCX or images up to 10 MB</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PROBATION / INCREMENT fields (sirf Location + Salary) -->
+                            <div class="ea-grid" data-fields="probation" style="display:none">
+                                <div class="ea-field">
+                                    <label class="ea-label">Effective date <span class="ea-req">*</span></label>
+                                    <input type="date" class="ea-input" value="2026-06-01"/>
+                                    <div class="ea-hint">Change takes effect on this date.</div>
+                                </div>
+                                <div class="ea-field">
+                                    <label class="ea-label">Reason</label>
+                                    <input type="text" class="ea-input" value="Other (specify in notes)"/>
+                                </div>
+
+                                <div class="ea-field ea-field--full">
+                                    <label class="ea-label">Location <span class="ea-req">*</span></label>
+                                    <div class="ea-fromto">
+                                        <div class="ea-fromto__col">
+                                            <span class="ea-sublabel">Current (pre-saved)</span>
+                                            <input type="text" class="ea-input ea-input--ro" value="Islamabad - HQ" readonly="readonly"/>
+                                        </div>
+                                        <span class="ea-fromto__arrow">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                                        </span>
+                                        <div class="ea-fromto__col">
+                                            <span class="ea-sublabel">New location</span>
+                                            <input type="text" class="ea-input" value="Lahore Office · 6F (Eng Wing)"/>
+                                        </div>
+                                    </div>
+                                    <div class="ea-warn">Transfer detected — please confirm relocation allowance in notes.</div>
+                                </div>
+
+                                <div class="ea-field ea-field--full">
+                                    <label class="ea-label">Salary <span class="ea-req">*</span></label>
+                                    <div class="ea-fromto">
+                                        <div class="ea-fromto__col">
+                                            <span class="ea-sublabel">Current monthly (pre-saved)</span>
+                                            <input type="text" class="ea-input ea-input--ro" value="PKR 780,000" readonly="readonly"/>
+                                        </div>
+                                        <span class="ea-fromto__arrow">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                                        </span>
+                                        <div class="ea-fromto__col">
+                                            <span class="ea-sublabel">New monthly</span>
+                                            <input type="text" class="ea-input" value="PKR 785,000"/>
+                                        </div>
+                                    </div>
+                                    <span class="ea-delta">▲ +0.6% · +PKR 5,000</span>
+                                </div>
+
+                                <div class="ea-field ea-field--full">
+                                    <label class="ea-label">Description / Notes <span class="ea-req">*</span></label>
+                                    <textarea class="ea-textarea" placeholder="Justification, scope of new role, relocation allowance, references to performance review, etc."></textarea>
+                                    <div class="ea-hint">Visible to approvers and stored on the employee timeline.</div>
+                                </div>
+
+                                <div class="ea-field ea-field--full">
+                                    <label class="ea-label">Notify on approval</label>
+                                    <div class="ea-notify">
+                                        <label class="ea-check"><input type="checkbox" checked="checked"/> Employee</label>
+                                        <label class="ea-check"><input type="checkbox" checked="checked"/> Current manager</label>
+                                        <label class="ea-check"><input type="checkbox" checked="checked"/> New manager</label>
+                                        <label class="ea-check"><input type="checkbox"/> Payroll team</label>
+                                        <label class="ea-check"><input type="checkbox"/> IT (badge / access)</label>
+                                    </div>
+                                </div>
+
+                                <div class="ea-field ea-field--full">
+                                    <label class="ea-label">Supporting documents</label>
+                                    <div class="ea-drop">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 15V3M8 7l4-4 4 4"/><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>
+                                        <div class="ea-drop__title">Drop offer letter, review form or approval email</div>
+                                        <div class="ea-drop__hint">PDF, DOCX or images up to 10 MB</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ANNUAL INCREMENT fields (Location + Salary) -->
+                            <div class="ea-grid" data-fields="increment" style="display:none">
+                                <div class="ea-field">
+                                    <label class="ea-label">Effective date <span class="ea-req">*</span></label>
+                                    <input type="date" class="ea-input" value="2026-06-01"/>
+                                    <div class="ea-hint">Change takes effect on this date.</div>
+                                </div>
+                                <div class="ea-field">
+                                    <label class="ea-label">Reason</label>
+                                    <input type="text" class="ea-input" value="Other (specify in notes)"/>
+                                </div>
+
+                                <div class="ea-field ea-field--full">
+                                    <label class="ea-label">Location <span class="ea-req">*</span></label>
+                                    <div class="ea-fromto">
+                                        <div class="ea-fromto__col">
+                                            <span class="ea-sublabel">Current (pre-saved)</span>
+                                            <input type="text" class="ea-input ea-input--ro" value="Lahore Office · 4F" readonly="readonly"/>
+                                        </div>
+                                        <span class="ea-fromto__arrow">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                                        </span>
+                                        <div class="ea-fromto__col">
+                                            <span class="ea-sublabel">New location</span>
+                                            <input type="text" class="ea-input" value="Lahore Office · 6F (Eng Wing)"/>
+                                        </div>
+                                    </div>
+                                    <div class="ea-warn">Transfer detected — please confirm relocation allowance in notes.</div>
+                                </div>
+
+                                <div class="ea-field ea-field--full">
+                                    <label class="ea-label">Salary <span class="ea-req">*</span></label>
+                                    <div class="ea-fromto">
+                                        <div class="ea-fromto__col">
+                                            <span class="ea-sublabel">Current monthly (pre-saved)</span>
+                                            <input type="text" class="ea-input ea-input--ro" value="PKR 385,000" readonly="readonly"/>
+                                        </div>
+                                        <span class="ea-fromto__arrow">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                                        </span>
+                                        <div class="ea-fromto__col">
+                                            <span class="ea-sublabel">New monthly</span>
+                                            <input type="text" class="ea-input" value="PKR 785,000"/>
+                                        </div>
+                                    </div>
+                                    <span class="ea-delta">▲ +103.9% · +PKR 400,000</span>
+                                </div>
+
+                                <div class="ea-field ea-field--full">
+                                    <label class="ea-label">Description / Notes <span class="ea-req">*</span></label>
+                                    <textarea class="ea-textarea" placeholder="Justification, scope of new role, relocation allowance, references to performance review, etc."></textarea>
+                                    <div class="ea-hint">Visible to approvers and stored on the employee timeline.</div>
+                                </div>
+
+                                <div class="ea-field ea-field--full">
+                                    <label class="ea-label">Notify on approval</label>
+                                    <div class="ea-notify">
+                                        <label class="ea-check"><input type="checkbox" checked="checked"/> Employee</label>
+                                        <label class="ea-check"><input type="checkbox" checked="checked"/> Current manager</label>
+                                        <label class="ea-check"><input type="checkbox" checked="checked"/> New manager</label>
+                                        <label class="ea-check"><input type="checkbox"/> Payroll team</label>
+                                        <label class="ea-check"><input type="checkbox"/> IT (badge / access)</label>
+                                    </div>
+                                </div>
+
+                                <div class="ea-field ea-field--full">
+                                    <label class="ea-label">Supporting documents</label>
+                                    <div class="ea-drop">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 15V3M8 7l4-4 4 4"/><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>
+                                        <div class="ea-drop__title">Drop offer letter, review form or approval email</div>
+                                        <div class="ea-drop__hint">PDF, DOCX or images up to 10 MB</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- CONFIRMATION fields (Location + Probation completed on) -->
+                            <div class="ea-grid" data-fields="confirmation" style="display:none">
+                                <div class="ea-field">
+                                    <label class="ea-label">Effective date <span class="ea-req">*</span></label>
+                                    <input type="date" class="ea-input" value="2026-06-01"/>
+                                    <div class="ea-hint">Change takes effect on this date.</div>
+                                </div>
+                                <div class="ea-field">
+                                    <label class="ea-label">Reason</label>
+                                    <input type="text" class="ea-input" value="Other (specify in notes)"/>
+                                </div>
+
+                                <div class="ea-field ea-field--full">
+                                    <label class="ea-label">Location <span class="ea-req">*</span></label>
+                                    <div class="ea-fromto">
+                                        <div class="ea-fromto__col">
+                                            <span class="ea-sublabel">Current (pre-saved)</span>
+                                            <input type="text" class="ea-input ea-input--ro" value="Lahore Office · 4F" readonly="readonly"/>
+                                        </div>
+                                        <span class="ea-fromto__arrow">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                                        </span>
+                                        <div class="ea-fromto__col">
+                                            <span class="ea-sublabel">New location</span>
+                                            <input type="text" class="ea-input" value="Lahore Office · 6F (Eng Wing)"/>
+                                        </div>
+                                    </div>
+                                    <div class="ea-warn">Transfer detected — please confirm relocation allowance in notes.</div>
+                                </div>
+
+                                <div class="ea-field">
+                                    <label class="ea-label">Probation completed on</label>
+                                    <input type="date" class="ea-input" value="2026-05-31"/>
+                                    <div class="ea-hint">Confirms employee from probation to permanent.</div>
+                                </div>
+
+                                <div class="ea-field ea-field--full">
+                                    <label class="ea-label">Description / Notes <span class="ea-req">*</span></label>
+                                    <textarea class="ea-textarea" placeholder="Justification, scope of new role, relocation allowance, references to performance review, etc."></textarea>
+                                    <div class="ea-hint">Visible to approvers and stored on the employee timeline.</div>
+                                </div>
+
+                                <div class="ea-field ea-field--full">
+                                    <label class="ea-label">Notify on approval</label>
+                                    <div class="ea-notify">
+                                        <label class="ea-check"><input type="checkbox" checked="checked"/> Employee</label>
+                                        <label class="ea-check"><input type="checkbox" checked="checked"/> Current manager</label>
+                                        <label class="ea-check"><input type="checkbox" checked="checked"/> New manager</label>
+                                        <label class="ea-check"><input type="checkbox"/> Payroll team</label>
+                                        <label class="ea-check"><input type="checkbox"/> IT (badge / access)</label>
+                                    </div>
+                                </div>
+
+                                <div class="ea-field ea-field--full">
+                                    <label class="ea-label">Supporting documents</label>
+                                    <div class="ea-drop">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 15V3M8 7l4-4 4 4"/><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>
+                                        <div class="ea-drop__title">Drop offer letter, review form or approval email</div>
+                                        <div class="ea-drop__hint">PDF, DOCX or images up to 10 MB</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Footer -->
+                        <div class="ea-foot">
+                            <div class="ea-foot__note">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+                                All actions are reviewable by the employee's reporting line before payroll cuts over.
+                            </div>
+                            <div class="ea-foot__btns">
+                                <button type="button" class="btn-outline">Save draft</button>
+                                <button type="button" class="btn-solid">Submit for approval</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ RIGHT: CHANGE SUMMARY ============ -->
+                <aside class="ea-side">
+                    <div class="ea-summary">
+                        <div class="ea-summary__head">
+                            <div class="ea-summary__title">Change summary</div>
+                            <span class="ea-pill" data-ea-badge="1">PROMOTION</span>
+                        </div>
+
+                        <div class="sum-row">
+                            <div class="sum-box">
+                                <div class="sum-box__label">Current designation</div>
+                                <div class="sum-box__val">Senior Frontend Engineer</div>
+                            </div>
+                            <span class="sum-arrow">→</span>
+                            <div class="sum-box sum-box--new">
+                                <div class="sum-box__label">New designation</div>
+                                <div class="sum-box__val">Senior Frontend Engineer</div>
+                            </div>
+                        </div>
+                        <div class="sum-row">
+                            <div class="sum-box">
+                                <div class="sum-box__label">Current location</div>
+                                <div class="sum-box__val">Lahore Office · 4F</div>
+                            </div>
+                            <span class="sum-arrow">→</span>
+                            <div class="sum-box sum-box--new">
+                                <div class="sum-box__label">New location</div>
+                                <div class="sum-box__val">Lahore Office · 6F (Eng Wing)</div>
+                            </div>
+                        </div>
+                        <div class="sum-row">
+                            <div class="sum-box">
+                                <div class="sum-box__label">Current salary</div>
+                                <div class="sum-box__val">PKR 385,000 /mo</div>
+                            </div>
+                            <span class="sum-arrow">→</span>
+                            <div class="sum-box sum-box--new">
+                                <div class="sum-box__label">New salary</div>
+                                <div class="sum-box__val">PKR 785,000 /mo</div>
+                            </div>
+                        </div>
+
+                        <div class="sum-meta">
+                            <div class="sum-meta__row"><span>Effective date</span><b>01 Jun 2026</b></div>
+                            <div class="sum-meta__row"><span>Days from today</span><b>21 days</b></div>
+                            <div class="sum-meta__row"><span>Next payroll affected</span><b>Jun 2026 cycle</b></div>
+                            <div class="sum-meta__row"><span>Annual cost delta</span><span class="pos">+PKR 4,800,000</span></div>
+                        </div>
+
+                        <div class="route">
+                            <div class="route__label">Approval routing</div>
+                            <div class="route__item">
+                                <span class="route__dot route__dot--done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"/></svg></span>
+                                <div>
+                                    <div class="route__name">HR Manager — Samira Reyes</div>
+                                    <div class="route__meta">Originator · just now</div>
+                                </div>
+                            </div>
+                            <div class="route__item">
+                                <span class="route__dot route__dot--active">2</span>
+                                <div>
+                                    <div class="route__name">Reporting Manager — Hira Khan</div>
+                                    <div class="route__meta">Pending review</div>
+                                </div>
+                            </div>
+                            <div class="route__item">
+                                <span class="route__dot route__dot--todo">3</span>
+                                <div>
+                                    <div class="route__name">Head of Engineering — Bilal Shah</div>
+                                    <div class="route__meta">Required &gt; 10% raise</div>
+                                </div>
+                            </div>
+                            <div class="route__item">
+                                <span class="route__dot route__dot--todo">4</span>
+                                <div>
+                                    <div class="route__name">Finance / Payroll</div>
+                                    <div class="route__meta">Auto-routed on approval</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+
+            <!-- Floating assistant button -->
+            <div class="ea-fab">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+        </t>
+    </template>
+
+</odoo>

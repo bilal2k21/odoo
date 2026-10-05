@@ -1,0 +1,34 @@
+// ============================================================
+//  EXPENSE REQUEST form  (/requests/expense)
+//  Reuses .req-head/.req-tabs + .ea-label/.ea-req/.ea-input/.ea-textarea + .nr-select
+// ============================================================
+
+.exp-card { background: #fff; border: 1px solid $c-line; border-radius: 14px; padding: 22px 24px; }
+.exp-card__head { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; font-size: 16px; font-weight: 800; color: $c-ink; svg { width: 20px; height: 20px; color: $c-teal; } }
+
+.exp-grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px 20px; }
+@media (max-width: 1000px) { .exp-grid4 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px)  { .exp-grid4 { grid-template-columns: 1fr; } }
+
+.exp-amount .ea-input { background: #eef1f4; }
+
+/* request date (× + calendar icons) */
+.exp-date { position: relative; }
+.exp-date .ea-input { background: #eef1f4; padding-right: 58px; }
+.exp-date__icons { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); display: inline-flex; align-items: center; gap: 8px; color: $c-muted; svg { width: 15px; height: 15px; cursor: pointer; } }
+
+/* Expense files */
+.exp-files-head { display: flex; align-items: center; justify-content: space-between; margin: 26px 0 12px; }
+.exp-files-label { font-size: 13px; font-weight: 600; color: #37474f; }
+.exp-add-btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border: none; border-radius: 8px; background: $c-teal; color: #fff; font-size: 13px; font-weight: 600; cursor: pointer; &:hover { filter: brightness(1.08); } svg { width: 14px; height: 14px; } }
+
+.exp-table-wrap { border: 1px solid $c-line; border-radius: 10px; overflow: hidden; }
+.exp-table { width: 100%; border-collapse: collapse; }
+.exp-table th { text-align: left; padding: 11px 14px; font-size: 11px; font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase; color: $c-muted; background: #f4f6f8; }
+.exp-table td { padding: 16px 14px; font-size: 13px; color: $c-muted; text-align: center; }
+
+/* Remarks + footer */
+.exp-remarks { margin-top: 22px; }
+.exp-foot { display: flex; justify-content: flex-end; gap: 12px; margin-top: 26px; }
+.exp-btn-cancel { height: 42px; padding: 0 28px; border: none; border-radius: 999px; background: #f6c3bd; color: #c0392b; font-size: 14px; font-weight: 600; cursor: pointer; &:hover { filter: brightness(0.97); } }
+.exp-btn-draft { height: 42px; padding: 0 32px; border: none; border-radius: 999px; background: linear-gradient(90deg, $c-teal-deep, $c-teal); color: #fff; font-size: 14px; font-weight: 700; cursor: pointer; &:hover { filter: brightness(1.08); } }

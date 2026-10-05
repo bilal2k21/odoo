@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================
+         NEW REQUEST form body (reusable: page + modal dono use karte hain)
+    ============================================================= -->
+    <template id="new_request_form" name="New Request form">
+        <!-- Tabs -->
+        <div class="req-tabs">
+            <span class="req-tab is-active">Attendence Request</span>
+            <span class="req-tab">Leave</span>
+            <span class="req-tab">Expense Request</span>
+            <span class="req-tab">Funds Request</span>
+            <span class="req-tab">Employ Action Sheet</span>
+            <span class="req-tab">Assets Request</span>
+            <span class="req-tab">Document
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"/></svg>
+            </span>
+        </div>
+
+        <div class="nr-card">
+            <div class="nr-grid3">
+
+                <!-- Employees -->
+                <div class="nr-f-emp">
+                    <label class="ea-label">Employees <span class="ea-req">*</span></label>
+                    <div class="nr-dd">
+                        <div class="nr-caret nr-dd__field" data-dropdown="emp">
+                            <input type="text" class="ea-input" value="MV-074 - Muhammad Asim" readonly="readonly"/>
+                            <span class="nr-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"/></svg></span>
+                        </div>
+                        <div class="nr-dd__menu" data-dropdown-menu="emp">
+                            <div class="nr-dd__search">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg>
+                                <input type="text" placeholder="Search employee"/>
+                            </div>
+                            <div class="nr-emp-item is-active"><span class="nr-emp-item__av" style="background:#0a7e9b">MA</span><span class="nr-emp-item__name">Muhammad Asim</span><span class="nr-emp-item__id">MV-074</span></div>
+                            <div class="nr-emp-item"><span class="nr-emp-item__av" style="background:#2f72c4">AH</span><span class="nr-emp-item__name">Ali Haider</span><span class="nr-emp-item__id">MV-031</span></div>
+                            <div class="nr-emp-item"><span class="nr-emp-item__av" style="background:#e5564b">TO</span><span class="nr-emp-item__name">Tomás Okafor</span><span class="nr-emp-item__id">MV-038</span></div>
+                            <div class="nr-emp-item"><span class="nr-emp-item__av" style="background:#7c5cde">SR</span><span class="nr-emp-item__name">Samar Reyes</span><span class="nr-emp-item__id">MV-002</span></div>
+                            <div class="nr-emp-item"><span class="nr-emp-item__av" style="background:#e0872f">JL</span><span class="nr-emp-item__name">Junaid Loha</span><span class="nr-emp-item__id">MV-066</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Type of Leave -->
+                <div class="nr-f-type">
+                    <label class="ea-label">Type of Leave <span class="ea-req">*</span></label>
+                    <div class="nr-dd">
+                        <div class="nr-caret nr-dd__field" data-dropdown="type">
+                            <input type="text" class="ea-input" value="Personal Leave PL (UnPaid)" readonly="readonly"/>
+                            <span class="nr-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"/></svg></span>
+                        </div>
+                        <div class="nr-dd__menu" data-dropdown-menu="type">
+                            <div class="nr-leave-item">Sick/ Casual Leave SL (Paid) <span class="nr-badge-paid">Paid</span></div>
+                            <div class="nr-leave-item is-active">Personal Leave PL (UnPaid) <span class="nr-badge-unpaid">UnPaid</span></div>
+                            <div class="nr-leave-item">3 Hours short Leave (Paid) <span class="nr-badge-paid">Paid</span></div>
+                            <div class="nr-leave-item">3 Hours short Leave (UnPaid) <span class="nr-badge-unpaid">UnPaid</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Balance box -->
+                <div class="nr-f-bal">
+                    <div class="nr-balance">
+                        <div class="nr-balance__head"><span>As of 18-Apr-2026</span><span>Day(s)</span></div>
+                        <div class="nr-balance__row"><span>Available balance</span><b>12</b></div>
+                        <div class="nr-balance__row"><span>Currently booked</span><b>3</b></div>
+                        <div class="nr-balance__row"><span>Balance after booked leave</span><b>9</b></div>
+                        <div class="nr-balance__note"><b>Heads-up</b> — Personal Leave (PL) is unpaid and approved by your direct manager. Submit at least 3 days in advance.</div>
+                    </div>
+                </div>
+
+                <!-- From -->
+                <div class="nr-f-from">
+                    <label class="ea-label">From <span class="ea-req">*</span></label>
+                    <div class="nr-caret">
+                        <input type="text" class="ea-input" value="18/04/2026"/>
+                        <span class="nr-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></span>
+                    </div>
+                </div>
+
+                <!-- To -->
+                <div class="nr-f-to">
+                    <label class="ea-label">To <span class="ea-req">*</span></label>
+                    <div class="nr-caret">
+                        <input type="text" class="ea-input" value="25/04/2026"/>
+                        <span class="nr-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Per-day time table -->
+            <div class="nr-tt">
+                <t t-foreach="['Sun 5-May-2026','Mon 6-May-2026','Tue 7-May-2026','Wed 7-May-2026']" t-as="d">
+                    <div class="nr-tt__row">
+                        <span class="nr-tt__day"><t t-out="d"/></span>
+                        <span class="nr-tt__time"><input type="text" value="09:30 AM"/><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+                        <span class="nr-tt__dash">-</span>
+                        <span class="nr-tt__time"><input type="text" value="06:30 PM"/><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+                        <span class="nr-tt__dur">09:00:00</span>
+                    </div>
+                </t>
+                <div class="nr-tt__total"><span>Total</span><span>36.0 Hr(s)</span></div>
+            </div>
+
+            <!-- Attachment -->
+            <div class="ea-field ea-field--full" style="margin-top:22px">
+                <label class="ea-label">Attachment</label>
+                <div class="nr-upload">
+                    <input type="text" class="ea-input" placeholder="Please Select file" readonly="readonly"/>
+                    <button type="button" class="nr-upload-btn">Upload File
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 15V3M8 7l4-4 4 4"/><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>
+                        No File Chosen
+                    </button>
+                </div>
+            </div>
+
+            <!-- Reason -->
+            <div class="ea-field ea-field--full" style="margin-top:16px">
+                <label class="ea-label">Reason for Leave <span class="ea-req">*</span></label>
+                <textarea class="ea-textarea" placeholder="Type Reason Here"></textarea>
+            </div>
+
+            <!-- Footer -->
+            <div class="nr-foot">
+                <button type="button" class="nr-btn-cancel" data-nr-close="1">Cancel</button>
+                <button type="button" class="nr-btn-submit">Submit request
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </button>
+            </div>
+        </div>
+    </template>
+
+    <!-- ============================================================
+         NEW REQUEST page  (/requests/new)  — full page version
+    ============================================================= -->
+    <template id="new_request_page" name="New Request">
+        <t t-set="active" t-value="'requests'"/>
+        <t t-set="section" t-value="'Requests'"/>
+        <t t-set="page_name" t-value="'Attendance Request'"/>
+        <t t-call="hr_management_system.dashboard_layout">
+            <div class="req-head">
+                <h1 class="req-head__title">New Request</h1>
+                <p class="req-head__sub">Submit a time-off, reimbursement, or asset request for approval.</p>
+            </div>
+            <t t-call="hr_management_system.new_request_form"/>
+        </t>
+    </template>
+
+</odoo>

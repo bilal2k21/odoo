@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================
+         CLEAN PORTAL LAYOUT (reusable)
+         Poora standalone HTML page - Odoo ka koi header/footer nahi.
+         Har frontend page is layout ko t-call se use karta hai.
+    ============================================================= -->
+    <template id="portal_layout" name="HRMS Clean Layout">&lt;!DOCTYPE html&gt;
+        <html>
+            <head>
+                <meta charset="utf-8"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                <title><t t-out="page_title or 'Metaviz HR Suite'"/></title>
+                <!-- Browser tab ka logo (favicon) -->
+                <link rel="icon" type="image/svg+xml" href="/hr_management_system/static/src/img/metaviz-logo.svg"/>
+                <link rel="shortcut icon" href="/hr_management_system/static/src/img/metaviz-logo.svg"/>
+                <!-- Hamara dedicated bundle: CSS head me -->
+                <t t-call-assets="hr_management_system.assets_hrms" t-js="false"/>
+            </head>
+            <body>
+                <t t-out="0"/>
+                <!-- JS raw static files ke zariye (NOT asset bundle) taake
+                     plain vanilla JS normally execute ho — koi odoo.define wrap nahi.
+                     v= query cache-bust ke liye; JS change pe number barha dena. -->
+                <script type="text/javascript" src="/hr_management_system/static/src/js/auth.js?v=9"></script>
+                <script type="text/javascript" src="/hr_management_system/static/src/js/dashboard.js?v=9"></script>
+            </body>
+        </html>
+    </template>
+
+</odoo>

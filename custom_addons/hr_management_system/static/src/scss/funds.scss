@@ -1,0 +1,21 @@
+// ============================================================
+//  FUNDS REQUEST form  (/requests/funds)
+//  Reuses .req-* + .ea-* + .exp-card/.exp-grid4/.exp-amount/.exp-date + .nr-select + .eas-foot
+// ============================================================
+
+.fr-grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px 20px; }
+@media (max-width: 820px) { .fr-grid3 { grid-template-columns: 1fr; } }
+
+/* salary badge in card head */
+.fr-salary { display: inline-flex; align-items: center; gap: 8px; margin-left: 10px; font-size: 13px; font-weight: 500; color: $c-body; }
+.fr-salary__badge { font-size: 12px; font-weight: 700; color: #fff; background: #16a34a; padding: 3px 12px; border-radius: 999px; }
+
+/* input with left prefix (RS / %) */
+.fr-prefixed { display: flex; align-items: stretch; border: 1px solid $c-line; border-radius: 9px; overflow: hidden; background: #fff; }
+.fr-prefixed:focus-within { border-color: $c-teal-light; }
+.fr-prefixed__p { display: inline-flex; align-items: center; padding: 0 13px; background: #f4f6f8; color: $c-body; font-size: 13px; font-weight: 600; border-right: 1px solid $c-line; }
+.fr-prefixed input { flex: 1; min-width: 0; height: 44px; border: none; background: transparent; padding: 0 14px; font-size: 14px; color: $c-ink; &:focus { outline: none; } }
+
+/* section header + divider */
+.fr-section-title { margin-top: 24px; font-size: 14px; font-weight: 700; color: $c-teal; }
+.fr-divider { border: none; border-top: 1px solid $c-line; margin: 14px 0 18px; }

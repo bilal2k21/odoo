@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================
+         REQUESTS  (/requests)
+    ============================================================= -->
+    <template id="requests_page" name="Requests">
+        <t t-set="active" t-value="'requests'"/>
+        <t t-set="section" t-value="'Requests'"/>
+        <t t-set="page_name" t-value="'Attendance Request'"/>
+        <t t-call="hr_management_system.dashboard_layout">
+
+            <div class="req-head">
+                <h1 class="req-head__title">Requests</h1>
+                <p class="req-head__sub">Submit, review, and track time-off, expenses, and document requests across your team.</p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="req-tabs">
+                <span class="req-tab is-active">Attendence request</span>
+                <a class="req-tab" href="/requests/leave">Leave</a>
+                <a class="req-tab" href="/requests/expense">Expense Request</a>
+                <a class="req-tab" href="/requests/funds">Funds Request</a>
+                <a class="req-tab" href="/requests/employ-action">Employ Action Sheet</a>
+                <span class="req-tab">Document
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+            </div>
+
+            <!-- Panel -->
+            <div class="req-panel">
+                <div class="req-toolbar">
+                    <div class="req-search">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg>
+                        <input type="text" placeholder="Search by ID, employee, or docume..."/>
+                    </div>
+                    <span class="req-total">Total Records : <b>0</b></span>
+                    <div class="req-filters">
+                        <span class="req-select">Filter: All Request
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"/></svg>
+                        </span>
+                        <span class="req-select">All
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"/></svg>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Empty state -->
+                <div class="req-empty">
+                    <svg class="req-illus" viewBox="0 0 240 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- accent dots -->
+                        <circle cx="47" cy="54" r="4" fill="none" stroke="#bcccd2" stroke-width="2"/>
+                        <circle cx="36" cy="72" r="2.5" fill="#cfdade"/>
+                        <circle cx="196" cy="62" r="3" fill="#cfdade"/>
+                        <!-- person head + shoulders -->
+                        <circle cx="120" cy="58" r="23" fill="#cfe6e9"/>
+                        <path d="M120 86 c-26 0 -42 18 -45 36 h90 c-3 -18 -19 -36 -45 -36 Z" fill="#b6d8dd"/>
+                        <!-- open book / ledger -->
+                        <path d="M58 118 L120 106 L120 156 L58 166 Z" fill="#ffffff" stroke="#9fb6bd" stroke-width="2.5" stroke-linejoin="round"/>
+                        <path d="M182 118 L120 106 L120 156 L182 166 Z" fill="#ffffff" stroke="#9fb6bd" stroke-width="2.5" stroke-linejoin="round"/>
+                        <path d="M120 106 L120 156" stroke="#9fb6bd" stroke-width="2.5"/>
+                        <!-- text lines -->
+                        <path d="M70 126 L108 119 M70 134 L108 127 M70 142 L100 136" stroke="#c7d6db" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M132 119 L170 126 M132 127 L170 134 M132 136 L162 142" stroke="#c7d6db" stroke-width="2.5" stroke-linecap="round"/>
+                        <!-- pencil -->
+                        <path d="M150 92 L176 66 L186 76 L160 102 Z" fill="#f4d9b0" stroke="#e8b877" stroke-width="2" stroke-linejoin="round"/>
+                        <path d="M176 66 L186 76 L190 72 L180 62 Z" fill="#f29a2e"/>
+                        <path d="M150 92 L156 96 L160 102 Z" fill="#5d6d75"/>
+                    </svg>
+
+                    <span class="req-empty__cta">Start by adding Name/ID</span>
+                    <p class="req-empty__sub">Try adjusting your filters, or click <b>New request</b> to create one.</p>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>

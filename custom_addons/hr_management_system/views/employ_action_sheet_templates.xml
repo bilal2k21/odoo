@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================
+         EMPLOY ACTION SHEET  (/requests/employ-action)
+    ============================================================= -->
+    <template id="employ_action_sheet_page" name="Employ Action Sheet">
+        <t t-set="active" t-value="'requests'"/>
+        <t t-set="section" t-value="'Requests'"/>
+        <t t-set="page_name" t-value="'Employ Action Sheet'"/>
+        <t t-call="hr_management_system.dashboard_layout">
+
+            <div class="req-head">
+                <h1 class="req-head__title">Employ Action Sheet</h1>
+                <p class="req-head__sub">Submit a time-off, reimbursement, or asset request for approval.</p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="req-tabs">
+                <a class="req-tab" href="/requests">Attendence Request</a>
+                <a class="req-tab" href="/requests/leave">Leave</a>
+                <a class="req-tab" href="/requests/expense">Expense Request</a>
+                <a class="req-tab" href="/requests/funds">Funds Request</a>
+                <span class="req-tab is-active">Employ Action Sheet</span>
+                <span class="req-tab">Assets Request</span>
+                <span class="req-tab">Document
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+            </div>
+
+            <div class="ea-card">
+                <!-- STEP 1 -->
+                <div class="ea-step">
+                    <div class="ea-step__head">
+                        <span class="ea-step__num">1</span>
+                        <div>
+                            <div class="ea-step__title">Select employee</div>
+                            <div class="ea-step__sub">Search by name, ID, email or department.</div>
+                        </div>
+                    </div>
+                    <div class="ea-search">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg>
+                        <input type="text" placeholder="Start typing an employee name or ID, e.g. MV-074 ..."/>
+                        <span class="enter">↵</span>
+                    </div>
+                    <div class="ea-emp">
+                        <span class="ea-emp__av">BS</span>
+                        <div>
+                            <div class="ea-emp__name">Bilal Shah <span class="ea-emp__id">MV-022</span></div>
+                            <div class="ea-emp__meta">Engineering · Head of Engineering · 📍 Islamabad - HQ</div>
+                            <div class="ea-emp__pay">PKR 788,888/mo</div>
+                        </div>
+                        <span class="ea-emp__x">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- STEP 2 -->
+                <div class="ea-step">
+                    <div class="ea-step__head">
+                        <span class="ea-step__num">2</span>
+                        <div>
+                            <div class="ea-step__title">Action type</div>
+                            <div class="ea-step__sub">Choose the change you're recording. Following fields adjust accordingly.</div>
+                        </div>
+                    </div>
+
+                    <div class="ea-types">
+                        <button type="button" class="ea-type">
+                            <span class="ea-type__icon ea-ic-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m6 15 6-6 6 6M6 9l6-6 6 6"/></svg></span>
+                            <div class="ea-type__name">Promotion</div>
+                            <div class="ea-type__desc">Move up in role or grade</div>
+                        </button>
+                        <button type="button" class="ea-type">
+                            <span class="ea-type__icon ea-ic-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M16 3h5v5M21 3l-7 7M8 21H3v-5M3 21l7-7"/></svg></span>
+                            <div class="ea-type__name">Transfer</div>
+                            <div class="ea-type__desc">Change location or team</div>
+                        </button>
+                        <button type="button" class="ea-type">
+                            <span class="ea-type__icon ea-ic-teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m6 15 6-6 6 6"/><path d="M4 20h16"/></svg></span>
+                            <div class="ea-type__name">Promotion &amp; Transfer</div>
+                            <div class="ea-type__desc">Role change + relocation</div>
+                        </button>
+                        <button type="button" class="ea-type is-active">
+                            <span class="ea-type__check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"/></svg></span>
+                            <span class="ea-type__icon ea-ic-orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+                            <div class="ea-type__name">Probation / Increment</div>
+                            <div class="ea-type__desc">During probation period</div>
+                        </button>
+                        <button type="button" class="ea-type">
+                            <span class="ea-type__icon ea-ic-teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M3 17l6-6 4 4 7-7"/><path d="M17 8h4v4"/></svg></span>
+                            <div class="ea-type__name">Annual Increment</div>
+                            <div class="ea-type__desc">Yearly salary review</div>
+                        </button>
+                        <button type="button" class="ea-type">
+                            <span class="ea-type__icon ea-ic-red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6M6 15l6 6 6-6"/></svg></span>
+                            <div class="ea-type__name">Demotion</div>
+                            <div class="ea-type__desc">Move down in role or grade</div>
+                        </button>
+                        <button type="button" class="ea-type">
+                            <span class="ea-type__icon ea-ic-purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"/></svg></span>
+                            <div class="ea-type__name">Confirmation</div>
+                            <div class="ea-type__desc">Probation → permanent</div>
+                        </button>
+                        <button type="button" class="ea-type">
+                            <span class="ea-type__icon ea-ic-gray"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></span>
+                            <div class="ea-type__name">Others</div>
+                            <div class="ea-type__desc">Custom change</div>
+                        </button>
+                    </div>
+
+                    <div class="ea-pick">
+                        <div class="ea-pick__label">Or pick from list</div>
+                        <div class="nr-caret">
+                            <select class="nr-select">
+                                <option>Promotion</option>
+                                <option>Transfer</option>
+                                <option>Promotion &amp; Transfer</option>
+                                <option>Annual Increment</option>
+                                <option>Demotion</option>
+                                <option>Confirmation</option>
+                                <option>Others</option>
+                            </select>
+                            <span class="nr-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"/></svg></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="eas-foot">
+                <button type="button" class="eas-cancel">Cancel</button>
+                <button type="button" class="eas-save">Save</button>
+            </div>
+        </t>
+    </template>
+
+</odoo>

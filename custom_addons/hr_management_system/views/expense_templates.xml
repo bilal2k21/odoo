@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================
+         EXPENSE REQUEST  (/requests/expense)
+    ============================================================= -->
+    <template id="expense_page" name="Expense Request">
+        <t t-set="active" t-value="'requests'"/>
+        <t t-set="section" t-value="'Requests'"/>
+        <t t-set="page_name" t-value="'Expense Request'"/>
+        <t t-call="hr_management_system.dashboard_layout">
+
+            <div class="req-head">
+                <h1 class="req-head__title">Expense Request</h1>
+                <p class="req-head__sub">Submit a time-off, reimbursement, or asset request for approval.</p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="req-tabs">
+                <a class="req-tab" href="/requests">Attendence Request</a>
+                <a class="req-tab" href="/requests/leave">Leave</a>
+                <span class="req-tab is-active">Expense Request</span>
+                <a class="req-tab" href="/requests/funds">Funds Request</a>
+                <a class="req-tab" href="/requests/employ-action">Employ Action Sheet</a>
+                <span class="req-tab">Assets Request</span>
+                <span class="req-tab">Document
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+            </div>
+
+            <!-- Form -->
+            <div class="exp-card">
+                <div class="exp-card__head">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M6 2h12v4a6 6 0 0 1-12 0z"/><path d="M6 6H4a2 2 0 0 0 0 4h2M18 6h2a2 2 0 0 1 0 4h-2M9 22h6M12 12v10"/></svg>
+                    Expense Request
+                </div>
+
+                <div class="exp-grid4">
+                    <div class="ea-field">
+                        <label class="ea-label">Employee <span class="ea-req">*</span></label>
+                        <input type="text" class="ea-input" value="MV-074 - Muhammad Asim"/>
+                    </div>
+                    <div class="ea-field">
+                        <label class="ea-label">Expense Category <span class="ea-req">*</span></label>
+                        <div class="nr-caret">
+                            <select class="nr-select"><option value="">Select</option><option>Travel</option><option>Food</option><option>Equipment</option><option>Other</option></select>
+                            <span class="nr-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"/></svg></span>
+                        </div>
+                    </div>
+                    <div class="ea-field">
+                        <label class="ea-label">Currency <span class="ea-req">*</span></label>
+                        <input type="text" class="ea-input" value="RS"/>
+                    </div>
+                    <div class="ea-field exp-date">
+                        <label class="ea-label">Request Date <span class="ea-req">*</span></label>
+                        <input type="text" class="ea-input" value="04/05/2026" readonly="readonly"/>
+                        <span class="exp-date__icons">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>
+                        </span>
+                    </div>
+
+                    <div class="ea-field exp-amount">
+                        <label class="ea-label">Actual Amount</label>
+                        <input type="text" class="ea-input" placeholder=""/>
+                    </div>
+                    <div class="ea-field exp-amount">
+                        <label class="ea-label">Approved Amount</label>
+                        <input type="text" class="ea-input" placeholder=""/>
+                    </div>
+                </div>
+
+                <!-- Expense files -->
+                <div class="exp-files-head">
+                    <span class="exp-files-label">Expense Files</span>
+                    <button type="button" class="exp-add-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 5v14M5 12h14"/></svg>
+                        Add
+                    </button>
+                </div>
+                <div class="exp-table-wrap">
+                    <table class="exp-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Approved Amount</th>
+                                <th>Reference Number</th>
+                                <th>Document Name</th>
+                                <th>Description</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td colspan="7">No expense files added yet.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Remarks -->
+                <div class="exp-remarks">
+                    <label class="ea-label">Remarks</label>
+                    <textarea class="ea-textarea" placeholder="Type Reason Here"></textarea>
+                </div>
+
+                <!-- Footer -->
+                <div class="exp-foot">
+                    <button type="button" class="exp-btn-cancel">Cancel</button>
+                    <button type="button" class="exp-btn-draft">Draft</button>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>

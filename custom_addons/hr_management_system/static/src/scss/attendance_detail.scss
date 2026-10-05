@@ -1,0 +1,142 @@
+// ============================================================
+//  ATTENDANCE DETAIL page  (/attendance/employee)
+// ============================================================
+
+$ad-line:#e9edf0; $ad-ink:#103039; $ad-muted:#8a97a0; $ad-body:#5b6b73;
+$ad-green:#16a34a; $ad-orange:#f29a2e; $ad-red:#e5564b; $ad-blue:#2f72c4; $ad-purple:#7c5cde;
+
+/* top buttons */
+.ad-topbar { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:18px; }
+.ad-back { display:inline-flex; align-items:center; gap:8px; height:38px; padding:0 14px; border:1px solid $ad-line; border-radius:9px; background:#fff; font-size:13.5px; font-weight:600; color:$ad-body; cursor:pointer; &:hover{background:#f4f6f8;} svg{width:15px;height:15px;} }
+.ad-top-actions { display:flex; gap:10px; }
+
+/* employee header */
+.ad-emp { position:relative; display:flex; align-items:flex-start; gap:18px; padding:22px 24px; margin-bottom:18px; border-radius:16px; background:linear-gradient(120deg,#d9eff1,#ecf7f8); }
+.ad-emp__av { position:relative; width:72px; height:72px; flex:0 0 auto; border-radius:50%; background:linear-gradient(135deg,#0a7e9b,#063e4e); color:#fff; font-size:24px; font-weight:800; display:inline-flex; align-items:center; justify-content:center; }
+.ad-emp__dot { position:absolute; right:3px; bottom:3px; width:14px; height:14px; border-radius:50%; background:$ad-green; border:3px solid #ecf7f8; }
+.ad-emp__name { display:flex; align-items:center; gap:10px; flex-wrap:wrap; font-size:20px; font-weight:800; color:$ad-ink; }
+.ad-emp__id { font-family:'Courier New',monospace; font-size:11px; color:$ad-body; background:rgba(255,255,255,.7); padding:2px 8px; border-radius:5px; }
+.ad-emp__role { font-size:11px; font-weight:700; color:$ad-orange; background:#fde6cf; padding:3px 10px; border-radius:999px; }
+.ad-emp__meta { margin-top:10px; display:flex; flex-wrap:wrap; gap:7px 16px; font-size:12.5px; color:$ad-body; }
+.ad-emp__meta span { display:inline-flex; align-items:center; gap:5px; svg{width:14px;height:14px;color:$ad-muted;} }
+.ad-emp__email { position:absolute; top:22px; right:24px; display:inline-flex; align-items:center; gap:8px; height:36px; padding:0 16px; border:1px solid rgba(3,101,127,.25); border-radius:9px; background:#fff; font-size:13px; font-weight:600; color:$c-teal; cursor:pointer; svg{width:15px;height:15px;} }
+
+/* KPIs */
+.ad-kpis { display:grid; grid-template-columns:repeat(6,1fr); gap:14px; margin-bottom:18px; }
+.ad-kpi { background:#fff; border:1px solid $ad-line; border-radius:12px; padding:14px; }
+.ad-kpi__label { display:flex; align-items:center; gap:6px; font-size:10.5px; font-weight:700; letter-spacing:.4px; text-transform:uppercase; color:$ad-muted; svg{width:13px;height:13px;} }
+.ad-kpi__val { margin-top:8px; font-size:24px; font-weight:800; color:$ad-ink; small{font-size:13px;color:$ad-muted;font-weight:600;} }
+.ad-kpi__sub { margin-top:6px; font-size:11.5px; color:$ad-muted; }
+.ad-kpi__bar { margin-top:9px; height:4px; border-radius:2px; background:#eef1f3; overflow:hidden; span{display:block;height:100%;border-radius:2px;background:$c-teal;} }
+.ad-kpi--green  .ad-kpi__val{color:$ad-green;}  .ad-kpi--green  .ad-kpi__bar span{background:$ad-green;}
+.ad-kpi--orange .ad-kpi__val{color:$ad-orange;} .ad-kpi--orange .ad-kpi__bar span{background:$ad-orange;}
+.ad-kpi--red    .ad-kpi__val{color:$ad-red;}    .ad-kpi--red    .ad-kpi__bar span{background:$ad-red;}
+
+/* tabs */
+.ad-tabs { display:flex; gap:26px; border-bottom:1px solid $ad-line; margin-bottom:18px; }
+.ad-tab { display:inline-flex; align-items:center; gap:7px; padding:12px 0; font-size:14px; font-weight:600; color:$ad-muted; cursor:pointer; border-bottom:2px solid transparent; &.is-active{color:$c-teal;border-bottom-color:$c-teal;} }
+.ad-tab__n { font-size:11px; background:#eef1f3; color:$ad-muted; border-radius:999px; padding:1px 7px; }
+
+/* two columns */
+.ad-wrap { display:flex; align-items:flex-start; gap:18px; }
+.ad-main { flex:1; min-width:0; }
+.ad-side { width:360px; flex:0 0 360px; display:flex; flex-direction:column; gap:16px; }
+@media(max-width:1150px){ .ad-wrap{flex-direction:column;} .ad-side{width:100%;flex:none;} }
+@media(max-width:1024px){ .ad-kpis{grid-template-columns:repeat(3,1fr);} }
+
+.ad-card { background:#fff; border:1px solid $ad-line; border-radius:14px; padding:18px 20px; }
+.ad-card__title { font-size:16px; font-weight:800; color:$ad-ink; }
+.ad-card__sub { margin-top:3px; font-size:12.5px; color:$ad-muted; }
+.ad-link-btn { font-size:12.5px; font-weight:600; color:$c-teal; border:1px solid $ad-line; border-radius:8px; padding:6px 12px; background:#fff; cursor:pointer; &:hover{background:#f4f6f8;} }
+
+/* ---- Monthly calendar ---- */
+.cal-head { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:16px; }
+.cal-ctrl { display:flex; align-items:center; gap:10px; }
+.cal-seg { display:inline-flex; background:#f4f6f8; border-radius:8px; padding:3px; }
+.cal-seg__btn { padding:6px 13px; border-radius:6px; font-size:12.5px; font-weight:600; color:$ad-body; cursor:pointer; &.is-active{background:$c-teal;color:#fff;} }
+.cal-month { display:inline-flex; align-items:center; gap:10px; font-size:13.5px; font-weight:600; color:$ad-ink; }
+.cal-nav { color:$ad-muted; cursor:pointer; padding:0 2px; }
+.cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:8px; }
+.cal-dow { padding:2px 6px; font-size:11px; font-weight:700; letter-spacing:.3px; color:$ad-muted; }
+.cal-day { position:relative; min-height:76px; padding:8px; border:1px solid $ad-line; border-radius:10px; background:#fff; cursor:pointer; &:hover{border-color:#cfd6db;} }
+.cal-day__n { font-size:13px; font-weight:700; color:$ad-ink; }
+.cal-day__label { margin-top:4px; font-size:11px; font-weight:600; color:$ad-body; }
+.cal-day__hrs { position:absolute; left:8px; bottom:8px; font-size:11px; color:$ad-muted; }
+.cal-day__dot { position:absolute; top:8px; right:8px; width:7px; height:7px; border-radius:50%; }
+.cal-day.is-out { background:#fafbfc; .cal-day__n,.cal-day__label{color:#c4ccd2;} }
+.cal-day.is-weekend { background:#f4f6f8; .cal-day__label{color:$ad-muted;} }
+.cal-day.is-holiday { background:#eaf1fb; .cal-day__label{color:$ad-blue;} }
+.cal-day.is-present { background:#eaf7ef; .cal-day__label{color:$ad-green;} }
+.cal-day.is-late { background:#fdf3e4; .cal-day__label{color:$ad-orange;} }
+.cal-day.is-absent { background:#fdecea; .cal-day__label{color:$ad-red;} }
+.cal-day.is-leave { background:#fff6ea; .cal-day__label{color:#c98a1d;} }
+.cal-day.is-progress { border:2px solid $c-teal; background:#eaf6f7; .cal-day__label{color:$c-teal;} }
+
+.cal-legend { display:flex; flex-wrap:wrap; gap:14px; margin-top:16px; font-size:11.5px; color:$ad-body; }
+.cal-legend span { display:inline-flex; align-items:center; gap:6px; }
+.cal-legend i { width:11px; height:11px; border-radius:3px; display:inline-block; }
+.cal-legend i.dot { border-radius:50%; width:8px; height:8px; }
+
+/* ---- Day detail ---- */
+.dd-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+.dd-head .cal-nav { font-size:15px; }
+.dd-row { display:flex; align-items:center; justify-content:space-between; }
+.dd-date { font-size:17px; font-weight:800; color:$ad-ink; }
+.dd-badge { display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:700; color:$ad-green; background:#e7f6ed; padding:4px 10px; border-radius:999px; svg{width:12px;height:12px;} }
+.dd-shift { margin:4px 0 14px; font-size:12px; color:$ad-muted; }
+.dd-punch { display:flex; gap:10px; }
+.dd-punch__box { flex:1; border:1px solid $ad-line; border-radius:10px; padding:10px 12px; }
+.dd-punch__label { display:flex; align-items:center; gap:5px; font-size:10.5px; font-weight:700; letter-spacing:.3px; text-transform:uppercase; color:$ad-muted; svg{width:12px;height:12px;} }
+.dd-punch__time { margin-top:6px; font-size:20px; font-weight:800; color:$ad-ink; }
+.dd-punch__meta { font-size:11px; color:$ad-muted; }
+.dd-prog { margin-top:16px; }
+.dd-prog__top { display:flex; justify-content:space-between; margin-bottom:6px; font-size:12px; color:$ad-muted; b{color:$ad-ink;} }
+.dd-prog__bar { height:8px; border-radius:4px; background:#eef1f3; overflow:hidden; span{display:block;height:100%;background:$ad-green;border-radius:4px;} }
+.dd-prog__scale { display:flex; justify-content:space-between; margin-top:4px; font-size:10px; color:$ad-muted; }
+.dd-tl { margin-top:16px; }
+.dd-tl__label { margin-bottom:12px; font-size:10.5px; font-weight:700; letter-spacing:.4px; text-transform:uppercase; color:$ad-muted; }
+.dd-tl__item { position:relative; display:flex; gap:12px; padding-bottom:14px; }
+.dd-tl__item:not(:last-child)::before { content:""; position:absolute; left:6px; top:16px; bottom:0; width:2px; background:$ad-line; }
+.dd-tl__dot { width:13px; height:13px; flex:0 0 auto; margin-top:2px; border-radius:50%; background:$ad-green; box-shadow:0 0 0 3px #fff, 0 0 0 4px rgba(22,163,74,.3); z-index:1; }
+.dd-tl__dot.is-muted { background:#cfd6db; box-shadow:0 0 0 3px #fff, 0 0 0 4px #e3e8ec; }
+.dd-tl__title { display:flex; justify-content:space-between; gap:8px; font-size:13px; font-weight:700; color:$ad-ink; }
+.dd-tl__meta { margin-top:2px; font-size:11.5px; color:$ad-muted; }
+
+/* ---- Status breakdown ---- */
+.sb-donut-wrap { display:flex; align-items:center; gap:20px; margin-top:10px; }
+.sb-donut { position:relative; width:124px; height:124px; flex:0 0 auto; border-radius:50%;
+    background: conic-gradient(#16a34a 0 68%, #f29a2e 68% 76%, #f6b85a 76% 84%, #0a7e9b 84% 88%, #2f72c4 88% 96%, #e5564b 96% 100%); }
+.sb-donut::after { content:""; position:absolute; inset:19px; background:#fff; border-radius:50%; }
+.sb-donut__c { position:absolute; inset:0; z-index:1; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+.sb-donut__n { font-size:26px; font-weight:800; color:$ad-ink; }
+.sb-donut__l { font-size:9px; font-weight:700; letter-spacing:.4px; text-transform:uppercase; color:$ad-muted; }
+.sb-legend { flex:1; display:flex; flex-direction:column; gap:8px; }
+.sb-leg { display:flex; align-items:center; gap:8px; font-size:12.5px; color:$ad-body; }
+.sb-leg i { width:9px; height:9px; border-radius:2px; flex:0 0 auto; }
+.sb-leg b { margin-left:auto; color:$ad-ink; font-weight:700; }
+
+.sb-stats { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:16px; }
+.sb-stat { border:1px solid $ad-line; border-radius:10px; padding:10px 12px; }
+.sb-stat__l { font-size:10px; font-weight:700; letter-spacing:.3px; text-transform:uppercase; color:$ad-muted; }
+.sb-stat__v { margin-top:4px; font-size:18px; font-weight:800; color:$ad-ink; small{font-size:11px;color:$ad-muted;font-weight:600;} }
+
+/* ---- Leave balances ---- */
+.lb-head { display:flex; align-items:flex-start; justify-content:space-between; }
+.lb-row { margin-top:14px; }
+.lb-row__top { display:flex; justify-content:space-between; margin-bottom:6px; font-size:13px; }
+.lb-row__top span { color:$ad-body; }
+.lb-row__top b { color:$ad-ink; font-weight:700; small{color:$ad-muted;font-weight:500;} }
+.lb-bar { height:5px; border-radius:3px; background:#eef1f3; overflow:hidden; }
+.lb-bar span { display:block; height:100%; border-radius:3px; background:$c-teal; }
+.lb-bar.is-unpaid span { background:$ad-orange; }
+
+/* ---- Recent activity ---- */
+.ra-head { display:flex; align-items:flex-start; justify-content:space-between; }
+.ra-item { display:flex; gap:12px; padding:13px 0; border-bottom:1px solid #f1f4f6; }
+.ra-item:last-child { border-bottom:none; padding-bottom:0; }
+.ra-ic { width:30px; height:30px; flex:0 0 auto; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; color:#fff; svg{width:15px;height:15px;} }
+.ra-body { flex:1; min-width:0; }
+.ra-title { font-size:13px; font-weight:700; color:$ad-ink; }
+.ra-meta { margin-top:2px; font-size:11.5px; color:$ad-muted; }
+.ra-time { flex:0 0 auto; font-size:11px; color:$ad-muted; }
+.ra-c-green{background:$ad-green;} .ra-c-teal{background:$c-teal;} .ra-c-orange{background:$ad-orange;} .ra-c-blue{background:$ad-blue;} .ra-c-red{background:$ad-red;}

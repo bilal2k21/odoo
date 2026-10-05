@@ -1,0 +1,100 @@
+// ============================================================
+//  ATTENDANCE page  (/attendance)
+// ============================================================
+
+$att-line:  #e9edf0;
+$att-ink:   #103039;
+$att-muted: #8a97a0;
+$att-body:  #5b6b73;
+
+.att-head { margin-bottom: 20px; }
+.att-head__title { font-size: 22px; font-weight: 800; letter-spacing: -0.3px; color: $att-ink; }
+.att-head__sub { margin-top: 6px; font-size: 13.5px; color: $att-muted; }
+
+/* ---- Filter panel ---- */
+.att-panel { background: #fff; border: 1px solid $att-line; border-radius: 14px; padding: 20px; margin-bottom: 18px; }
+.att-filter { display: flex; align-items: flex-end; gap: 18px; flex-wrap: wrap; }
+.att-fld { display: flex; flex-direction: column; gap: 6px; }
+.att-fld__label { font-size: 12.5px; font-weight: 600; color: $att-body; }
+.att-fld__label .req { color: #e5564b; }
+.att-input {
+    height: 40px; min-width: 220px; border: 1px solid $att-line; border-radius: 9px; background: #fff;
+    padding: 0 14px; font-size: 14px; color: $att-ink;
+    &:focus { outline: none; border-color: $c-teal-light; }
+}
+
+.att-month { position: relative; display: flex; align-items: center; gap: 6px; }
+.att-month__nav { width: 34px; height: 40px; border: 1px solid $att-line; border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; color: $att-body; background: #fff; cursor: pointer; &:hover { background: #f4f6f8; } svg { width: 15px; height: 15px; } }
+.att-month__val { height: 40px; min-width: 120px; border: 1px solid $att-line; border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; padding: 0 14px; font-size: 14px; font-weight: 600; color: $att-ink; }
+.att-month__cal { width: 44px; height: 40px; border: none; border-radius: 9px; background: $c-teal; color: #fff; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; &:hover { filter: brightness(1.08); } svg { width: 17px; height: 17px; } }
+
+.att-actions { display: flex; gap: 10px; margin-top: 16px; }
+.att-btn { height: 40px; padding: 0 16px; border: 1px solid $c-teal; border-radius: 9px; background: #fff; color: $c-teal; font-size: 14px; font-weight: 600; cursor: pointer; &:hover { background: rgba(3, 101, 127, 0.05); } }
+
+/* ---- Grid card ---- */
+.att-card { background: #fff; border: 1px solid $att-line; border-radius: 14px; overflow: hidden; }
+
+.att-legend { display: flex; flex-wrap: wrap; gap: 22px; padding: 14px 18px; border-bottom: 1px solid $att-line; }
+.att-leg { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: $att-body; }
+.att-leg__ic { width: 22px; height: 22px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; color: #fff; svg { width: 13px; height: 13px; } }
+
+.att-c-present { background: #16a34a; }
+.att-c-absent  { background: #e5564b; }
+.att-c-public  { background: #2f72c4; }
+.att-c-paid    { background: #f29a2e; }
+.att-c-unpaid  { background: #0a7e9b; }
+.att-c-hourly  { background: #2b3440; }
+
+/* ---- Grid table ---- */
+.att-grid-wrap { overflow-x: auto; }
+.att-grid { border-collapse: collapse; width: 100%; }
+.att-grid th, .att-grid td { border-bottom: 1px solid #f1f4f6; }
+.att-grid thead th { background: #fafbfc; padding: 8px 0; width: 34px; min-width: 34px; text-align: center; }
+.att-grid thead th .dnum { display: block; font-size: 12px; font-weight: 700; color: $att-ink; }
+.att-grid thead th .dlet { display: block; font-size: 10px; color: $att-muted; }
+.att-grid thead th.is-we { background: #eef1f3; }
+
+.att-name-col { position: sticky; left: 0; z-index: 2; width: 210px; min-width: 210px; text-align: left !important; padding: 10px 16px !important; background: #fff; border-right: 1px solid $att-line; }
+.att-grid thead .att-name-col { background: #fafbfc; }
+
+.att-person { display: flex; align-items: center; gap: 10px; }
+.att-av { width: 32px; height: 32px; flex: 0 0 auto; border-radius: 50%; color: #fff; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
+.att-person__id { font-size: 12.5px; font-weight: 700; color: $att-ink; }
+.att-person__name { font-size: 11.5px; color: $att-muted; }
+
+.att-cell { height: 48px; text-align: center; vertical-align: middle; }
+.att-cell.is-we { background: #f6f8fa; }
+.att-badge { width: 22px; height: 22px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; color: #fff; svg { width: 12px; height: 12px; } }
+.att-w { font-size: 12px; color: #b4bcc2; }
+
+/* ---- Footer / pagination ---- */
+.att-foot { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; }
+.att-foot__info { font-size: 13px; color: $att-muted; }
+.att-pager { display: flex; gap: 6px; }
+.att-pager a, .att-pager span {
+    min-width: 30px; height: 30px; padding: 0 6px; border-radius: 7px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 13px; color: $att-body; border: 1px solid $att-line; background: #fff; cursor: pointer;
+    &.is-active { background: $c-teal; border-color: $c-teal; color: #fff; font-weight: 700; }
+}
+
+/* ---- Calendar popup ---- */
+.att-cal-pop { position: absolute; top: 48px; right: 0; width: 280px; z-index: 30; display: none; background: #fff; border: 1px solid $att-line; border-radius: 12px; box-shadow: 0 20px 50px rgba(10, 40, 50, 0.18); padding: 14px; }
+.att-cal-pop.is-open { display: block; }
+.att-cal__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.att-cal__title { font-size: 13.5px; font-weight: 700; color: $att-ink; }
+.att-cal__nav { color: $att-muted; cursor: pointer; padding: 2px 6px; font-size: 14px; }
+.att-cal__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.att-cal__dow { padding: 4px 0; text-align: center; font-size: 10px; font-weight: 600; color: $att-muted; }
+.att-cal__day { padding: 6px 0; text-align: center; font-size: 12px; color: $att-ink; border-radius: 7px; cursor: pointer; &:hover { background: #f4f6f8; } }
+.att-cal__day.is-out { color: #c4ccd2; }
+.att-cal__day.is-range { background: rgba(3, 101, 127, 0.1); }
+.att-cal__day.is-sel { background: $c-teal; color: #fff; font-weight: 700; }
+.att-cal__foot { display: flex; align-items: center; gap: 6px; margin-top: 12px; padding-top: 10px; border-top: 1px solid $att-line; font-size: 11.5px; }
+.att-cal__tab { padding: 4px 9px; border-radius: 6px; color: $att-body; cursor: pointer; &.is-active { background: rgba(3, 101, 127, 0.12); color: $c-teal; font-weight: 600; } }
+.att-cal__range { margin-left: auto; color: $att-muted; }
+
+@media (max-width: 760px) {
+    .att-filter { flex-direction: column; align-items: stretch; }
+    .att-input { min-width: 0; }
+}

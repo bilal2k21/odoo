@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================
+         PAYROLL  (/payroll)
+    ============================================================= -->
+    <template id="payroll_page" name="Payroll">
+        <t t-set="active" t-value="'payroll'"/>
+        <t t-set="page_name" t-value="'Payroll'"/>
+        <t t-call="hr_management_system.dashboard_layout">
+
+            <!-- Header -->
+            <div class="pay-head">
+                <div>
+                    <h1 class="pay-head__title">Payroll</h1>
+                    <p class="pay-head__sub">Payroll Cycle: 26 Jun 2026 – 26 Jul 2026 · Pay Date: 5 Sep 2026</p>
+                </div>
+                <div class="pay-head__actions">
+                    <button type="button" class="btn-ghost">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 15V3M8 7l4-4 4 4M4 21h16"/></svg>
+                        Export register
+                    </button>
+                    <button type="button" class="btn-dark">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 5v14M5 12h14"/></svg>
+                        New pay run
+                    </button>
+                </div>
+            </div>
+
+            <!-- Hero pay-run card -->
+            <div class="pay-hero">
+                <div class="pay-hero__main">
+                    <span class="pay-hero__badge">Draft · In progress</span>
+                    <h2 class="pay-hero__title">September 2025 pay run</h2>
+                    <p class="pay-hero__meta">Cycle: Sep 1 – Sep 30 · Pay date Sep 30, 5:00 PM PKT · Change cut-off Sep 27</p>
+
+                    <div class="pay-hero__stats">
+                        <div><div class="pay-hstat__label">Gross payroll</div><div class="pay-hstat__val">Rs 20.8M</div></div>
+                        <div><div class="pay-hstat__label">Deductions</div><div class="pay-hstat__val neg">-Rs 80.6k</div></div>
+                        <div><div class="pay-hstat__label">Allowance</div><div class="pay-hstat__val al">Rs 120,468</div></div>
+                        <div><div class="pay-hstat__label">Net to disburse</div><div class="pay-hstat__val net">Rs 33.2M</div></div>
+                        <div><div class="pay-hstat__label">Headcount</div><div class="pay-hstat__val">084</div></div>
+                    </div>
+
+                    <div class="pay-hero__btns">
+                        <button type="button" class="pay-hero__btn1">Continue run →</button>
+                        <button type="button" class="pay-hero__btn2">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                            View detail
+                        </button>
+                    </div>
+                </div>
+
+                <div class="pay-approve">
+                    <div class="pay-apr">
+                        <span class="pay-apr__ic pay-apr__ic--done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"/></svg></span>
+                        <span class="pay-apr__name">HR prepared</span><span class="pay-apr__meta">Sep 27</span>
+                    </div>
+                    <div class="pay-apr">
+                        <span class="pay-apr__ic pay-apr__ic--done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"/></svg></span>
+                        <span class="pay-apr__name">Finance review</span><span class="pay-apr__meta">—</span>
+                    </div>
+                    <div class="pay-apr">
+                        <span class="pay-apr__ic pay-apr__ic--todo">3</span>
+                        <span class="pay-apr__name">CEO approval</span><span class="pay-apr__meta">pending</span>
+                    </div>
+                    <div class="pay-apr">
+                        <span class="pay-apr__ic pay-apr__ic--todo">4</span>
+                        <span class="pay-apr__name">Disbursed</span><span class="pay-apr__meta">Sep 30</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KPI cards -->
+            <div class="pay-kpis">
+                <div class="pay-kpi pay-kpi--green">
+                    <div class="pay-kpi__label">Gross Payroll</div>
+                    <div class="pay-kpi__val">Rs 41.8 <small>M</small></div>
+                    <div class="pay-kpi__bar"><span style="width:84%"></span></div>
+                    <div class="pay-kpi__sub">▲ 3.4% vs August</div>
+                </div>
+                <div class="pay-kpi">
+                    <div class="pay-kpi__label">Net Disbursed</div>
+                    <div class="pay-kpi__val">Rs 3.2 <small>M</small></div>
+                    <div class="pay-kpi__sub">184 payments scheduled</div>
+                </div>
+                <div class="pay-kpi pay-kpi--orange">
+                    <div class="pay-kpi__label">Deductions</div>
+                    <div class="pay-kpi__val">Rs 8.6 <small>k</small></div>
+                    <div class="pay-kpi__sub">Tax · EOBI · loans</div>
+                </div>
+                <div class="pay-kpi">
+                    <div class="pay-kpi__label">Avg Cost / Head</div>
+                    <div class="pay-kpi__val">Rs 227 <small>k</small></div>
+                    <div class="pay-kpi__sub">52 perm · 04 contract · 8 other</div>
+                </div>
+                <div class="pay-kpi pay-kpi--green">
+                    <div class="pay-kpi__label">Allowance</div>
+                    <div class="pay-kpi__val">Rs 92 <small>k</small></div>
+                    <div class="pay-kpi__sub">Jan – Sep 2025 · 0 others</div>
+                </div>
+            </div>
+
+            <!-- Columns -->
+            <div class="pay-cols">
+                <div class="pay-main">
+                    <div class="pay-card">
+                        <div class="pay-card__head">
+                            <div>
+                                <div class="pay-card__title">Run history</div>
+                                <div class="pay-card__sub">Completed and in-progress pay runs · Nimbus Labs</div>
+                            </div>
+                            <button type="button" class="btn-ghost">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M3 5h18l-7 8v6l-4 2v-8z"/></svg>
+                                Filter
+                            </button>
+                        </div>
+                        <table class="pay-table">
+                            <thead>
+                                <tr><th>Pay Period</th><th>Pay Date</th><th>Headcount</th><th>Gross</th><th>Deductions</th><th>Net Paid</th><th>Status</th></tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="[
+                                    {'p':'September 2025','r':'Sep 1 – Sep 30','pd':'Sep 30, 2025','hc':'184','g':'Rs 41.8M','d':'-Rs 8.6k','n':'Rs 33.2M','st':'review','sl':'Draft · in review'},
+                                    {'p':'August 2025','r':'Aug 1 – Aug 31','pd':'Aug 31, 2025','hc':'182','g':'Rs 40.1M','d':'-Rs 8.1k','n':'Rs 31.9M','st':'paid','sl':'Paid'},
+                                    {'p':'July 2025','r':'Jul 1 – Jul 31','pd':'Jul 31, 2025','hc':'181','g':'Rs 40.1M','d':'-Rs 8.0k','n':'Rs 31.9M','st':'paid','sl':'Paid'},
+                                    {'p':'June 2025','r':'Jun 1 – Jun 30','pd':'Jun 30, 2025','hc':'179','g':'Rs 42.7M','d':'-Rs 8.5k','n':'Rs 34.2M','st':'paid','sl':'Paid · incl. Eid bonus'},
+                                    {'p':'May 2025','r':'May 1 – May 31','pd':'May 31, 2025','hc':'176','g':'Rs 38.9M','d':'-Rs 7.9k','n':'Rs 31.0M','st':'paid','sl':'Paid'},
+                                    {'p':'April 2025','r':'Apr 1 – Apr 30','pd':'Apr 30, 2025','hc':'174','g':'Rs 38.2M','d':'-Rs 7.8k','n':'Rs 30.4M','st':'paid','sl':'Paid'},
+                                    {'p':'March 2025','r':'Mar 1 – Mar 31','pd':'Mar 31, 2025','hc':'171','g':'Rs 37.6M','d':'-Rs 7.6k','n':'Rs 30.0M','st':'paid','sl':'Paid'}
+                                ]" t-as="r">
+                                    <tr>
+                                        <td><div class="pay-period"><t t-out="r['p']"/><span><t t-out="r['r']"/></span></div></td>
+                                        <td><t t-out="r['pd']"/></td>
+                                        <td><t t-out="r['hc']"/></td>
+                                        <td><t t-out="r['g']"/></td>
+                                        <td class="pay-neg"><t t-out="r['d']"/></td>
+                                        <td><t t-out="r['n']"/></td>
+                                        <td><span t-attf-class="pay-pill pay-pill--#{r['st']}"><t t-out="r['sl']"/></span></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                        <div class="pay-foot">
+                            <span class="pay-foot__info">6 of 184</span>
+                            <div class="pay-pager">
+                                <a href="#">‹</a><span class="is-active">1</span><a href="#">2</a><a href="#">3</a><span class="dots">…</span><a href="#">23</a><a href="#">›</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pay-side">
+                    <!-- Upcoming -->
+                    <div class="pay-card">
+                        <div class="pay-card__head"><div class="pay-card__title">Upcoming</div></div>
+                        <div class="pay-up">
+                            <div class="pay-up__item"><span class="pay-up__dot"></span><div><div class="pay-up__date">Sep 28</div><div class="pay-up__title">Finance &amp; CEO sign-off</div></div></div>
+                            <div class="pay-up__item"><span class="pay-up__dot"></span><div><div class="pay-up__date">Sep 30</div><div class="pay-up__title">Disburse</div><div class="pay-up__meta">Bank file 5:00 PM</div></div></div>
+                            <div class="pay-up__item"><span class="pay-up__dot"></span><div><div class="pay-up__date">Oct 03</div><div class="pay-up__title">Payslips published</div></div></div>
+                        </div>
+                    </div>
+
+                    <!-- Cost by department -->
+                    <div class="pay-card">
+                        <div class="pay-card__head"><div class="pay-card__title">Cost by department</div><span class="pay-card__link">This run</span></div>
+                        <div class="pay-dept">
+                            <t t-foreach="[
+                                {'n':'Engineering','v':'Rs 16.1M','w':'100%','c':'#2f72c4'},
+                                {'n':'Sales','v':'Rs 6.9M','w':'43%','c':'#16a34a'},
+                                {'n':'Product','v':'Rs 5.4M','w':'34%','c':'#7c5cde'},
+                                {'n':'People Ops','v':'Rs 3.8M','w':'24%','c':'#f29a2e'},
+                                {'n':'Design','v':'Rs 3.2M','w':'20%','c':'#0a7e9b'},
+                                {'n':'Marketing','v':'Rs 2.9M','w':'18%','c':'#e5564b'},
+                                {'n':'Finance','v':'Rs 2.5M','w':'16%','c':'#2b3440'}
+                            ]" t-as="dpt">
+                                <div class="pay-dept__row">
+                                    <div class="pay-dept__top"><span><t t-out="dpt['n']"/></span><b><t t-out="dpt['v']"/></b></div>
+                                    <div class="pay-dept__bar"><span t-attf-style="width:#{dpt['w']};background:#{dpt['c']}"></span></div>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom 3 cards -->
+            <div class="pay-bottom">
+                <div class="pay-b-card">
+                    <div class="pay-b-head">
+                        <span class="pay-b-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>
+                        <div><div class="pay-b-title">Salary structure</div><div class="pay-b-sub">Earning &amp; allowance heads</div></div>
+                    </div>
+                    <div class="pay-b-row"><span>Basic salary</span><b>45% of CTC</b></div>
+                    <div class="pay-b-row"><span>House rent allowance</span><b>Fixed · 10%</b></div>
+                    <div class="pay-b-row"><span>Conveyance · Medical</span><b>Fixed · 10%</b></div>
+                    <div class="pay-b-row"><span>Active components</span><b>7</b></div>
+                    <div class="pay-b-link">Manage structure →</div>
+                </div>
+                <div class="pay-b-card">
+                    <div class="pay-b-head">
+                        <span class="pay-b-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M2 10h20"/></svg></span>
+                        <div><div class="pay-b-title">Loans &amp; advances</div><div class="pay-b-sub">Active recoveries this cycle</div></div>
+                    </div>
+                    <div class="pay-b-row"><span>Employees with loans</span><b>31</b></div>
+                    <div class="pay-b-row"><span>Outstanding balance</span><b>Rs 6.2M</b></div>
+                    <div class="pay-b-row"><span>Recovered this run</span><b>Rs 0.9M</b></div>
+                    <div class="pay-b-row"><span>Loan advances</span><b>Rs 0.4M</b></div>
+                    <div class="pay-b-link">Manage loans →</div>
+                </div>
+                <div class="pay-b-card">
+                    <div class="pay-b-head">
+                        <span class="pay-b-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6z"/><path d="m9 12 2 2 4-4"/></svg></span>
+                        <div><div class="pay-b-title">Provident fund</div><div class="pay-b-sub">Own + company contributions</div></div>
+                    </div>
+                    <div class="pay-b-row"><span>Enrolled employees</span><b>152</b></div>
+                    <div class="pay-b-row"><span>Own contribution</span><b>Rs 1.4M</b></div>
+                    <div class="pay-b-row"><span>Company match</span><b>Rs 1.4M</b></div>
+                    <div class="pay-b-row"><span>Fund balance</span><b>Rs 84.6M</b></div>
+                    <div class="pay-b-link">View PF register →</div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>

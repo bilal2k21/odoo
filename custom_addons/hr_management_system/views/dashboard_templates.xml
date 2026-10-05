@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================
+         APP LAYOUT (shell) — sidebar + topbar + content slot
+         Dashboard aur Coming-soon dono ise t-call karte hain.
+         Context: active (nav key), page_name (breadcrumb/title)
+    ============================================================= -->
+    <template id="dashboard_layout" name="HRMS App Layout">
+        <t t-set="active" t-value="active or ''"/>
+        <t t-set="section" t-value="section or ''"/>
+        <t t-set="page_name" t-value="page_name or 'Dashboard'"/>
+        <t t-set="page_title" t-value="page_name + ' · Metaviz HR Suite'"/>
+
+        <t t-call="hr_management_system.portal_layout">
+            <div class="app">
+
+                <!-- ===== SIDEBAR ===== -->
+                <aside class="sidebar">
+                    <div class="side-brand">
+                        <img class="side-brand__logo" src="/hr_management_system/static/src/img/metaviz-logo.svg" alt="Metaviz"/>
+                        <div>
+                            <div class="side-brand__name">METAVIZ</div>
+                            <div class="side-brand__suite">HR Suite</div>
+                        </div>
+                    </div>
+
+                    <nav class="nav">
+                        <a t-attf-class="nav__item #{'is-active' if active == 'dashboard' else ''}" href="/dashboard">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+                            Dashboard
+                        </a>
+                        <a t-attf-class="nav__item #{'is-active' if active == 'employees' else ''}" href="/employee-action">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 5.2a3.2 3.2 0 0 1 0 6.1M21.5 20a6 6 0 0 0-4.5-5.8"/></svg>
+                            Employees
+                        </a>
+                        <a t-attf-class="nav__item #{'is-active' if active == 'attendance' else ''}" href="/attendance">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4M3 10h18M8.5 15.5l2 2 4-4"/></svg>
+                            Attendance
+                        </a>
+                        <a t-attf-class="nav__item #{'is-active' if active == 'requests' else ''}" href="/requests">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 7h6M9 11h6M9 15h4"/></svg>
+                            Requests
+                            <span class="nav__badge">5</span>
+                        </a>
+                        <a t-attf-class="nav__item #{'is-active' if active == 'payroll' else ''}" href="/payroll">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/><path d="M7 14h3"/></svg>
+                            Payroll
+                        </a>
+                        <a t-attf-class="nav__item #{'is-active' if active == 'performance' else ''}" href="/performance">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M3 17l6-6 4 4 7-7"/><path d="M17 8h4v4"/></svg>
+                            Performance
+                        </a>
+                        <a t-attf-class="nav__item #{'is-active' if active == 'recruitment' else ''}" href="/recruitment">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 11-3.2"/><path d="M19 8v6M16 11h6"/></svg>
+                            Recruitment
+                        </a>
+                        <a t-attf-class="nav__item #{'is-active' if active == 'notifications' else ''}" href="/notifications">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+                            Emails / Notifications
+                            <span class="nav__badge">12</span>
+                        </a>
+                        <a t-attf-class="nav__item #{'is-active' if active == 'reports' else ''}" href="/reports">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>
+                            Reports
+                        </a>
+                    </nav>
+
+                    <div class="side-user">
+                        <span class="side-user__av">MJ</span>
+                        <div>
+                            <div class="side-user__name">Mujahid</div>
+                            <div class="side-user__role">HR Manager</div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- ===== MAIN ===== -->
+                <main class="app__main">
+                    <header class="topbar">
+                        <span class="topbar__collapse">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"/></svg>
+                        </span>
+                        <div class="topbar__crumb">HR <span>/</span> <t t-if="section"><t t-out="section"/> <span>/</span> </t><b><t t-out="page_name"/></b></div>
+
+                        <div class="topbar__search">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg>
+                            <input type="text" placeholder="Search employees, requests, teams"/>
+                            <span class="kbd">⌘K</span>
+                        </div>
+
+                        <div class="topbar__icons">
+                            <button class="icon-btn" type="button">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 4.5 1.5c0 1.5-2 2-2 3"/><path d="M12 17h.01"/></svg>
+                            </button>
+                            <button class="icon-btn" type="button" data-notif-open="1">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.5 21a2 2 0 0 1-3 0"/></svg>
+                                <span class="dot"></span>
+                            </button>
+                            <button class="btn-dark" type="button" data-nr-open="1">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 5v14M5 12h14"/></svg>
+                                New request
+                            </button>
+                        </div>
+                    </header>
+
+                    <div class="app__content">
+                        <t t-out="0"/>
+                    </div>
+                </main>
+            </div>
+
+            <!-- New Request modal (topbar "New request" button se khulta hai) -->
+            <div class="nr-modal" data-nr-modal="1">
+                <div class="nr-modal__overlay" data-nr-close="1"></div>
+                <div class="nr-modal__dialog">
+                    <div class="nr-modal__head">
+                        <div>
+                            <h2 class="nr-modal__title">New Request</h2>
+                            <p class="nr-modal__sub">Submit a time-off, reimbursement, or asset request for approval.</p>
+                        </div>
+                        <button class="nr-modal__x" type="button" data-nr-close="1">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                        </button>
+                    </div>
+                    <div class="nr-modal__body">
+                        <t t-call="hr_management_system.new_request_form"/>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notifications drawer (bell icon se khulta hai) -->
+            <div class="notif" data-notif="1">
+                <div class="notif__overlay" data-notif-close="1"></div>
+                <div class="notif__panel">
+                    <div class="notif__head">
+                        <span class="notif__title">Notifications</span>
+                        <button class="notif__x" type="button" data-notif-close="1">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                        </button>
+                    </div>
+                    <div class="notif__body">
+                        <t t-foreach="[
+                            {'t': 'Your Leave Application Is Approved', 'd': '30 Apr 2026', 'x': 'Your leave application applied from 20/04/2026 to 20/04/2026 has been approved'},
+                            {'t': 'Your Attendance Regulation Application Is Approved', 'd': '26 Apr 2026', 'x': 'Your attendance regulation application applied for the duration 28/04/2026 to 28/04/2026 is approved'},
+                            {'t': 'Your Attendance Regulation Application Is Approved', 'd': '30 Apr 2026', 'x': 'Your attendance regulation application applied for the duration 29/04/2026 to 29/04/2026 is approved'},
+                            {'t': 'Your Attendance Regulation Application Is Approved', 'd': '21 Apr 2026', 'x': 'Your attendance regulation application applied for the duration 21/04/2026 to 21/04/2026 is approved'},
+                            {'t': 'Your Attendance Regulation Application Is Approved', 'd': '23 Apr 2026', 'x': 'Your attendance regulation application applied for the duration 20/04/2026 to 21/04/2026 is approved'},
+                            {'t': 'Your Attendance Regulation Application Is Approved', 'd': '25 Apr 2026', 'x': 'Your attendance regulation application applied for the duration 17/04/2026 to 17/04/2026 is approved'}
+                        ]" t-as="n">
+                            <div class="notif-item">
+                                <span class="notif-item__ic">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 13l2 2 4-4"/></svg>
+                                </span>
+                                <div class="notif-item__body">
+                                    <div class="notif-item__top">
+                                        <span class="notif-item__title"><t t-out="n['t']"/></span>
+                                        <span class="notif-item__date"><t t-out="n['d']"/></span>
+                                    </div>
+                                    <div class="notif-item__desc"><t t-out="n['x']"/></div>
+                                </div>
+                                <span class="notif-item__menu">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="19" r="1.6"/></svg>
+                                </span>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- ============================================================
+         DASHBOARD PAGE  (/dashboard)
+    ============================================================= -->
+    <template id="dashboard_page" name="HR Dashboard">
+        <t t-set="active" t-value="'dashboard'"/>
+        <t t-set="page_name" t-value="'Dashboard'"/>
+        <t t-call="hr_management_system.dashboard_layout">
+
+            <div class="page-head">
+                <div>
+                    <h1 class="page-head__title">Welcome, Mujahid 👋</h1>
+                    <p class="page-head__sub">Here's what's happening across your teams today.</p>
+                </div>
+                <div class="page-head__right">
+                    <span class="date-pill">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>
+                        Thu, 23 Apr 2026
+                    </span>
+                    <div class="seg">
+                        <button class="seg__btn is-active" type="button">Day</button>
+                        <button class="seg__btn" type="button">Week</button>
+                        <button class="seg__btn" type="button">Month</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KPI CARDS -->
+            <div class="kpis">
+                <div class="kpi kpi--green">
+                    <div class="kpi__top">
+                        <span class="kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>
+                        <span class="kpi__trend kpi__trend--up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m6 15 6-6 6 6"/></svg>2.4%</span>
+                    </div>
+                    <div class="kpi__label">Present Employees</div>
+                    <div class="kpi__value">186 <small>/ 214</small></div>
+                    <div class="kpi__bar"><span style="width:87%"></span></div>
+                    <div class="kpi__foot">87% attendance</div>
+                </div>
+
+                <div class="kpi kpi--blue">
+                    <div class="kpi__top">
+                        <span class="kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></span>
+                        <span class="kpi__trend kpi__trend--down"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"/></svg>1.1%</span>
+                    </div>
+                    <div class="kpi__label">On Leave</div>
+                    <div class="kpi__value">14</div>
+                    <div class="kpi__bar"><span style="width:24%"></span></div>
+                    <div class="kpi__foot">6 planned · 8 sick</div>
+                </div>
+
+                <div class="kpi kpi--red">
+                    <div class="kpi__top">
+                        <span class="kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9"/><path d="m15 9-6 6M9 9l6 6"/></svg></span>
+                        <span class="kpi__trend kpi__trend--down"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m6 15 6-6 6 6"/></svg>0.8%</span>
+                    </div>
+                    <div class="kpi__label">Absent</div>
+                    <div class="kpi__value">8</div>
+                    <div class="kpi__bar"><span style="width:12%"></span></div>
+                    <div class="kpi__foot">3 uninformed today</div>
+                </div>
+
+                <div class="kpi kpi--orange">
+                    <div class="kpi__top">
+                        <span class="kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+                        <span class="kpi__trend kpi__trend--up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m6 15 6-6 6 6"/></svg>5 new</span>
+                    </div>
+                    <div class="kpi__label">Pending Approvals</div>
+                    <div class="kpi__value">23</div>
+                    <div class="kpi__foot" style="margin-top:22px">Awaiting your review</div>
+                </div>
+            </div>
+
+            <!-- Search + department tabs -->
+            <div class="emp-search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg>
+                <input type="text" placeholder="Search by name, ID or email..."/>
+            </div>
+
+            <div class="deptabs">
+                <button class="deptab is-active" type="button">All <span class="deptab__n">9</span></button>
+                <button class="deptab" type="button">Engineering <span class="deptab__n">2</span></button>
+                <button class="deptab" type="button">Design <span class="deptab__n">1</span></button>
+                <button class="deptab" type="button">Sales <span class="deptab__n">1</span></button>
+                <button class="deptab" type="button">Marketing <span class="deptab__n">2</span></button>
+                <button class="deptab" type="button">Finance <span class="deptab__n">1</span></button>
+                <button class="deptab" type="button">People Ops <span class="deptab__n">1</span></button>
+                <button class="deptab" type="button">Support <span class="deptab__n">1</span></button>
+            </div>
+
+            <!-- Employee table -->
+            <div class="card">
+                <div class="card__head">
+                    <div>
+                        <div class="card__title">All Employees</div>
+                        <div class="card__sub">Showing 9 of 214 people · sorted by name</div>
+                    </div>
+                    <div class="card__actions">
+                        <button class="btn-ghost" type="button">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M3 5h18l-7 8v6l-4 2v-8z"/></svg>
+                            Filter
+                        </button>
+                        <button class="btn-ghost" type="button">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v12M8 11l4 4 4-4M4 21h16"/></svg>
+                            Export CSV
+                        </button>
+                    </div>
+                </div>
+
+                <table class="emp-table">
+                    <thead>
+                        <tr>
+                            <th>Employee ID</th>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Role</th>
+                            <th>Location</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="emp-id">MV-001</span></td>
+                            <td><div class="emp-person"><span class="emp-av" style="background:#e0872f">AH</span><div><div class="emp-name">Aarav Hegde</div><div class="emp-meta">Senior Engineer · Product</div></div></div></td>
+                            <td><span class="status status--active">Active</span></td>
+                            <td>Senior Product Designer</td>
+                            <td>Bhakkar</td>
+                            <td><span class="row-menu"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="19" r="1.6"/></svg></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="emp-id">MV-002</span></td>
+                            <td><div class="emp-person"><span class="emp-av" style="background:#2f72c4">NB</span><div><div class="emp-name">Nadir Bao</div><div class="emp-meta">Product Designer · Design</div></div></div></td>
+                            <td><span class="status status--probation">Probation</span></td>
+                            <td>Backend Engineer</td>
+                            <td>Lahore</td>
+                            <td><span class="row-menu"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="19" r="1.6"/></svg></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="emp-id">MV-003</span></td>
+                            <td><div class="emp-person"><span class="emp-av" style="background:#16a34a">MK</span><div><div class="emp-name">Marcus Kline</div><div class="emp-meta">Finance Analyst · Finance</div></div></div></td>
+                            <td><span class="status status--active">Active</span></td>
+                            <td>Account Executive</td>
+                            <td>Kasur</td>
+                            <td><span class="row-menu"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="19" r="1.6"/></svg></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="emp-id">MV-004</span></td>
+                            <td><div class="emp-person"><span class="emp-av" style="background:#7c5cde">LM</span><div><div class="emp-name">Leila Moretti</div><div class="emp-meta">Marketing Lead · Growth</div></div></div></td>
+                            <td><span class="status status--remote">Remote</span></td>
+                            <td>Growth Marketer</td>
+                            <td>Gujranwala</td>
+                            <td><span class="row-menu"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="19" r="1.6"/></svg></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="emp-id">MV-005</span></td>
+                            <td><div class="emp-person"><span class="emp-av" style="background:#e5564b">TO</span><div><div class="emp-name">Tomás Okafor</div><div class="emp-meta">QA Engineer · Product</div></div></div></td>
+                            <td><span class="status status--active">Active</span></td>
+                            <td>Engineering Manager</td>
+                            <td>Lahore</td>
+                            <td><span class="row-menu"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="19" r="1.6"/></svg></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="emp-id">MV-006</span></td>
+                            <td><div class="emp-person"><span class="emp-av" style="background:#0a7e9b">PS</span><div><div class="emp-name">Priya Sundaram</div><div class="emp-meta">HR Specialist · People</div></div></div></td>
+                            <td><span class="status status--leave">On leave</span></td>
+                            <td>Financial Analyst</td>
+                            <td>Lahore</td>
+                            <td><span class="row-menu"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="19" r="1.6"/></svg></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="emp-id">MV-007</span></td>
+                            <td><div class="emp-person"><span class="emp-av" style="background:#d4578a">EW</span><div><div class="emp-name">Eleanor Whitfield</div><div class="emp-meta">VP Engineering · Leadership</div></div></div></td>
+                            <td><span class="status status--active">Active</span></td>
+                            <td>People Operations Partner</td>
+                            <td>Lahore</td>
+                            <td><span class="row-menu"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="19" r="1.6"/></svg></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="emp-id">MV-008</span></td>
+                            <td><div class="emp-person"><span class="emp-av" style="background:#c98a1d">KR</span><div><div class="emp-name">Kwame Roux</div><div class="emp-meta">Customer Success · Support</div></div></div></td>
+                            <td><span class="status status--probation">Probation</span></td>
+                            <td>Customer Support Lead</td>
+                            <td>Lahore</td>
+                            <td><span class="row-menu"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="19" r="1.6"/></svg></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="card__foot">
+                    <span class="card__foot-info">Showing 1-8 of 214 employees</span>
+                    <div class="pager">
+                        <a href="#">‹</a>
+                        <span class="is-active">1</span>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <span class="dots">…</span>
+                        <a href="#">27</a>
+                        <a href="#">›</a>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- ============================================================
+         COMING SOON  (/employees, /attendance, ... baaki sab)
+    ============================================================= -->
+    <template id="coming_soon" name="Coming Soon">
+        <t t-call="hr_management_system.dashboard_layout">
+            <div class="coming">
+                <div class="coming__badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a7 7 0 0 1 7 7c0 3-2 5-2 7H7c0-2-2-4-2-7a7 7 0 0 1 7-7Z"/><path d="M9 21h6M10 18h4"/></svg>
+                </div>
+                <h1 class="coming__title"><t t-out="page_name"/></h1>
+                <span class="coming__tag">● Coming soon</span>
+                <p class="coming__text">Ye module abhi tayyar ho raha hai. "<t t-out="page_name"/>" jald hi yahan available hoga.</p>
+                <a class="coming__back" href="/dashboard">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+                    Back to Dashboard
+                </a>
+            </div>
+        </t>
+    </template>
+
+</odoo>

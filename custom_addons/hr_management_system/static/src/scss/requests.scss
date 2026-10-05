@@ -1,0 +1,48 @@
+// ============================================================
+//  REQUESTS page  (/requests)
+// ============================================================
+
+.req-head { margin-bottom: 18px; }
+.req-head__title { font-size: 22px; font-weight: 800; letter-spacing: -0.3px; color: $c-ink; }
+.req-head__sub { margin-top: 6px; font-size: 13.5px; color: $c-muted; }
+
+/* Tabs bar */
+.req-tabs {
+    display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
+    background: #fff; border: 1px solid $c-line; border-radius: 12px; padding: 8px; margin-bottom: 18px;
+}
+.req-tab {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 9px 18px; border-radius: 8px; font-size: 14px; font-weight: 600; color: $c-body; cursor: pointer;
+    &:hover { background: #f4f6f8; }
+    &.is-active { background: $c-teal; color: #fff; }
+    svg { width: 13px; height: 13px; }
+}
+
+/* Panel */
+.req-panel { background: #fff; border: 1px solid $c-line; border-radius: 14px; padding: 18px 20px; min-height: 540px; }
+.req-toolbar { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; padding-bottom: 18px; border-bottom: 1px solid $c-line; }
+.req-search {
+    position: relative; display: flex; align-items: center; width: 300px; max-width: 100%;
+    svg { position: absolute; left: 12px; width: 16px; height: 16px; color: $c-muted; }
+    input {
+        width: 100%; height: 40px; border: 1px solid $c-line; border-radius: 9px; background: #fff;
+        padding: 0 14px 0 36px; font-size: 13.5px; color: $c-ink;
+        &::placeholder { color: $c-muted; }
+        &:focus { outline: none; border-color: $c-teal-light; }
+    }
+}
+.req-total { font-size: 13.5px; color: $c-body; b { color: $c-ink; font-weight: 700; } }
+.req-filters { margin-left: auto; display: flex; gap: 10px; }
+.req-select {
+    display: inline-flex; align-items: center; gap: 10px; height: 40px; padding: 0 14px;
+    border: 1px solid $c-line; border-radius: 9px; background: #fff; font-size: 13.5px; color: $c-body; cursor: pointer;
+    svg { width: 14px; height: 14px; color: $c-muted; }
+    &:hover { border-color: #cfd6db; }
+}
+
+/* Empty state */
+.req-empty { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 56px 20px; }
+.req-illus { width: 210px; height: auto; margin-bottom: 26px; }
+.req-empty__cta { font-size: 15px; font-weight: 700; color: $c-teal; background: rgba(3, 101, 127, 0.08); padding: 11px 22px; border-radius: 10px; }
+.req-empty__sub { margin-top: 14px; font-size: 13.5px; color: $c-muted; b { color: $c-body; font-weight: 700; } }

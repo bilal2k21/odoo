@@ -1,0 +1,31 @@
+// ============================================================
+//  METAVIZ HR SUITE — Design Tokens
+//  (Figma ke colors/spacing yahan — ek jagah change, sab update)
+// ============================================================
+
+// ---- Brand (teal) — exact Figma values ----
+$c-teal-deep:   #063e4e;   // 0%  (left panel top)
+$c-teal-dark:   #05566b;   // mid
+$c-teal:        #03657f;   // 55%
+$c-teal-light:  #0a7e9b;   // 100% (left panel bottom)
+
+// ---- Accent (orange) ----
+$c-orange:      #f29a2e;
+$c-orange-soft: #ffc24b;
+
+// ---- Neutrals / right panel ----
+$c-white:       #ffffff;
+$c-page-bg:     #e9ebee;   // light gray behind the card
+$c-ink:         #103039;   // dark headings
+$c-body:        #5d6d75;   // body text
+$c-muted:       #909ca4;   // muted / placeholders
+$c-line:        #e4e8ec;   // borders / dividers
+$c-field:       #f6f8fa;   // input background
+$c-link:        #1b7f93;   // teal links
+
+// ---- Shape ----
+$radius-card:   18px;
+$radius-input:  9px;
+
+// ---- Type ----
+$font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;

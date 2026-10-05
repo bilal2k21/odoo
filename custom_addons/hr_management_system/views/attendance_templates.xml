@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Status icon helper (k = status key) -->
+    <template id="att_icon" name="Attendance status icon">
+        <t t-if="k == 'present'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"/></svg></t>
+        <t t-if="k == 'absent'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M18 6 6 18M6 6l12 12"/></svg></t>
+        <t t-if="k == 'public'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></t>
+        <t t-if="k == 'paid'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></t>
+        <t t-if="k == 'unpaid'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></t>
+        <t t-if="k == 'hourly'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></t>
+    </template>
+
+    <!-- ============================================================
+         ATTENDANCE  (/attendance)
+         Context: days (list), rows (list of employees)
+    ============================================================= -->
+    <template id="attendance_page" name="Attendance">
+        <t t-set="active" t-value="'attendance'"/>
+        <t t-set="page_name" t-value="'Attendance'"/>
+        <t t-call="hr_management_system.dashboard_layout">
+
+            <div class="att-head">
+                <h1 class="att-head__title">Attendance</h1>
+                <p class="att-head__sub">Daily attendance employe Attendance — View, Regularize and Add holiday</p>
+            </div>
+
+            <!-- Filter panel -->
+            <div class="att-panel">
+                <div class="att-filter">
+                    <div class="att-fld">
+                        <label class="att-fld__label">Search</label>
+                        <input type="text" class="att-input" value="Muhammad Asim"/>
+                    </div>
+                    <div class="att-fld">
+                        <label class="att-fld__label">Filter by month <span class="req">*</span></label>
+                        <div class="att-month">
+                            <span class="att-month__nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"/></svg></span>
+                            <span class="att-month__val">May 2026</span>
+                            <span class="att-month__nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"/></svg></span>
+                            <button type="button" class="att-month__cal" data-att-cal-btn="1">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>
+                            </button>
+
+                            <!-- Calendar popup (calendar button se toggle) -->
+                            <div class="att-cal-pop" data-att-cal="1">
+                                <div class="att-cal__head">
+                                    <span class="att-cal__nav">‹</span>
+                                    <span class="att-cal__title">May 2026</span>
+                                    <span class="att-cal__nav">›</span>
+                                </div>
+                                <div class="att-cal__grid">
+                                    <span class="att-cal__dow">S</span><span class="att-cal__dow">M</span><span class="att-cal__dow">T</span><span class="att-cal__dow">W</span><span class="att-cal__dow">T</span><span class="att-cal__dow">F</span><span class="att-cal__dow">S</span>
+                                    <span class="att-cal__day is-out">29</span><span class="att-cal__day is-out">30</span><span class="att-cal__day is-out">31</span><span class="att-cal__day is-sel">1</span><span class="att-cal__day is-range">2</span><span class="att-cal__day is-range">3</span><span class="att-cal__day is-range">4</span>
+                                    <span class="att-cal__day is-range">5</span><span class="att-cal__day is-range">6</span><span class="att-cal__day is-range">7</span><span class="att-cal__day is-sel">8</span><span class="att-cal__day">9</span><span class="att-cal__day">10</span><span class="att-cal__day">11</span>
+                                    <span class="att-cal__day">12</span><span class="att-cal__day">13</span><span class="att-cal__day">14</span><span class="att-cal__day">15</span><span class="att-cal__day">16</span><span class="att-cal__day">17</span><span class="att-cal__day">18</span>
+                                    <span class="att-cal__day">19</span><span class="att-cal__day">20</span><span class="att-cal__day">21</span><span class="att-cal__day">22</span><span class="att-cal__day">23</span><span class="att-cal__day">24</span><span class="att-cal__day">25</span>
+                                    <span class="att-cal__day">26</span><span class="att-cal__day">27</span><span class="att-cal__day">28</span><span class="att-cal__day">29</span><span class="att-cal__day">30</span><span class="att-cal__day is-out">1</span><span class="att-cal__day is-out">2</span>
+                                </div>
+                                <div class="att-cal__foot">
+                                    <span class="att-cal__tab">Today</span>
+                                    <span class="att-cal__tab is-active">This week</span>
+                                    <span class="att-cal__tab">Next week</span>
+                                    <span class="att-cal__range">18 → 25 Apr</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="att-actions">
+                    <button type="button" class="att-btn">Add Attendance</button>
+                    <button type="button" class="att-btn">Add Holiday</button>
+                </div>
+            </div>
+
+            <!-- Grid card -->
+            <div class="att-card">
+                <!-- Legend -->
+                <div class="att-legend">
+                    <span class="att-leg"><span class="att-leg__ic att-c-present"><t t-set="k" t-value="'present'"/><t t-call="hr_management_system.att_icon"/></span> Present</span>
+                    <span class="att-leg"><span class="att-leg__ic att-c-absent"><t t-set="k" t-value="'absent'"/><t t-call="hr_management_system.att_icon"/></span> Absent</span>
+                    <span class="att-leg"><span class="att-leg__ic att-c-public"><t t-set="k" t-value="'public'"/><t t-call="hr_management_system.att_icon"/></span> Public Holiday</span>
+                    <span class="att-leg"><span class="att-leg__ic att-c-paid"><t t-set="k" t-value="'paid'"/><t t-call="hr_management_system.att_icon"/></span> On Leave (Paid)</span>
+                    <span class="att-leg"><span class="att-leg__ic att-c-unpaid"><t t-set="k" t-value="'unpaid'"/><t t-call="hr_management_system.att_icon"/></span> On Leave (Unpaid)</span>
+                    <span class="att-leg"><span class="att-leg__ic att-c-hourly"><t t-set="k" t-value="'hourly'"/><t t-call="hr_management_system.att_icon"/></span> On Hourly Leave</span>
+                </div>
+
+                <!-- Grid -->
+                <div class="att-grid-wrap">
+                    <table class="att-grid">
+                        <thead>
+                            <tr>
+                                <th class="att-name-col">Name</th>
+                                <th t-foreach="days" t-as="day" t-attf-class="#{'is-we' if day['we'] else ''}">
+                                    <span class="dnum"><t t-out="day['n']"/></span>
+                                    <span class="dlet"><t t-out="day['d']"/></span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="rows" t-as="row">
+                                <td class="att-name-col">
+                                    <a href="/attendance/employee" class="att-person">
+                                        <span class="att-av" t-attf-style="background:#{row['color']}"><t t-out="row['av']"/></span>
+                                        <div>
+                                            <div class="att-person__id"><t t-out="row['id']"/></div>
+                                            <div class="att-person__name"><t t-out="row['name']"/></div>
+                                        </div>
+                                    </a>
+                                </td>
+                                <td t-foreach="days" t-as="day" t-attf-class="att-cell #{'is-we' if day['we'] else ''}">
+                                    <t t-set="st" t-value="row['cells'].get(day['i'])"/>
+                                    <t t-if="st">
+                                        <span t-attf-class="att-badge att-c-#{st}"><t t-set="k" t-value="st"/><t t-call="hr_management_system.att_icon"/></span>
+                                    </t>
+                                    <t t-elif="day['we']"><span class="att-w">w</span></t>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Footer -->
+                <div class="att-foot">
+                    <span class="att-foot__info">Showing 1 – 3 of 3</span>
+                    <div class="att-pager">
+                        <a href="#">‹</a>
+                        <span class="is-active">1</span>
+                        <a href="#">›</a>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>

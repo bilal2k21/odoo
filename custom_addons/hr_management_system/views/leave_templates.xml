@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================
+         LEAVE list  (/requests/leave)
+    ============================================================= -->
+    <template id="leave_page" name="Leave Requests">
+        <t t-set="active" t-value="'requests'"/>
+        <t t-set="section" t-value="'Requests'"/>
+        <t t-set="page_name" t-value="'Leave'"/>
+        <t t-call="hr_management_system.dashboard_layout">
+
+            <div class="req-head">
+                <h1 class="req-head__title">Leave</h1>
+                <p class="req-head__sub">Submit a time-off, reimbursement, or asset request for approval.</p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="req-tabs">
+                <a class="req-tab" href="/requests">Attendence Request</a>
+                <span class="req-tab is-active">Leave</span>
+                <a class="req-tab" href="/requests/expense">Expense Request</a>
+                <a class="req-tab" href="/requests/funds">Funds Request</a>
+                <a class="req-tab" href="/requests/employ-action">Employ Action Sheet</a>
+                <span class="req-tab">Assets Request</span>
+                <span class="req-tab">Document
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+            </div>
+
+            <!-- Panel -->
+            <div class="req-panel" style="min-height:0; padding:0">
+                <div class="req-toolbar" style="padding:18px 20px">
+                    <div class="req-search">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg>
+                        <input type="text" placeholder="Search"/>
+                    </div>
+                    <span class="req-total">Total Records : <b>3</b></span>
+                    <div class="req-filters">
+                        <span class="req-select">My Request
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"/></svg>
+                        </span>
+                        <span class="req-select">All
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"/></svg>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Rows -->
+                <div class="lv-row">
+                    <span class="lv-av" style="background:#0a7e9b">MA</span>
+                    <div class="lv-main">
+                        <span class="lv-name">MV-074 - Muhammad Asim</span>
+                        <span class="lv-badge">Short Leave Early Departure SEDP (Paid)</span>
+                    </div>
+                    <span class="lv-hrs">0.4 Hr(s)</span>
+                    <span class="lv-dur"><b>Duration</b> : 2026-04-20 - 2026-04-20</span>
+                    <div class="lv-right">
+                        <div class="lv-status"><span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"/></svg></span><span class="circ"></span></div>
+                        <div class="lv-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg> 30-Apr-2026 11:47:39 AM</div>
+                    </div>
+                </div>
+
+                <div class="lv-row">
+                    <span class="lv-av" style="background:#2f72c4">BK</span>
+                    <div class="lv-main">
+                        <span class="lv-name">MV-054 - Bilal Khan</span>
+                        <span class="lv-badge">Sick Casual Leave Paid SCL (Paid)</span>
+                    </div>
+                    <span class="lv-hrs">1 Day(s)</span>
+                    <span class="lv-dur"><b>Duration</b> : 2026-04-24 - 2026-04-24</span>
+                    <div class="lv-right">
+                        <div class="lv-status"><span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"/></svg></span><span class="circ"></span></div>
+                        <div class="lv-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg> 27-Apr-2026 10:24:26 AM</div>
+                    </div>
+                </div>
+
+                <div class="lv-row">
+                    <span class="lv-av" style="background:#7c5cde">MA</span>
+                    <div class="lv-main">
+                        <span class="lv-name">MV-074 - Momin Ali</span>
+                        <span class="lv-badge">Sick Casual Leave Paid SCL (Paid)</span>
+                    </div>
+                    <span class="lv-hrs">1 Day(s)</span>
+                    <span class="lv-dur"><b>Duration</b> : 2026-03-03 - 2026-03-03</span>
+                    <div class="lv-right">
+                        <div class="lv-status"><span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"/></svg></span><span class="circ"></span></div>
+                        <div class="lv-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg> 09-Mar-2026 10:35:04 AM</div>
+                    </div>
+                </div>
+
+                <div class="lv-foot">Showing 1 - 3</div>
+            </div>
+        </t>
+    </template>
+
+</odoo>

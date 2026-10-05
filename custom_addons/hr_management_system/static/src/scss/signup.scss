@@ -1,0 +1,36 @@
+// ============================================================
+//  SIGNUP page only  (/signup)  — shared styles _auth.scss me hain
+// ============================================================
+
+// Password strength bar
+.pwd-strength {
+    height: 3px;
+    margin-top: 10px;
+    background: $c-line;
+    border-radius: 2px;
+    overflow: hidden;
+
+    > span {
+        display: block;
+        width: 0;
+        height: 100%;
+        background: $c-orange;
+        border-radius: 2px;
+        transition: width 0.25s, background 0.25s;
+    }
+}
+
+// Terms / privacy checkbox row
+.agree {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 18px 0 22px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: $c-body;
+    cursor: pointer;
+
+    input { margin-top: 2px; width: 16px; height: 16px; accent-color: $c-teal; }
+    a { color: $c-link; font-weight: 600; }
+}

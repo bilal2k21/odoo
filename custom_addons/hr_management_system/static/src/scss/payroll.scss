@@ -1,0 +1,101 @@
+// ============================================================
+//  PAYROLL page  (/payroll)
+// ============================================================
+
+$p-line: #e9edf0; $p-ink: #103039; $p-muted: #8a97a0; $p-body: #5b6b73;
+$p-green: #16a34a; $p-orange: #f29a2e; $p-red: #e5564b; $p-blue: #2f72c4;
+
+.pay-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
+.pay-head__title { font-size: 24px; font-weight: 800; letter-spacing: -0.3px; color: $p-ink; }
+.pay-head__sub { margin-top: 5px; font-size: 13px; color: $p-muted; }
+.pay-head__actions { display: flex; gap: 10px; }
+
+/* ---- Hero pay-run card ---- */
+.pay-hero { position: relative; display: flex; gap: 24px; padding: 24px 28px; margin-bottom: 18px; border-radius: 16px; color: #fff; background: linear-gradient(135deg, #0a2f3a 0%, #0e4152 58%, #114a5c 100%); overflow: hidden; }
+.pay-hero__main { flex: 1; min-width: 0; }
+.pay-hero__badge { display: inline-flex; align-items: center; gap: 7px; padding: 4px 12px; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: #fbbf6b; background: rgba(242, 154, 46, 0.15); }
+.pay-hero__badge::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: $p-orange; }
+.pay-hero__title { margin: 14px 0 6px; font-size: 24px; font-weight: 800; }
+.pay-hero__meta { font-size: 12.5px; color: rgba(255, 255, 255, 0.62); }
+.pay-hero__stats { display: flex; flex-wrap: wrap; gap: 14px 40px; margin: 22px 0; }
+.pay-hstat__label { font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: rgba(255, 255, 255, 0.5); }
+.pay-hstat__val { margin-top: 5px; font-size: 20px; font-weight: 800; }
+.pay-hstat__val.neg { color: #f6a6a0; }
+.pay-hstat__val.al  { color: #7fd4a8; }
+.pay-hstat__val.net { color: #6fd0e8; }
+.pay-hero__btns { display: flex; gap: 12px; }
+.pay-hero__btn1 { display: inline-flex; align-items: center; gap: 8px; height: 42px; padding: 0 20px; border: none; border-radius: 10px; background: #fff; color: #0e4152; font-size: 14px; font-weight: 700; cursor: pointer; &:hover { filter: brightness(0.96); } }
+.pay-hero__btn2 { display: inline-flex; align-items: center; gap: 8px; height: 42px; padding: 0 18px; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 10px; background: transparent; color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; &:hover { background: rgba(255, 255, 255, 0.08); } svg { width: 15px; height: 15px; } }
+
+.pay-approve { flex: 0 0 auto; width: 210px; display: flex; flex-direction: column; gap: 14px; padding-top: 4px; }
+.pay-apr { display: flex; align-items: center; gap: 10px; }
+.pay-apr__ic { width: 22px; height: 22px; flex: 0 0 auto; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; svg { width: 12px; height: 12px; } }
+.pay-apr__ic--done { background: $p-green; color: #fff; }
+.pay-apr__ic--todo { background: rgba(255, 255, 255, 0.14); color: rgba(255, 255, 255, 0.75); }
+.pay-apr__name { flex: 1; font-size: 12.5px; font-weight: 600; }
+.pay-apr__meta { font-size: 11px; color: rgba(255, 255, 255, 0.5); }
+
+/* ---- KPI cards ---- */
+.pay-kpis { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 18px; }
+.pay-kpi { background: #fff; border: 1px solid $p-line; border-radius: 12px; padding: 14px 16px; }
+.pay-kpi__label { display: flex; align-items: center; gap: 6px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: $p-muted; }
+.pay-kpi__val { margin-top: 8px; font-size: 22px; font-weight: 800; color: $p-ink; small { font-size: 13px; color: $p-muted; } }
+.pay-kpi__sub { margin-top: 6px; font-size: 11.5px; color: $p-muted; }
+.pay-kpi__bar { margin-top: 9px; height: 4px; border-radius: 2px; background: #eef1f3; overflow: hidden; span { display: block; height: 100%; border-radius: 2px; background: $c-teal; } }
+.pay-kpi--green .pay-kpi__val { color: $p-green; } .pay-kpi--green .pay-kpi__bar span { background: $p-green; }
+.pay-kpi--orange .pay-kpi__bar span { background: $p-orange; }
+
+/* ---- Two columns ---- */
+.pay-cols { display: flex; align-items: flex-start; gap: 18px; margin-bottom: 18px; }
+.pay-main { flex: 1; min-width: 0; }
+.pay-side { width: 320px; flex: 0 0 auto; display: flex; flex-direction: column; gap: 16px; }
+@media (max-width: 1150px) { .pay-cols { flex-direction: column; } .pay-side { width: 100%; } .pay-kpis { grid-template-columns: repeat(3, 1fr); } }
+
+.pay-card { background: #fff; border: 1px solid $p-line; border-radius: 14px; }
+.pay-card__head { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid $p-line; }
+.pay-card__title { font-size: 15.5px; font-weight: 800; color: $p-ink; }
+.pay-card__sub { margin-top: 2px; font-size: 12px; color: $p-muted; }
+.pay-card__link { font-size: 12.5px; font-weight: 600; color: $c-teal; cursor: pointer; }
+
+/* run history table */
+.pay-table { width: 100%; border-collapse: collapse; }
+.pay-table th { text-align: left; padding: 10px 16px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase; color: $p-muted; background: #fafbfc; border-bottom: 1px solid $p-line; }
+.pay-table td { padding: 12px 16px; font-size: 13px; color: $p-body; border-bottom: 1px solid #f1f4f6; }
+.pay-table tr:hover td { background: #fafbfc; }
+.pay-period { font-weight: 700; color: $p-ink; }
+.pay-period span { display: block; font-size: 11px; font-weight: 400; color: $p-muted; }
+.pay-neg { color: $p-red; }
+.pay-pill { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px; &::before { content: ""; width: 6px; height: 6px; border-radius: 50%; } }
+.pay-pill--paid { color: $p-green; background: #e9f7ef; &::before { background: $p-green; } }
+.pay-pill--review { color: $p-orange; background: #fef1df; &::before { background: $p-orange; } }
+.pay-foot { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; }
+.pay-foot__info { font-size: 12.5px; color: $p-muted; }
+.pay-pager { display: flex; gap: 6px; }
+.pay-pager a, .pay-pager span { min-width: 28px; height: 28px; padding: 0 5px; border-radius: 7px; display: inline-flex; align-items: center; justify-content: center; font-size: 12.5px; color: $p-body; border: 1px solid $p-line; background: #fff; &.is-active { background: $c-teal; border-color: $c-teal; color: #fff; font-weight: 700; } &.dots { border: none; } }
+
+/* upcoming */
+.pay-up { padding: 16px 20px; }
+.pay-up__item { position: relative; display: flex; gap: 12px; padding-bottom: 16px; }
+.pay-up__item:not(:last-child)::before { content: ""; position: absolute; left: 5px; top: 16px; bottom: 0; width: 2px; background: $p-line; }
+.pay-up__dot { width: 12px; height: 12px; flex: 0 0 auto; margin-top: 3px; border-radius: 50%; background: $c-teal; box-shadow: 0 0 0 3px rgba(3, 101, 127, 0.15); z-index: 1; }
+.pay-up__date { font-size: 10.5px; font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase; color: $c-teal; }
+.pay-up__title { margin-top: 2px; font-size: 13px; font-weight: 700; color: $p-ink; }
+.pay-up__meta { font-size: 11.5px; color: $p-muted; }
+
+/* cost by department */
+.pay-dept { padding: 16px 20px; }
+.pay-dept__row { margin-bottom: 13px; }
+.pay-dept__top { display: flex; justify-content: space-between; font-size: 12.5px; margin-bottom: 5px; span:first-child { color: $p-body; } b { color: $p-ink; } }
+.pay-dept__bar { height: 6px; border-radius: 3px; background: #eef1f3; overflow: hidden; span { display: block; height: 100%; border-radius: 3px; } }
+
+/* bottom 3 cards */
+.pay-bottom { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media (max-width: 1000px) { .pay-bottom { grid-template-columns: 1fr; } }
+.pay-b-card { background: #fff; border: 1px solid $p-line; border-radius: 14px; padding: 18px 20px; }
+.pay-b-head { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 14px; }
+.pay-b-ic { width: 34px; height: 34px; flex: 0 0 auto; border-radius: 9px; background: rgba(3, 101, 127, 0.09); color: $c-teal; display: inline-flex; align-items: center; justify-content: center; svg { width: 17px; height: 17px; } }
+.pay-b-title { font-size: 14px; font-weight: 800; color: $p-ink; }
+.pay-b-sub { margin-top: 2px; font-size: 11.5px; color: $p-muted; }
+.pay-b-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; font-size: 13px; color: $p-body; border-top: 1px solid #f1f4f6; b { color: $p-ink; font-weight: 700; } }
+.pay-b-row:first-of-type { border-top: none; }
+.pay-b-link { margin-top: 12px; font-size: 12.5px; font-weight: 600; color: $c-teal; cursor: pointer; }

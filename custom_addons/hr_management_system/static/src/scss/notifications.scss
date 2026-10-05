@@ -1,0 +1,28 @@
+// ============================================================
+//  NOTIFICATIONS drawer  (bell icon se khulta hai)
+// ============================================================
+
+.notif { position: fixed; inset: 0; z-index: 210; display: none; }
+.notif.is-open { display: block; }
+.notif__overlay { position: absolute; inset: 0; background: rgba(16, 48, 57, 0.35); }
+.notif__panel {
+    position: absolute; top: 0; right: 0; height: 100vh; width: 390px; max-width: 92vw;
+    display: flex; flex-direction: column; background: #f4f6f8; box-shadow: -10px 0 40px rgba(0, 0, 0, 0.18);
+    animation: notifIn 0.2s ease;
+}
+@keyframes notifIn { from { transform: translateX(28px); opacity: 0.4; } to { transform: translateX(0); opacity: 1; } }
+
+.notif__head { display: flex; align-items: center; justify-content: space-between; padding: 15px 18px; background: $c-teal; color: #fff; }
+.notif__title { font-size: 15px; font-weight: 700; }
+.notif__x { width: 30px; height: 30px; border: none; border-radius: 7px; background: rgba(255, 255, 255, 0.18); color: #fff; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; &:hover { background: rgba(255, 255, 255, 0.3); } svg { width: 16px; height: 16px; } }
+
+.notif__body { flex: 1; overflow: auto; padding: 14px; display: flex; flex-direction: column; gap: 12px; }
+
+.notif-item { display: flex; align-items: flex-start; gap: 12px; padding: 14px; background: #fff; border: 1px solid $c-line; border-radius: 12px; }
+.notif-item__ic { width: 34px; height: 34px; flex: 0 0 auto; border-radius: 50%; background: #fef1df; color: #f29a2e; display: inline-flex; align-items: center; justify-content: center; svg { width: 17px; height: 17px; } }
+.notif-item__body { flex: 1; min-width: 0; }
+.notif-item__top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.notif-item__title { font-size: 12.5px; font-weight: 700; color: $c-ink; line-height: 1.35; }
+.notif-item__date { flex: 0 0 auto; font-size: 11px; color: $c-muted; }
+.notif-item__desc { margin-top: 5px; font-size: 11.5px; line-height: 1.5; color: $c-muted; }
+.notif-item__menu { flex: 0 0 auto; align-self: flex-start; color: $c-muted; cursor: pointer; }
