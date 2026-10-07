@@ -1,0 +1,64 @@
+// ============================================================
+//  RECRUITMENT page  (/recruitment)
+//  Reuses .ad-tabs/.ad-tab (tabs)
+// ============================================================
+
+$r-line: #e9edf0; $r-ink: #103039; $r-muted: #8a97a0; $r-body: #5b6b73;
+
+.rec-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+.rec-head__title { font-size: 24px; font-weight: 800; letter-spacing: -0.3px; color: $r-ink; }
+.rec-head__sub { margin-top: 5px; font-size: 13px; color: $r-muted; }
+
+/* KPI cards */
+.rec-kpis { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 20px; }
+.rec-kpi { background: #fff; border: 1px solid $r-line; border-top: 3px solid #cfd6db; border-radius: 12px; padding: 14px 16px; }
+.rec-kpi__top { display: flex; align-items: center; justify-content: space-between; }
+.rec-kpi__ic { width: 30px; height: 30px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; svg { width: 16px; height: 16px; } }
+.rec-kpi__trend { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 999px; }
+.rec-kpi__trend--green { color: #16a34a; background: #e7f6ed; }
+.rec-kpi__trend--blue  { color: #2f72c4; background: #e8f0fb; }
+.rec-kpi__trend--muted { color: $r-muted; background: #f0f2f5; }
+.rec-kpi__label { margin-top: 14px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: $r-muted; }
+.rec-kpi__val { margin-top: 5px; font-size: 26px; font-weight: 800; color: $r-ink; small { font-size: 14px; color: $r-muted; font-weight: 600; } }
+.rec-kpi__foot { margin-top: 7px; font-size: 11.5px; color: $r-muted; }
+.rec-kpi--teal   { border-top-color: #0a7e9b; .rec-kpi__ic { background: rgba(10,126,155,.1); color: #0a7e9b; } }
+.rec-kpi--blue   { border-top-color: #2f72c4; .rec-kpi__ic { background: #e8f0fb; color: #2f72c4; } }
+.rec-kpi--purple { border-top-color: #7c5cde; .rec-kpi__ic { background: #f0ecfc; color: #7c5cde; } }
+.rec-kpi--orange { border-top-color: #f29a2e; .rec-kpi__ic { background: #fef1df; color: #f29a2e; } }
+.rec-kpi--green  { border-top-color: #16a34a; .rec-kpi__ic { background: #e7f6ed; color: #16a34a; } }
+
+/* toolbar: filter pills + search + sort */
+.rec-toolbar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin: 16px 0; }
+.rec-fpills { display: flex; gap: 8px; }
+.rec-fpill { display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 13px; border: 1px solid $r-line; border-radius: 999px; background: #fff; font-size: 12.5px; font-weight: 600; color: $r-body; cursor: pointer; &.is-active { background: rgba(3,101,127,.08); border-color: rgba(3,101,127,.3); color: $c-teal; } i { width: 7px; height: 7px; border-radius: 50%; display: inline-block; } }
+.rec-right { margin-left: auto; display: flex; gap: 10px; }
+.rec-search { position: relative; display: flex; align-items: center; svg { position: absolute; left: 12px; width: 15px; height: 15px; color: $r-muted; } input { height: 36px; width: 220px; border: 1px solid $r-line; border-radius: 9px; background: #fff; padding: 0 12px 0 34px; font-size: 13px; &:focus { outline: none; border-color: $c-teal-light; } } }
+.rec-sort { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px; border: 1px solid $r-line; border-radius: 9px; background: #fff; font-size: 13px; color: $r-body; cursor: pointer; svg { width: 14px; height: 14px; color: $r-muted; } }
+
+/* jobs table */
+.rec-card { background: #fff; border: 1px solid $r-line; border-radius: 14px; overflow: hidden; }
+.rec-table { width: 100%; border-collapse: collapse; }
+.rec-table th { text-align: left; padding: 11px 18px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase; color: $r-muted; background: #fafbfc; border-bottom: 1px solid $r-line; }
+.rec-table td { padding: 13px 18px; font-size: 13px; color: $r-body; border-bottom: 1px solid #f1f4f6; vertical-align: middle; }
+.rec-table tr:hover td { background: #fafbfc; }
+.rec-role { display: flex; align-items: center; gap: 11px; }
+.rec-role__code { width: 34px; height: 34px; flex: 0 0 auto; border-radius: 8px; color: #fff; font-size: 10.5px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
+.rec-role__title { font-size: 13.5px; font-weight: 700; color: $r-ink; }
+.rec-role__meta { margin-top: 1px; font-size: 11px; color: $r-muted; }
+.rec-loc { display: inline-flex; align-items: center; gap: 5px; svg { width: 13px; height: 13px; color: $r-muted; } }
+
+.rec-pipe { display: flex; align-items: center; gap: 10px; }
+.rec-pipe__bar { display: flex; width: 110px; height: 6px; border-radius: 3px; overflow: hidden; gap: 2px; }
+.rec-pipe__bar i { display: block; height: 100%; border-radius: 2px; }
+.rec-pipe__n { font-size: 12px; color: $r-ink; font-weight: 600; small { color: $r-muted; font-weight: 400; } }
+.rec-pipe__none { font-size: 12px; color: $r-muted; }
+
+.rec-mgr { width: 30px; height: 30px; border-radius: 50%; color: #fff; font-size: 10.5px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
+.rec-status { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; &::before { content: ""; width: 7px; height: 7px; border-radius: 50%; } }
+.rec-status--open   { color: #16a34a; &::before { background: #16a34a; } }
+.rec-status--paused { color: #f29a2e; &::before { background: #f29a2e; } }
+.rec-status--draft  { color: $r-muted; &::before { background: $r-muted; } }
+.rec-rowmenu { color: $r-muted; cursor: pointer; }
+.rec-foot { padding: 14px 18px; font-size: 12.5px; color: $r-muted; }
+
+@media (max-width: 1150px) { .rec-kpis { grid-template-columns: repeat(3, 1fr); } }

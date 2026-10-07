@@ -1,0 +1,42 @@
+// ============================================================
+//  WORK LOCATIONS list  (/settings/work-locations)
+// ============================================================
+
+.wll-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+.wll-tip { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; border: 1px solid $c-line; border-radius: 10px; background: #fff; color: $c-body; font-size: 13.5px; font-weight: 600; cursor: pointer; &:hover { border-color: #cfd6db; } svg { width: 16px; height: 16px; color: $c-teal; } }
+
+/* toolbar */
+.wll-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; }
+.wll-show { display: inline-flex; align-items: center; gap: 10px; font-size: 13.5px; color: $c-body; }
+.wll-show__sel { position: relative; display: inline-flex; align-items: center; select { appearance: none; -webkit-appearance: none; height: 40px; border: 1px solid $c-line; border-radius: 9px; background: #fff; padding: 0 34px 0 14px; font-size: 13.5px; color: $c-ink; cursor: pointer; &:focus { outline: none; border-color: $c-teal-light; } } svg { position: absolute; right: 12px; width: 15px; height: 15px; color: #8a97a0; pointer-events: none; } }
+
+.wll-tools { display: inline-flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.wll-search { position: relative; display: flex; align-items: center; width: 240px; svg { position: absolute; left: 14px; width: 15px; height: 15px; color: $c-muted; } input { width: 100%; height: 42px; border: 1px solid $c-line; border-radius: 10px; background: #fff; padding: 0 16px 0 38px; font-size: 13.5px; color: $c-ink; &::placeholder { color: $c-muted; } &:focus { outline: none; border-color: $c-teal-light; } } }
+.wll-create { display: inline-flex; align-items: center; gap: 8px; height: 42px; padding: 0 20px; border: none; border-radius: 10px; background: #2f4fd0; color: #fff; font-size: 14px; font-weight: 700; cursor: pointer; &:hover { filter: brightness(1.08); } svg { width: 16px; height: 16px; } }
+
+/* table card */
+.wll-card { background: #fff; border: 1px solid $c-line; border-radius: 14px; overflow: hidden; }
+.wll-table { width: 100%; border-collapse: collapse; }
+.wll-table thead th { background: $c-teal; color: #fff; font-size: 13px; font-weight: 600; text-align: left; padding: 15px 22px; white-space: nowrap; }
+.wll-ta-right { text-align: right; }
+.wll-table tbody td { padding: 15px 22px; border-bottom: 1px solid #eef1f4; font-size: 14px; color: $c-body; vertical-align: middle; }
+.wll-table tbody tr:last-child td { border-bottom: none; }
+.wll-table tbody tr:hover td { background: #fafbfc; }
+
+.wll-loc { display: inline-flex; align-items: center; gap: 12px; }
+.wll-pin { width: 22px; height: 22px; flex: 0 0 auto; color: #16a34a; display: inline-flex; align-items: center; justify-content: center; svg { width: 18px; height: 18px; } }
+.wll-loc__name { font-size: 14px; font-weight: 600; color: $c-ink; }
+.wll-city { color: $c-body; }
+
+.wll-badges { display: inline-flex; flex-wrap: wrap; gap: 8px; }
+.wll-badge { font-size: 12px; font-weight: 600; color: #6a5cd0; background: #eceafb; border-radius: 6px; padding: 4px 11px; white-space: nowrap; }
+
+.wll-actions { display: inline-flex; align-items: center; justify-content: flex-end; gap: 6px; width: 100%; }
+.wll-act { width: 32px; height: 32px; border: none; background: transparent; border-radius: 7px; color: #8a97a0; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; &:hover { background: #f0f2f5; color: $c-ink; } svg { width: 16px; height: 16px; } }
+
+/* footer */
+.wll-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 16px 22px; }
+.wll-foot__info { font-size: 13px; color: $c-muted; }
+.wll-pager { display: inline-flex; align-items: center; gap: 8px; }
+.wll-pager__nav { width: 30px; height: 30px; border: 1px solid $c-line; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; color: $c-body; font-size: 16px; text-decoration: none; &:hover { background: #f4f6f8; } }
+.wll-pager__pg { width: 30px; height: 30px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; &.is-active { background: #2f4fd0; color: #fff; } }

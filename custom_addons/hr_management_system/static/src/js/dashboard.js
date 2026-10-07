@@ -75,6 +75,56 @@
             return;
         }
 
+        // Add Document modal — open ("Upload document") / close (overlay, ×, Save draft)
+        var dcOpen = e.target.closest && e.target.closest("[data-doc-open]");
+        if (dcOpen) {
+            var dcMo = document.querySelector("[data-doc-modal]");
+            if (dcMo) { dcMo.classList.add("is-open"); }
+            return;
+        }
+        var dcClose = e.target.closest && e.target.closest("[data-doc-close]");
+        if (dcClose) {
+            var dcMc = document.querySelector("[data-doc-modal]");
+            if (dcMc) { dcMc.classList.remove("is-open"); }
+            return;
+        }
+
+        // Add Work Location modal — open ("Work Locations" card) / close (overlay, chevron, Cancel)
+        var wlOpen = e.target.closest && e.target.closest("[data-wl-open]");
+        if (wlOpen) {
+            var wlMo = document.querySelector("[data-wl-modal]");
+            if (wlMo) { wlMo.classList.add("is-open"); }
+            return;
+        }
+        var wlClose = e.target.closest && e.target.closest("[data-wl-close]");
+        if (wlClose) {
+            var wlMc = document.querySelector("[data-wl-modal]");
+            if (wlMc) { wlMc.classList.remove("is-open"); }
+            return;
+        }
+
+        // Add Asset modal — open ("Assets" card) / close (overlay, ×, Cancel)
+        var asOpen = e.target.closest && e.target.closest("[data-asset-open]");
+        if (asOpen) {
+            var asMo = document.querySelector("[data-asset-modal]");
+            if (asMo) { asMo.classList.add("is-open"); }
+            return;
+        }
+        var asClose = e.target.closest && e.target.closest("[data-asset-close]");
+        if (asClose) {
+            var asMc = document.querySelector("[data-asset-modal]");
+            if (asMc) { asMc.classList.remove("is-open"); }
+            return;
+        }
+
+        // Add Asset — category cards (single select)
+        var cat = e.target.closest && e.target.closest(".asset-cat");
+        if (cat) {
+            document.querySelectorAll(".asset-cat").forEach(function (c) { c.classList.remove("is-active"); });
+            cat.classList.add("is-active");
+            return;
+        }
+
         // Department filter tabs — active toggle
         var tab = e.target.closest && e.target.closest(".deptabs .deptab");
         if (tab) {

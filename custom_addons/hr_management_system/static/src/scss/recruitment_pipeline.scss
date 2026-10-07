@@ -1,0 +1,37 @@
+// ============================================================
+//  RECRUITMENT → Pipeline tab  (/recruitment/pipeline)  Kanban board
+//  Reuses .rec-head + .ad-tabs
+// ============================================================
+
+/* header right controls */
+.pipe-ctrl { display: flex; align-items: center; gap: 10px; }
+.pipe-dd { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px; border: 1px solid #e9edf0; border-radius: 9px; background: #fff; font-size: 13px; font-weight: 600; color: #103039; cursor: pointer; svg { width: 14px; height: 14px; color: #8a97a0; } }
+.pipe-view { display: inline-flex; background: #eef1f3; border-radius: 9px; padding: 3px; }
+.pipe-view__btn { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 7px; font-size: 12.5px; font-weight: 600; color: #5b6b73; cursor: pointer; svg { width: 14px; height: 14px; } &.is-active { background: #fff; color: #103039; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08); } }
+
+/* board */
+.pipe-board { display: flex; align-items: flex-start; gap: 16px; overflow-x: auto; padding-bottom: 12px; }
+.pipe-col { flex: 0 0 282px; width: 282px; background: #f3f5f7; border-radius: 12px; padding: 12px; }
+.pipe-col__head { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+.pipe-col__dot { width: 8px; height: 8px; border-radius: 50%; flex: 0 0 auto; }
+.pipe-col__name { font-size: 13px; font-weight: 700; color: #103039; }
+.pipe-col__count { font-size: 11.5px; font-weight: 600; color: #6b7583; background: #e6eaf0; border-radius: 999px; padding: 1px 8px; }
+.pipe-col__add { margin-left: auto; color: #8a97a0; cursor: pointer; display: inline-flex; svg { width: 16px; height: 16px; } }
+
+.pipe-card { background: #fff; border: 1px solid #e9edf0; border-radius: 10px; padding: 13px; margin-bottom: 10px; box-shadow: 0 1px 2px rgba(16, 48, 57, 0.04); }
+.pipe-card__top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+.pipe-card__name { font-size: 13.5px; font-weight: 700; color: #103039; }
+.pipe-badge { font-size: 9.5px; font-weight: 700; letter-spacing: 0.3px; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+.pipe-badge--referred { color: #0a7e9b; background: #e0f0f4; }
+.pipe-badge--new { color: #2f72c4; background: #e8f0fb; }
+.pipe-badge--short { color: #16a34a; background: #e7f6ed; }
+.pipe-badge--hold { color: #b4791d; background: #fdf1dc; }
+.pipe-badge--priority { display: inline-flex; align-items: center; gap: 4px; color: #dc2626; background: #fdecec; &::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: #dc2626; } }
+
+.pipe-card__role { margin-top: 6px; font-size: 11.5px; color: #8a97a0; }
+.pipe-card__date { margin-top: 8px; display: flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 600; color: #2f72c4; svg { width: 13px; height: 13px; } }
+.pipe-card__exp { margin-top: 6px; display: flex; align-items: center; gap: 6px; font-size: 11.5px; color: #8a97a0; svg { width: 13px; height: 13px; } }
+.pipe-card__foot { margin-top: 11px; display: flex; align-items: center; justify-content: space-between; }
+.pipe-rec { display: inline-flex; align-items: center; gap: 7px; font-size: 11.5px; color: #5b6b73; }
+.pipe-rec__av { width: 22px; height: 22px; flex: 0 0 auto; border-radius: 50%; color: #fff; font-size: 9px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
+.pipe-drag { color: #c4ccd2; cursor: grab; display: inline-flex; svg { width: 14px; height: 14px; } }

@@ -44,6 +44,131 @@ class HrmsPortal(http.Controller):
     def payroll(self, **kwargs):
         return request.render('hr_management_system.payroll_page')
 
+    # ---- SETTINGS → SETUP ----  URL: http://localhost:8069/settings/setup
+    @http.route(['/settings/setup', '/settings'], type='http', auth='public', website=False)
+    def settings_setup(self, **kwargs):
+        return request.render('hr_management_system.setup_page')
+
+    # ---- SETTINGS → COMPANY PROFILE ----  URL: http://localhost:8069/settings/company-profile
+    @http.route('/settings/company-profile', type='http', auth='public', website=False)
+    def settings_company_profile(self, **kwargs):
+        return request.render('hr_management_system.company_profile_page')
+
+    # ---- SETTINGS → WORK LOCATIONS (list) ----  URL: http://localhost:8069/settings/work-locations
+    @http.route('/settings/work-locations', type='http', auth='public', website=False)
+    def settings_work_locations(self, **kwargs):
+        locations = [
+            {'name': 'Head Office',          'city': 'Karachi',    'modes': ['Manual', 'QR Code', 'Face']},
+            {'name': 'Lahore Regional Office', 'city': 'Lahore',   'modes': ['Manual', 'Check-In']},
+            {'name': 'Metaviz HQ',           'city': 'Islamabad',  'modes': ['QR Code', 'Face']},
+            {'name': 'Gulberg Branch',       'city': 'Lahore',     'modes': ['Manual']},
+            {'name': 'SEO Wing — Block B',   'city': 'Rawalpindi', 'modes': ['Check-In', 'QR Code']},
+            {'name': 'SEO Wing — Block A',   'city': 'Rawalpindi', 'modes': ['Manual', 'Check-In']},
+            {'name': 'Badami Bagh Warehouse', 'city': 'Lahore',    'modes': ['Face', 'Manual']},
+            {'name': 'Graphics Studio',      'city': 'Faisalabad', 'modes': ['Voice', 'Video']},
+            {'name': 'Development Center',    'city': 'Multan',     'modes': ['QR Code', 'Manual', 'Face']},
+        ]
+        return request.render('hr_management_system.work_locations_page', {'locations': locations})
+
+    # ---- SETTINGS → ASSETS (list) ----  URL: http://localhost:8069/settings/assets
+    @http.route('/settings/assets', type='http', auth='public', website=False)
+    def settings_assets(self, **kwargs):
+        assets = [
+            {'serial': 'MV-LED-035', 'product': 'HP 21',          'type': 'Laptop',  'holder': 'Muhammad Umair',   'dept': 'HR',           'initials': 'MU', 'av': '#e0872f', 'date': '15/12/2025', 'status': 'Assigned',  'scls': 'green'},
+            {'serial': 'MV-LED-036', 'product': 'HP 21',          'type': 'Laptop',  'holder': 'Muhammad Husnain', 'dept': 'Data Science', 'initials': 'MH', 'av': '#0a9e86', 'date': '15/12/2025', 'status': 'Assigned',  'scls': 'green'},
+            {'serial': 'MV-LED-037', 'product': 'DELL 21',        'type': 'Laptop',  'holder': 'Muhammad Bilal',   'dept': 'Generals',     'initials': 'MB', 'av': '#7c5cde', 'date': '15/12/2025', 'status': 'Assigned',  'scls': 'green'},
+            {'serial': 'MV-LED-038', 'product': 'DELL 22',        'type': 'Laptop',  'holder': 'Muhammad Umair',   'dept': 'HR',           'initials': 'MU', 'av': '#0a7e9b', 'date': '15/12/2025', 'status': 'Assigned',  'scls': 'green'},
+            {'serial': 'MV-LED-039', 'product': 'DELL 22',        'type': 'Laptop',  'holder': '',                 'dept': '',             'initials': '',   'av': '',        'date': '15/12/2025', 'status': 'Available', 'scls': 'blue'},
+            {'serial': 'MV-MON-066', 'product': 'LG UltraFine 27"', 'type': 'Monitor', 'holder': '',               'dept': '',             'initials': '',   'av': '',        'date': '28/01/2025', 'status': 'Available', 'scls': 'blue'},
+            {'serial': 'MV-MOB-839', 'product': 'iPhone 15',      'type': 'Mobile',  'holder': 'Meera Joshi',      'dept': 'Sales',        'initials': 'MJ', 'av': '#e0a22f', 'date': '19/06/2024', 'status': 'Assigned',  'scls': 'green'},
+            {'serial': 'MV-LAP-158', 'product': 'ThinkPad X1',    'type': 'Laptop',  'holder': 'Nikhil Verma',     'dept': 'Finance',      'initials': 'NV', 'av': '#2f72c4', 'date': '02/04/2023', 'status': 'Broken',    'scls': 'red'},
+            {'serial': 'MV-LAP-097', 'product': 'MacBook Air 13"', 'type': 'Laptop', 'holder': '',                 'dept': '',             'initials': '',   'av': '',        'date': '22/05/2020', 'status': 'Disposed',  'scls': 'slate'},
+            {'serial': 'MV-MOB-014', 'product': 'Galaxy S22',     'type': 'Mobile',  'holder': '',                 'dept': '',             'initials': '',   'av': '',        'date': '30/03/2022', 'status': 'Sold',      'scls': 'rose'},
+        ]
+        return request.render('hr_management_system.assets_page', {'assets': assets})
+
+    # ---- COMPANY DOCUMENTS ----  URL: http://localhost:8069/documents
+    @http.route('/documents', type='http', auth='public', website=False)
+    def documents(self, **kwargs):
+        docs = [
+            {'f': 'pdf', 'nm': 'Remote Work Policy 2026', 'mt': 'PDF · 2.4 MB', 'cat': 'Policies', 'cc': '#2f72c4', 'ty': 'internal', 'tl': 'Internal', 'up': 'Mujahid Ali', 'ua': 'MA', 'uc': '#e0872f', 'dt': '29 Jun 2026', 'st': 'active', 'sl': 'Active'},
+            {'f': 'pdf', 'nm': 'AWS Master Service Agreement', 'mt': 'PDF · 5.1 MB', 'cat': 'Contracts', 'cc': '#7c5cde', 'ty': 'external', 'tl': 'External', 'up': 'Bilal Ahmed', 'ua': 'BA', 'uc': '#16a34a', 'dt': '28 Jun 2026', 'st': 'active', 'sl': 'Active'},
+            {'f': 'xlsx', 'nm': 'Q2 2026 Payroll Register', 'mt': 'XLSX · 880 KB', 'cat': 'Finance', 'cc': '#16a34a', 'ty': 'internal', 'tl': 'Internal', 'up': 'Bilal Ahmed', 'ua': 'BA', 'uc': '#16a34a', 'dt': '27 Jun 2026', 'st': 'active', 'sl': 'Active'},
+            {'f': 'docx', 'nm': 'Employee Handbook v8', 'mt': 'DOCX · 3.7 MB', 'cat': 'HR', 'cc': '#f29a2e', 'ty': 'internal', 'tl': 'Internal', 'up': 'Ayesha Khan', 'ua': 'AK', 'uc': '#2f72c4', 'dt': '26 Jun 2026', 'st': 'draft', 'sl': 'Draft'},
+            {'f': 'pdf', 'nm': 'ISO 27001 Certificate', 'mt': 'PDF · 1.2 MB', 'cat': 'IT & Security', 'cc': '#0a7e9b', 'ty': 'external', 'tl': 'External', 'up': 'Usman Tariq', 'ua': 'UT', 'uc': '#7c5cde', 'dt': '24 Jun 2026', 'st': 'expiring', 'sl': 'Expiring'},
+            {'f': 'pdf', 'nm': 'Fire Safety Inspection Report', 'mt': 'PDF · 960 KB', 'cat': 'Health & Safety', 'cc': '#e5564b', 'ty': 'external', 'tl': 'External', 'up': 'Hamza Iqbal', 'ua': 'HI', 'uc': '#e5307a', 'dt': '21 Jun 2026', 'st': 'active', 'sl': 'Active'},
+        ]
+        expiring = [
+            {'f': 'pdf', 'nm': 'Office Lease — Lahore HQ', 'mt': 'PDF', 'ed': '09 Jul 2026', 'dr': '10 days', 'dc': 'red'},
+            {'f': 'pdf', 'nm': 'Commercial Insurance Policy', 'mt': 'PDF', 'ed': '14 Jul 2026', 'dr': '15 days', 'dc': 'red'},
+            {'f': 'pdf', 'nm': 'ISO 27001 Certificate', 'mt': 'PDF', 'ed': '19 Jul 2026', 'dr': '20 days', 'dc': 'orange'},
+            {'f': 'docx', 'nm': 'Data Processing Agreement — Stripe', 'mt': 'DOCX', 'ed': '23 Jul 2026', 'dr': '24 days', 'dc': 'orange'},
+            {'f': 'pdf', 'nm': 'Vendor NDA — OdoBridge', 'mt': 'PDF', 'ed': '27 Jul 2026', 'dr': '28 days', 'dc': 'green'},
+        ]
+        return request.render('hr_management_system.documents_page', {'docs': docs, 'expiring': expiring})
+
+    # ---- RECRUITMENT ----  URL: http://localhost:8069/recruitment
+    @http.route('/recruitment', type='http', auth='public', website=False)
+    def recruitment(self, **kwargs):
+        jobs = [
+            {'c': 'SBE', 'cc': '#2f72c4', 't': 'Senior Backend Engineer', 'ty': 'Full-time · On-site · Codinative', 'dp': 'Engineering', 'lo': 'Lahore HQ', 'ap': '42', 'mgr': 'EW', 'mc': '#2f72c4', 'st': 'open', 'sl': 'Open'},
+            {'c': 'MLE', 'cc': '#0a7e9b', 't': 'ML Engineer', 'ty': 'Full-time · Hybrid · Metaviz AI', 'dp': 'AI Platform', 'lo': 'Remote', 'ap': '38', 'mgr': 'AB', 'mc': '#2b3440', 'st': 'open', 'sl': 'Open'},
+            {'c': 'PD', 'cc': '#7c5cde', 't': 'Product Designer', 'ty': 'Full-time · Hybrid · Metaviz AI', 'dp': 'Design', 'lo': 'Karachi', 'ap': '31', 'mgr': 'NB', 'mc': '#2f72c4', 'st': 'open', 'sl': 'Open'},
+            {'c': 'FE', 'cc': '#16a34a', 't': 'Frontend Engineer', 'ty': 'Full-time · On-site · Codinative', 'dp': 'Engineering', 'lo': 'Lahore HQ', 'ap': '24', 'mgr': 'EW', 'mc': '#2f72c4', 'st': 'open', 'sl': 'Open'},
+            {'c': 'EM', 'cc': '#e0872f', 't': 'Engineering Manager', 'ty': 'Full-time · On-site · Codinative', 'dp': 'Engineering', 'lo': 'Lahore HQ', 'ap': '18', 'mgr': 'SR', 'mc': '#e0872f', 'st': 'open', 'sl': 'Open'},
+            {'c': 'AE', 'cc': '#e5564b', 't': 'Account Executive', 'ty': 'Full-time · Hybrid · DevoraHub', 'dp': 'Sales', 'lo': 'Islamabad', 'ap': '27', 'mgr': 'KR', 'mc': '#7c5cde', 'st': 'open', 'sl': 'Open'},
+            {'c': 'DO', 'cc': '#0a7e9b', 't': 'DevOps Engineer', 'ty': 'Full-time · Remote · Codinative', 'dp': 'Platform', 'lo': 'Remote', 'ap': '15', 'mgr': 'EW', 'mc': '#2f72c4', 'st': 'paused', 'sl': 'Paused'},
+            {'c': 'TW', 'cc': '#8a97a0', 't': 'Technical Writer', 'ty': 'Contract · Remote · OdoBridge', 'dp': 'Product', 'lo': 'Remote', 'ap': False, 'mgr': 'PS', 'mc': '#16a34a', 'st': 'draft', 'sl': 'Draft'},
+            {'c': 'HRP', 'cc': '#f29a2e', 't': 'HR Partner', 'ty': 'Full-time · On-site · Metaviz Group', 'dp': 'People', 'lo': 'Lahore HQ', 'ap': False, 'mgr': 'SR', 'mc': '#e0872f', 'st': 'draft', 'sl': 'Draft'},
+        ]
+        return request.render('hr_management_system.recruitment_page', {'jobs': jobs})
+
+    # ---- RECRUITMENT → CANDIDATES ----  URL: http://localhost:8069/recruitment/candidates
+    @http.route('/recruitment/candidates', type='http', auth='public', website=False)
+    def recruitment_candidates(self, **kwargs):
+        cands = [
+            {'av': 'DA', 'ac': '#2f72c4', 'n': 'Daniyal Ahmed', 'src': 'LinkedIn', 'role': 'Senior Backend Engineer', 'co': 'Codinative', 'st': 'interview', 'sl': 'Interview', 'r': 5, 'ago': '6 days ago'},
+            {'av': 'AM', 'ac': '#7c5cde', 'n': 'Ahsan Mirza', 'src': 'Career page', 'role': 'ML Engineer', 'co': 'Metaviz AI', 'st': 'interview', 'sl': 'Interview', 'r': 5, 'ago': '4 days ago'},
+            {'av': 'BY', 'ac': '#0a7e9b', 'n': 'Bilal Yousafzai', 'src': 'LinkedIn', 'role': 'Senior Backend Engineer', 'co': 'Codinative', 'st': 'offer', 'sl': 'Offer', 'r': 5, 'ago': '9 days ago'},
+            {'av': 'AI', 'ac': '#16a34a', 'n': 'Adeel Iqbal', 'src': 'Referral', 'role': 'Engineering Manager', 'co': 'Codinative', 'st': 'offer', 'sl': 'Offer', 'r': 5, 'ago': '12 days ago'},
+            {'av': 'IY', 'ac': '#e5564b', 'n': 'Imran Yousuf', 'src': 'Referral', 'role': 'Frontend Engineer', 'co': 'Codinative', 'st': 'interview', 'sl': 'Interview', 'r': 4, 'ago': '7 days ago'},
+            {'av': 'HA', 'ac': '#2b3440', 'n': 'Hamza Akram', 'src': 'LinkedIn', 'role': 'Senior Backend Engineer', 'co': 'Codinative', 'st': 'screening', 'sl': 'Screening', 'r': 4, 'ago': '3 days ago'},
+            {'av': 'FH', 'ac': '#0a7e9b', 'n': 'Faisal Hayat', 'src': 'Referral', 'role': 'Frontend Engineer', 'co': 'Codinative', 'st': 'screening', 'sl': 'Screening', 'r': 5, 'ago': '4 days ago'},
+            {'av': 'WS', 'ac': '#e5307a', 'n': 'Wasif Sohail', 'src': 'Dribbble', 'role': 'Product Designer', 'co': 'Metaviz AI', 'st': 'screening', 'sl': 'Screening', 'r': 3, 'ago': '5 days ago'},
+            {'av': 'AT', 'ac': '#2f72c4', 'n': 'Ahmed Tariq', 'src': 'LinkedIn', 'role': 'Senior Backend Engineer', 'co': 'Codinative', 'st': 'applied', 'sl': 'Applied', 'r': 4, 'ago': '1 day ago'},
+            {'av': 'SA', 'ac': '#7c5cde', 'n': 'Saif Anwar', 'src': 'Career page', 'role': 'ML Engineer', 'co': 'Metaviz AI', 'st': 'applied', 'sl': 'Applied', 'r': 4, 'ago': '1 day ago'},
+            {'av': 'TR', 'ac': '#16a34a', 'n': 'Talha Riaz', 'src': 'Referral', 'role': 'Senior Engineer', 'co': 'Codinative', 'st': 'hired', 'sl': 'Hired', 'r': 5, 'ago': '21 days ago'},
+            {'av': 'OB', 'ac': '#e0872f', 'n': 'Owais Bashir', 'src': 'Career page', 'role': 'ML Engineer', 'co': 'Metaviz AI', 'st': 'applied', 'sl': 'Applied', 'r': 4, 'ago': '2 days ago'},
+        ]
+        return request.render('hr_management_system.candidates_page', {'cands': cands})
+
+    # ---- RECRUITMENT → PIPELINE ----  URL: http://localhost:8069/recruitment/pipeline
+    @http.route('/recruitment/pipeline', type='http', auth='public', website=False)
+    def recruitment_pipeline(self, **kwargs):
+        cols = [
+            {'name': 'Applied', 'n': 3, 'dot': '#9ca3af', 'cards': [
+                {'nm': 'Rabia Saleem', 'bd': 'REFERRED', 'bt': 'referred', 'role': 'Senior Backend Engineer', 'exp': '6 Years Experience', 'rec': 'Nadia', 'ra': 'NK', 'rc': '#7c5cde'},
+                {'nm': 'Ahmed Tariq', 'bd': 'NEW', 'bt': 'new', 'role': 'Senior Backend Engineer', 'exp': '8 Years Experience', 'rec': 'Omar', 'ra': 'OS', 'rc': '#16a34a'},
+                {'nm': 'Junaid Khan', 'bd': 'NEW', 'bt': 'new', 'role': 'Senior Backend Engineer', 'exp': '5 Years Experience', 'rec': 'Samira', 'ra': 'SR', 'rc': '#e0872f'},
+            ]},
+            {'name': 'Screening', 'n': 2, 'dot': '#2f72c4', 'cards': [
+                {'nm': 'Hamza Akram', 'bd': 'SHORTLISTED', 'bt': 'short', 'role': 'Senior Backend Engineer', 'exp': '7 Years Experience', 'rec': 'Omar', 'ra': 'OS', 'rc': '#16a34a'},
+                {'nm': 'Sana Pervez', 'bd': 'ON HOLD', 'bt': 'hold', 'role': 'Senior Backend Engineer', 'exp': '5 Years Experience', 'rec': 'Nadia', 'ra': 'NK', 'rc': '#7c5cde'},
+            ]},
+            {'name': 'Initial Interview (HR)', 'n': 1, 'dot': '#2f72c4', 'cards': [
+                {'nm': 'Imran Yousuf', 'bd': 'HIGH PRIORITY', 'bt': 'priority', 'role': 'Senior Backend Engineer', 'date': 'HR Interview - 23 Jun 2026', 'exp': '6 Years Experience', 'rec': 'Nadia', 'ra': 'NK', 'rc': '#7c5cde'},
+            ]},
+            {'name': 'Assessment / Test', 'n': 1, 'dot': '#7c5cde', 'cards': [
+                {'nm': 'Kamran Shah', 'bd': 'REFERRED', 'bt': 'referred', 'role': 'Senior Backend Engineer', 'exp': '7 Years Experience', 'rec': 'Omar', 'ra': 'OS', 'rc': '#16a34a'},
+            ]},
+            {'name': 'Technical Interview', 'n': 2, 'dot': '#f29a2e', 'cards': [
+                {'nm': 'Daniyal Ahmed', 'bd': '', 'bt': '', 'role': 'Senior Backend Engineer', 'exp': '6 Years Experience', 'rec': 'Samira', 'ra': 'SR', 'rc': '#e0872f'},
+                {'nm': 'Faisal Hayat', 'bd': '', 'bt': '', 'role': 'Senior Backend Engineer', 'exp': '5 Years Experience', 'rec': 'Nadia', 'ra': 'NK', 'rc': '#7c5cde'},
+            ]},
+            {'name': 'Offer', 'n': 0, 'dot': '#16a34a', 'cards': []},
+        ]
+        return request.render('hr_management_system.pipeline_page', {'cols': cols})
+
     # ---- NEW REQUEST ----  URL: http://localhost:8069/requests/new
     @http.route(['/requests/new', '/new-request'], type='http', auth='public', website=False)
     def new_request(self, **kwargs):
@@ -133,14 +258,13 @@ class HrmsPortal(http.Controller):
     _COMING_SOON = {
         'employees': 'Employees',
         'performance': 'Performance',
-        'recruitment': 'Recruitment',
         'notifications': 'Emails / Notifications',
         'reports': 'Reports',
     }
 
     @http.route(
         ['/employees',
-         '/performance', '/recruitment', '/notifications', '/reports'],
+         '/performance', '/notifications', '/reports'],
         type='http', auth='public', website=False,
     )
     def coming_soon(self, **kwargs):

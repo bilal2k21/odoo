@@ -1,0 +1,30 @@
+// ============================================================
+//  RECRUITMENT → Candidates tab  (/recruitment/candidates)
+//  Reuses .rec-head/.rec-toolbar/.rec-fpill/.rec-card/.rec-table + .ad-tabs
+// ============================================================
+
+.cand-person { display: flex; align-items: center; gap: 11px; }
+.cand-av { width: 34px; height: 34px; flex: 0 0 auto; border-radius: 50%; color: #fff; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
+.cand-name { font-size: 13.5px; font-weight: 700; color: #103039; }
+.cand-sub { margin-top: 1px; font-size: 11px; color: #8a97a0; }
+
+.cand-role b { display: block; font-size: 13px; font-weight: 600; color: #103039; }
+.cand-role span { font-size: 11px; color: #8a97a0; }
+
+.cand-stage { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 4px 11px; border-radius: 999px; }
+.cand-stage::before { content: ""; width: 6px; height: 6px; border-radius: 50%; }
+.cand-stage--applied   { color: #6b7280; background: #f0f2f5; &::before { background: #9ca3af; } }
+.cand-stage--screening { color: #2f72c4; background: #e8f0fb; &::before { background: #2f72c4; } }
+.cand-stage--interview { color: #7c5cde; background: #f0ecfc; &::before { background: #7c5cde; } }
+.cand-stage--offer     { color: #f29a2e; background: #fef1df; &::before { background: #f29a2e; } }
+.cand-stage--hired     { color: #16a34a; background: #e7f6ed; &::before { background: #16a34a; } }
+
+.cand-source { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; color: #5b6b73; svg { width: 14px; height: 14px; color: #8a97a0; } }
+
+.cand-stars { display: inline-flex; gap: 2px; }
+.cand-stars .star { color: #d6dce1; }
+.cand-stars .star.on { color: #f29a2e; }
+.cand-stars .star svg { width: 14px; height: 14px; display: block; }
+
+.cand-applied { font-size: 12.5px; color: #8a97a0; }
+.cand-arrow { color: #8a97a0; cursor: pointer; svg { width: 16px; height: 16px; } &:hover { color: #103039; } }

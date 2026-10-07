@@ -1,0 +1,64 @@
+// ============================================================
+//  COMPANY DOCUMENTS page  (/documents)
+//  Reuses .rec-head/.rec-kpis/.rec-kpi + .rec-card/.rec-table + .ra-* (activity)
+// ============================================================
+
+/* extra KPI variant (red) */
+.rec-kpi--red { border-top-color: #e5564b; .rec-kpi__ic { background: #fdeceb; color: #e5564b; } }
+.rec-kpi__trend--red { color: #e5564b; background: #fdeceb; }
+.rec-kpi__trend--orange { color: #f29a2e; background: #fef1df; }
+
+/* Quick access */
+.doc-quick__label { font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: $c-muted; margin: 2px 0 10px; }
+.doc-quick { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
+.doc-chip { display: inline-flex; align-items: center; gap: 11px; padding: 11px 16px; background: #fff; border: 1px solid $c-line; border-radius: 12px; cursor: pointer; &:hover { border-color: #cfd6db; } }
+.doc-chip__ic { width: 30px; height: 30px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; svg { width: 16px; height: 16px; } }
+.doc-chip__name { font-size: 13px; font-weight: 600; color: $c-ink; }
+.doc-chip__n { font-size: 12px; font-weight: 600; color: $c-muted; background: #f0f2f5; border-radius: 999px; padding: 1px 9px; }
+.doc-chip--blue   .doc-chip__ic { background: #e8f0fb; color: #2f72c4; }
+.doc-chip--purple .doc-chip__ic { background: #f0ecfc; color: #7c5cde; }
+.doc-chip--orange .doc-chip__ic { background: #fef1df; color: #f29a2e; }
+.doc-chip--gray   .doc-chip__ic { background: #f0f2f5; color: #6b7280; }
+
+/* two columns */
+.doc-cols { display: flex; align-items: flex-start; gap: 18px; margin-bottom: 18px; }
+.doc-main { flex: 1; min-width: 0; }
+.doc-side { width: 340px; flex: 0 0 auto; }
+@media (max-width: 1150px) { .doc-cols { flex-direction: column; } .doc-side { width: 100%; } }
+
+/* file type icon */
+.doc-file { width: 36px; height: 44px; flex: 0 0 auto; border-radius: 7px; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 8.5px; font-weight: 800; letter-spacing: 0.3px; }
+.doc-file--pdf { background: #e5564b; }
+.doc-file--xlsx { background: #16a34a; }
+.doc-file--docx { background: #2f72c4; }
+
+.doc-docname { display: flex; align-items: center; gap: 12px; }
+.doc-name { font-size: 13px; font-weight: 700; color: $c-ink; }
+.doc-meta { margin-top: 2px; font-size: 11px; color: $c-muted; }
+
+.doc-cat { display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; color: $c-body; }
+.doc-cat::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: 0.85; }
+
+.doc-type { font-size: 12px; font-weight: 600; padding: 3px 11px; border-radius: 999px; }
+.doc-type--internal { color: #2f72c4; background: #e8f0fb; }
+.doc-type--external { color: #7c5cde; background: #f0ecfc; }
+
+.doc-up { display: inline-flex; align-items: center; gap: 8px; }
+.doc-up__av { width: 28px; height: 28px; flex: 0 0 auto; border-radius: 50%; color: #fff; font-size: 10px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
+.doc-up__name { font-size: 12.5px; color: $c-body; }
+
+.doc-status { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; &::before { content: ""; width: 7px; height: 7px; border-radius: 50%; } }
+.doc-status--active   { color: #16a34a; &::before { background: #16a34a; } }
+.doc-status--draft    { color: #2f72c4; &::before { background: #2f72c4; } }
+.doc-status--expiring { color: #f29a2e; &::before { background: #f29a2e; } }
+
+.doc-days { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: 13px; &::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; } }
+.doc-days--red { color: #e5564b; }
+.doc-days--orange { color: #f29a2e; }
+.doc-days--green { color: #16a34a; }
+
+/* status pill (expiring table) */
+.doc-pill { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: #f29a2e; background: #fef1df; padding: 3px 11px; border-radius: 999px; &::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #f29a2e; } }
+
+.doc-foot { padding: 14px 18px; font-size: 12.5px; color: $c-muted; }
+.doc-foot--between { display: flex; align-items: center; justify-content: space-between; }

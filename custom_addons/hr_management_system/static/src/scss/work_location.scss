@@ -1,0 +1,50 @@
+// ============================================================
+//  ADD WORK LOCATION modal  (Setup page → "Work Locations" card)
+//  Reuses .nr-modal shell (overlay / dialog / is-open)
+// ============================================================
+
+.wl-modal .nr-modal__dialog { width: 1000px; max-width: 94vw; }
+
+/* header (light grey) */
+.wl-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex: 0 0 auto; padding: 22px 30px; background: #f6f8fa; border-bottom: 1px solid $c-line; }
+.wl-head__title { font-size: 22px; font-weight: 800; color: $c-ink; }
+.wl-head__collapse { width: 34px; height: 34px; border: none; background: transparent; color: #8a97a0; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; &:hover { color: $c-ink; } svg { width: 18px; height: 18px; } }
+
+/* body */
+.wl-body { flex: 1; min-height: 0; overflow: auto; padding: 26px 30px 30px; }
+
+.wl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 40px; }
+@media (max-width: 640px) { .wl-grid { grid-template-columns: 1fr; } }
+
+.wl-field { min-width: 0; }
+.wl-label { display: block; margin-bottom: 8px; font-size: 14px; font-weight: 700; color: $c-ink; }
+.wl-req { color: #e5564b; }
+
+.wl-input { width: 100%; height: 48px; border: 1px solid #dfe4e9; border-radius: 9px; background: #fff; padding: 0 16px; font-size: 15px; color: $c-ink; &::placeholder { color: #aab4bc; } &:focus { outline: none; border-color: $c-teal-light; } }
+
+.wl-caret { position: relative; display: flex; align-items: center; }
+.wl-select { width: 100%; height: 48px; border: 1px solid #dfe4e9; border-radius: 9px; background: #fff; padding: 0 42px 0 16px; font-size: 15px; color: $c-ink; cursor: pointer; appearance: none; -webkit-appearance: none; &:focus { outline: none; border-color: $c-teal-light; } }
+.wl-select:has(option[value='']:checked) { color: #aab4bc; }   // placeholder grey
+.wl-caret__ic { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: #8a97a0; pointer-events: none; display: inline-flex; svg { width: 18px; height: 18px; } }
+
+/* custom checkbox (Geo toggles + Mode of Attendance) */
+.wl-check { display: inline-flex; align-items: center; gap: 11px; cursor: pointer; font-size: 15px; color: #37474f; user-select: none; }
+.wl-check input { position: absolute; opacity: 0; width: 0; height: 0; }
+.wl-check__box { position: relative; width: 20px; height: 20px; flex: 0 0 auto; border: 1.5px solid #cbd3d9; border-radius: 5px; background: #fff; transition: background 0.12s, border-color 0.12s; }
+.wl-check__box::after { content: ""; position: absolute; left: 6px; top: 2px; width: 6px; height: 10px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); opacity: 0; }
+.wl-check input:checked + .wl-check__box { background: $c-teal; border-color: $c-teal; }
+.wl-check input:checked + .wl-check__box::after { opacity: 1; }
+.wl-check input:focus-visible + .wl-check__box { box-shadow: 0 0 0 3px rgba(3, 101, 127, 0.2); }
+
+/* address (full width) */
+.wl-address { margin-top: 20px; }
+
+/* mode of attendance */
+.wl-moa { margin-top: 26px; }
+.wl-moa__title { font-size: 16px; font-weight: 800; color: $c-ink; margin-bottom: 16px; }
+.wl-moa__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 24px; max-width: 520px; }
+
+/* footer */
+.wl-foot { display: flex; align-items: center; justify-content: flex-end; gap: 14px; margin-top: 30px; }
+.wl-cancel { height: 44px; padding: 0 30px; border: none; border-radius: 12px; background: #ef6c6c; color: #fff; font-size: 15px; font-weight: 700; cursor: pointer; &:hover { filter: brightness(1.05); } }
+.wl-save { height: 44px; padding: 0 34px; border: none; border-radius: 12px; background: $c-teal; color: #fff; font-size: 15px; font-weight: 700; cursor: pointer; &:hover { filter: brightness(1.08); } }

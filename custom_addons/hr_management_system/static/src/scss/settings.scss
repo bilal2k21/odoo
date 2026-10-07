@@ -1,0 +1,39 @@
+// ============================================================
+//  SETTINGS → Setup page  (/settings/setup)
+//  Reuses .req-tabs for the tab bar
+// ============================================================
+
+.set-head { margin-bottom: 20px; }
+.set-head__title { font-size: 24px; font-weight: 800; letter-spacing: -0.3px; color: $c-ink; }
+.set-head__sub { margin-top: 5px; font-size: 13px; color: $c-muted; }
+
+.set-tabsrow { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 22px; }
+.set-tabsrow .req-tabs { margin-bottom: 0; flex: 1; }
+.set-search { position: relative; display: flex; align-items: center; width: 240px; }
+.set-search svg { position: absolute; left: 14px; width: 15px; height: 15px; color: $c-muted; }
+.set-search input { width: 100%; height: 44px; border: 1px solid $c-line; border-radius: 999px; background: #fff; padding: 0 16px 0 38px; font-size: 13px; color: $c-ink; &::placeholder { color: $c-muted; } &:focus { outline: none; border-color: $c-teal-light; } }
+
+.set-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
+@media (max-width: 1100px) { .set-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 700px)  { .set-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.set-card { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; min-height: 132px; padding: 20px; background: #fff; border: 1px solid $c-line; border-radius: 14px; cursor: pointer; text-decoration: none; transition: border-color 0.12s, box-shadow 0.12s; }
+.set-card:hover { border-color: #cfd6db; box-shadow: 0 4px 14px rgba(16, 48, 57, 0.06); }
+.set-card__ic { width: 46px; height: 46px; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; svg { width: 22px; height: 22px; } }
+.set-card__name { font-size: 13.5px; font-weight: 600; color: $c-ink; text-align: center; line-height: 1.3; }
+.set-card__ic--red    { background: #fdeceb; color: #e5564b; }
+.set-card__ic--blue   { background: #e8f0fb; color: #2f72c4; }
+.set-card__ic--teal   { background: #e0f0f4; color: #0a7e9b; }
+.set-card__ic--green  { background: #e7f6ed; color: #16a34a; }
+.set-card__ic--purple { background: #f0ecfc; color: #7c5cde; }
+.set-card__ic--orange { background: #fef1df; color: #f29a2e; }
+.set-card__ic--dark   { background: #eceff2; color: #2b3440; }
+.set-card__ic--pink   { background: #fdeaf3; color: #e5307a; }
+.set-card__ic--gray   { background: #f0f2f5; color: #6b7280; }
+
+/* sidebar Settings sub-menu */
+.nav__caret { margin-left: auto; width: 15px; height: 15px; color: #8a97a0; }
+.nav__sub { display: flex; flex-direction: column; gap: 1px; margin: 2px 0 6px 34px; }
+.nav__subitem { padding: 7px 12px; border-radius: 7px; font-size: 13px; color: #5b6b73; }
+.nav__subitem:hover { background: #f4f6f8; }
+.nav__subitem.is-active { color: $c-teal; font-weight: 600; background: rgba(3, 101, 127, 0.08); }

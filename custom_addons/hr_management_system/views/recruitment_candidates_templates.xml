@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================
+         RECRUITMENT → CANDIDATES  (/recruitment/candidates)
+         Context: cands (list)
+    ============================================================= -->
+    <template id="candidates_page" name="Candidates">
+        <t t-set="active" t-value="'recruitment'"/>
+        <t t-set="page_name" t-value="'Recruitment'"/>
+        <t t-call="hr_management_system.dashboard_layout">
+
+            <div class="rec-head">
+                <div>
+                    <h1 class="rec-head__title">Candidates</h1>
+                    <p class="rec-head__sub">312 active candidates across all open roles. Click a row to open the full profile.</p>
+                </div>
+                <div style="display:flex; gap:10px">
+                    <button type="button" class="btn-ghost">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 5.2a3.2 3.2 0 0 1 0 6.1M21.5 20a6 6 0 0 0-4.5-5.8"/></svg>
+                        All roles
+                    </button>
+                    <button type="button" class="btn-ghost">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 15V3M8 7l4-4 4 4M4 21h16"/></svg>
+                        Export
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="ad-tabs">
+                <a class="ad-tab" href="/recruitment">Jobs <span class="ad-tab__n">9</span></a>
+                <span class="ad-tab is-active">Candidates <span class="ad-tab__n">312</span></span>
+                <a class="ad-tab" href="/recruitment/pipeline">Pipeline</a>
+            </div>
+
+            <!-- Toolbar -->
+            <div class="rec-toolbar">
+                <div class="rec-fpills">
+                    <span class="rec-fpill is-active">All 312</span>
+                    <span class="rec-fpill"><i style="background:#9ca3af"></i> Applied 186</span>
+                    <span class="rec-fpill"><i style="background:#2f72c4"></i> Screening 82</span>
+                    <span class="rec-fpill"><i style="background:#7c5cde"></i> Interview 38</span>
+                    <span class="rec-fpill"><i style="background:#f29a2e"></i> Offer 7</span>
+                    <span class="rec-fpill"><i style="background:#16a34a"></i> Hired 11</span>
+                </div>
+                <div class="rec-right">
+                    <div class="rec-search">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg>
+                        <input type="text" placeholder="Filter candidates..."/>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Candidates table -->
+            <div class="rec-card">
+                <table class="rec-table">
+                    <thead>
+                        <tr><th>Candidate</th><th>Applied For</th><th>Stage</th><th>Source</th><th>Rating</th><th>Applied</th><th></th></tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="cands" t-as="c">
+                            <tr>
+                                <td>
+                                    <div class="cand-person">
+                                        <span class="cand-av" t-attf-style="background:#{c['ac']}"><t t-out="c['av']"/></span>
+                                        <div><div class="cand-name"><t t-out="c['n']"/></div><div class="cand-sub"><t t-out="c['src']"/></div></div>
+                                    </div>
+                                </td>
+                                <td><div class="cand-role"><b><t t-out="c['role']"/></b><span><t t-out="c['co']"/></span></div></td>
+                                <td><span t-attf-class="cand-stage cand-stage--#{c['st']}"><t t-out="c['sl']"/></span></td>
+                                <td><span class="cand-source"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><t t-out="c['src']"/></span></td>
+                                <td>
+                                    <span class="cand-stars">
+                                        <t t-foreach="[1,2,3,4,5]" t-as="s">
+                                            <span t-attf-class="star #{'on' if s &lt;= c['r'] else ''}"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="m12 2 2.9 6.3 6.9.6-5.2 4.5 1.6 6.8L12 17l-6.2 3.7 1.6-6.8L2.2 8.9l6.9-.6z"/></svg></span>
+                                        </t>
+                                    </span>
+                                </td>
+                                <td><span class="cand-applied"><t t-out="c['ago']"/></span></td>
+                                <td><span class="cand-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+                <div class="pay-foot">
+                    <span class="pay-foot__info">Showing 1-10 of 312 candidates</span>
+                    <div class="pay-pager">
+                        <a href="#">‹</a><span class="is-active">1</span><a href="#">2</a><a href="#">3</a><span class="dots">…</span><a href="#">32</a><a href="#">›</a>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>

@@ -1,0 +1,70 @@
+// ============================================================
+//  ASSETS DETAILS list  (/settings/assets)
+// ============================================================
+
+.asl-head { margin-bottom: 18px; }
+
+.asl-card { background: #fff; border: 1px solid $c-line; border-radius: 14px; overflow: hidden; }
+
+/* toolbar */
+.asl-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 16px 18px; border-bottom: 1px solid $c-line; }
+.asl-count { font-size: 13px; color: $c-muted; white-space: nowrap; }
+.asl-tools { display: inline-flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.asl-search { position: relative; display: flex; align-items: center; width: 210px; svg { position: absolute; left: 13px; width: 15px; height: 15px; color: $c-muted; } input { width: 100%; height: 40px; border: 1px solid $c-line; border-radius: 9px; background: #fff; padding: 0 14px 0 36px; font-size: 13px; color: $c-ink; &::placeholder { color: $c-muted; } &:focus { outline: none; border-color: $c-teal-light; } } }
+
+.asl-chips { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.asl-chip { font-size: 12.5px; font-weight: 600; border-radius: 7px; padding: 6px 13px; cursor: pointer; }
+.asl-chip--green { background: #d8f3e3; color: #1f9d57; }
+.asl-chip--blue  { background: #e2ecfb; color: #3b6fd4; }
+.asl-chip--amber { background: #fdefc9; color: #c9871a; }
+.asl-chip--pink  { background: #fbe3f0; color: #c8468a; }
+.asl-chip--rose  { background: #fde0e0; color: #d8554c; }
+
+.asl-create { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 18px; border: none; border-radius: 9px; background: #16324b; color: #fff; font-size: 13.5px; font-weight: 700; cursor: pointer; white-space: nowrap; &:hover { filter: brightness(1.12); } svg { width: 15px; height: 15px; } }
+
+/* table */
+.asl-tablewrap { overflow-x: auto; }
+.asl-table { width: 100%; border-collapse: collapse; min-width: 860px; }
+.asl-table thead th { background: #1e2b45; color: #c7cede; font-size: 12.5px; font-weight: 600; text-align: left; padding: 14px 20px; white-space: nowrap; }
+.asl-sort { width: 13px; height: 13px; vertical-align: middle; opacity: 0.7; margin-left: 2px; }
+.asl-table tbody td { padding: 13px 20px; border-bottom: 1px solid #eef1f4; font-size: 13.5px; color: $c-body; vertical-align: middle; }
+.asl-table tbody tr:last-child td { border-bottom: none; }
+.asl-table tbody tr:hover td { background: #fafbfc; }
+
+.asl-serial { font-family: 'SFMono-Regular', ui-monospace, 'Cascadia Mono', Menlo, Consolas, monospace; font-size: 13px; font-weight: 600; letter-spacing: 0.3px; color: $c-ink; }
+
+/* product */
+.asl-product { display: flex; align-items: center; gap: 12px; }
+.asl-thumb { width: 44px; height: 44px; flex: 0 0 auto; border: 1px solid $c-line; border-radius: 8px; background: #f6f8fa; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; color: #b4bdc5; svg { width: 16px; height: 16px; } }
+.asl-thumb__t { font-size: 5.5px; font-weight: 700; letter-spacing: 0.3px; }
+.asl-product__name { font-size: 13.5px; font-weight: 700; color: $c-ink; }
+.asl-product__type { margin-top: 1px; font-size: 12px; color: $c-muted; }
+
+/* holder */
+.asl-holder { display: flex; align-items: center; gap: 11px; }
+.asl-av { width: 34px; height: 34px; flex: 0 0 auto; border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; font-weight: 700; }
+.asl-holder__name { font-size: 13.5px; font-weight: 600; color: $c-ink; }
+.asl-holder__dept { margin-top: 1px; font-size: 12px; color: $c-muted; }
+.asl-unassigned { font-size: 13.5px; font-style: italic; color: #aab4bc; }
+.asl-date { color: $c-body; white-space: nowrap; }
+
+/* status badge */
+.asl-status { display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; font-weight: 600; border-radius: 999px; padding: 5px 12px; white-space: nowrap; }
+.asl-status__dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.asl-status--green { background: #e3f6ec; color: #1f9d57; }
+.asl-status--blue  { background: #e6f0fc; color: #3b6fd4; }
+.asl-status--red   { background: #fde3e1; color: #e0564b; }
+.asl-status--slate { background: #ecebf6; color: #6a5cd0; }
+.asl-status--rose  { background: #fde0e4; color: #d8485f; }
+
+/* arrow */
+.asl-arrow-cell { text-align: right; }
+.asl-arrow { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 999px; color: #8a97a0; text-decoration: none; &:hover { background: #eef5f7; color: $c-teal; } svg { width: 16px; height: 16px; } }
+
+/* footer */
+.asl-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 15px 20px; }
+.asl-foot__info { font-size: 13px; color: $c-muted; }
+.asl-pager { display: inline-flex; align-items: center; gap: 6px; }
+.asl-pager__nav { width: 30px; height: 30px; border: 1px solid $c-line; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; color: $c-body; font-size: 15px; text-decoration: none; &:hover { background: #f4f6f8; } }
+.asl-pager__pg { min-width: 30px; height: 30px; padding: 0 6px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: $c-body; text-decoration: none; &:hover { background: #f4f6f8; } &.is-active { background: #16324b; color: #fff; } }
+.asl-pager__dots { padding: 0 2px; color: $c-muted; }

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================
+         RECRUITMENT → PIPELINE  (/recruitment/pipeline)   Kanban board
+         Context: cols (list of columns, each with cards)
+    ============================================================= -->
+    <template id="pipeline_page" name="Hiring Pipeline">
+        <t t-set="active" t-value="'recruitment'"/>
+        <t t-set="page_name" t-value="'Recruitment'"/>
+        <t t-call="hr_management_system.dashboard_layout">
+
+            <div class="rec-head">
+                <div>
+                    <h1 class="rec-head__title">Hiring Pipeline</h1>
+                    <p class="rec-head__sub">Drag candidates across stages. Showing <b>Senior Backend Engineer</b> - Codinative.</p>
+                </div>
+                <div class="pipe-ctrl">
+                    <span class="pipe-dd">Senior Backend Engineer
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"/></svg>
+                    </span>
+                    <div class="pipe-view">
+                        <span class="pipe-view__btn is-active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="5" height="16" rx="1"/><rect x="10" y="4" width="5" height="11" rx="1"/><rect x="17" y="4" width="4" height="7" rx="1"/></svg> Board</span>
+                        <span class="pipe-view__btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg> List</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="ad-tabs">
+                <a class="ad-tab" href="/recruitment">Jobs <span class="ad-tab__n">9</span></a>
+                <a class="ad-tab" href="/recruitment/candidates">Candidates <span class="ad-tab__n">312</span></a>
+                <span class="ad-tab is-active">Pipeline</span>
+            </div>
+
+            <!-- Kanban board -->
+            <div class="pipe-board">
+                <t t-foreach="cols" t-as="col">
+                    <div class="pipe-col">
+                        <div class="pipe-col__head">
+                            <span class="pipe-col__dot" t-attf-style="background:#{col['dot']}"></span>
+                            <span class="pipe-col__name"><t t-out="col['name']"/></span>
+                            <span class="pipe-col__count"><t t-out="col['n']"/></span>
+                            <span class="pipe-col__add"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 5v14M5 12h14"/></svg></span>
+                        </div>
+
+                        <t t-foreach="col['cards']" t-as="c">
+                            <div class="pipe-card">
+                                <div class="pipe-card__top">
+                                    <span class="pipe-card__name"><t t-out="c['nm']"/></span>
+                                    <t t-if="c['bd']"><span t-attf-class="pipe-badge pipe-badge--#{c['bt']}"><t t-out="c['bd']"/></span></t>
+                                </div>
+                                <div class="pipe-card__role"><t t-out="c['role']"/></div>
+                                <t t-if="c.get('date')">
+                                    <div class="pipe-card__date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg><t t-out="c['date']"/></div>
+                                </t>
+                                <div class="pipe-card__exp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg><t t-out="c['exp']"/></div>
+                                <div class="pipe-card__foot">
+                                    <span class="pipe-rec"><span class="pipe-rec__av" t-attf-style="background:#{c['rc']}"><t t-out="c['ra']"/></span><t t-out="c['rec']"/></span>
+                                    <span class="pipe-drag"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="6" r="1.6"/><circle cx="15" cy="6" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="9" cy="18" r="1.6"/><circle cx="15" cy="18" r="1.6"/></svg></span>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+            </div>
+        </t>
+    </template>
+
+</odoo>

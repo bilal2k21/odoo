@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================
+         SETTINGS → WORK LOCATIONS (list)  (/settings/work-locations)
+    ============================================================= -->
+    <template id="work_locations_page" name="Work Locations">
+        <t t-set="active" t-value="'settings'"/>
+        <t t-set="section" t-value="'Settings'"/>
+        <t t-set="subsection" t-value="'Setup'"/>
+        <t t-set="page_name" t-value="'Work Locations'"/>
+        <t t-call="hr_management_system.dashboard_layout">
+
+            <div class="wll-head">
+                <div>
+                    <h1 class="set-head__title">Work Locations</h1>
+                    <p class="set-head__sub">Manage Setup and their access permissions across the organization</p>
+                </div>
+                <button class="wll-tip" type="button">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 4 10.5c-.7.7-1 1.5-1 2.5H9c0-1-.3-1.8-1-2.5A6 6 0 0 1 12 3Z"/></svg>
+                    Page Tip
+                </button>
+            </div>
+
+            <!-- Toolbar -->
+            <div class="wll-toolbar">
+                <div class="wll-show">
+                    Show
+                    <div class="wll-show__sel">
+                        <select>
+                            <option>10</option>
+                            <option>25</option>
+                            <option>50</option>
+                            <option>100</option>
+                        </select>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"/></svg>
+                    </div>
+                    entries
+                </div>
+                <div class="wll-tools">
+                    <div class="wll-search">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg>
+                        <input type="text" placeholder="Search"/>
+                    </div>
+                    <button class="wll-create" type="button" data-wl-open="1">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 5v14M5 12h14"/></svg>
+                        Create a New
+                    </button>
+                </div>
+            </div>
+
+            <!-- Table -->
+            <div class="wll-card">
+                <table class="wll-table">
+                    <thead>
+                        <tr>
+                            <th>Locations Name</th>
+                            <th>City</th>
+                            <th>Mode of Attendance</th>
+                            <th class="wll-ta-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="locations" t-as="loc">
+                            <tr>
+                                <td>
+                                    <span class="wll-loc">
+                                        <span class="wll-pin">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+                                        </span>
+                                        <span class="wll-loc__name"><t t-out="loc['name']"/></span>
+                                    </span>
+                                </td>
+                                <td class="wll-city"><t t-out="loc['city']"/></td>
+                                <td>
+                                    <span class="wll-badges">
+                                        <t t-foreach="loc['modes']" t-as="m">
+                                            <span class="wll-badge"><t t-out="m"/></span>
+                                        </t>
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="wll-actions">
+                                        <button class="wll-act" type="button" title="Edit">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+                                        </button>
+                                        <button class="wll-act" type="button" title="Delete">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6"/></svg>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+
+                <div class="wll-foot">
+                    <span class="wll-foot__info">Showing 1 to 9 of 9 entries</span>
+                    <div class="wll-pager">
+                        <a href="#" class="wll-pager__nav">‹</a>
+                        <span class="wll-pager__pg is-active">1</span>
+                        <a href="#" class="wll-pager__nav">›</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- floating chat bubble -->
+            <button class="cp-fab" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M21 11.5a8.5 8.5 0 0 1-12.2 7.7L3 21l1.8-5.8A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01"/></svg>
+            </button>
+
+            <!-- ===== Add Work Location modal ("Create a New" se khulta hai) ===== -->
+            <div class="nr-modal wl-modal" data-wl-modal="1">
+                <div class="nr-modal__overlay" data-wl-close="1"></div>
+                <div class="nr-modal__dialog">
+                    <div class="wl-head">
+                        <h2 class="wl-head__title">Add Work Location</h2>
+                        <button class="wl-head__collapse" type="button" data-wl-close="1">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"/></svg>
+                        </button>
+                    </div>
+
+                    <div class="wl-body">
+                        <div class="wl-grid">
+                            <div class="wl-field">
+                                <label class="wl-label">Work Location <span class="wl-req">*</span></label>
+                                <div class="wl-caret">
+                                    <select class="wl-select">
+                                        <option value="" selected="selected" disabled="disabled">e.g. Head Office</option>
+                                        <option>Head Office</option>
+                                        <option>Regional Office</option>
+                                        <option>Branch Office</option>
+                                        <option>Warehouse</option>
+                                    </select>
+                                    <span class="wl-caret__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"/></svg></span>
+                                </div>
+                            </div>
+                            <div class="wl-field">
+                                <label class="wl-label">Country <span class="wl-req">*</span></label>
+                                <div class="wl-caret">
+                                    <select class="wl-select">
+                                        <option value="" selected="selected" disabled="disabled">Select country</option>
+                                        <option>Pakistan</option>
+                                        <option>United Arab Emirates</option>
+                                        <option>Saudi Arabia</option>
+                                        <option>United Kingdom</option>
+                                        <option>United States</option>
+                                    </select>
+                                    <span class="wl-caret__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"/></svg></span>
+                                </div>
+                            </div>
+
+                            <div class="wl-field">
+                                <label class="wl-label">City <span class="wl-req">*</span></label>
+                                <input class="wl-input" type="text" value="Karachi"/>
+                            </div>
+                            <div class="wl-field">
+                                <label class="wl-label">Zip/Postal Code</label>
+                                <input class="wl-input" type="text" placeholder="e.g. 54000"/>
+                            </div>
+
+                            <div class="wl-field">
+                                <label class="wl-check">
+                                    <input type="checkbox"/>
+                                    <span class="wl-check__box"></span>
+                                    <span class="wl-check__label">Enable Geo-Tagging</span>
+                                </label>
+                            </div>
+                            <div class="wl-field">
+                                <label class="wl-check">
+                                    <input type="checkbox"/>
+                                    <span class="wl-check__box"></span>
+                                    <span class="wl-check__label">Enable Geo-Fence</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="wl-address">
+                            <label class="wl-label">Address</label>
+                            <input class="wl-input" type="text" placeholder="Street, area, landmark"/>
+                        </div>
+
+                        <div class="wl-moa">
+                            <h3 class="wl-moa__title">Mode Of Attendance</h3>
+                            <div class="wl-moa__grid">
+                                <label class="wl-check">
+                                    <input type="checkbox"/>
+                                    <span class="wl-check__box"></span>
+                                    <span class="wl-check__label">Manual</span>
+                                </label>
+                                <label class="wl-check">
+                                    <input type="checkbox"/>
+                                    <span class="wl-check__box"></span>
+                                    <span class="wl-check__label">QR Code</span>
+                                </label>
+                                <label class="wl-check">
+                                    <input type="checkbox"/>
+                                    <span class="wl-check__box"></span>
+                                    <span class="wl-check__label">Voice</span>
+                                </label>
+                                <label class="wl-check">
+                                    <input type="checkbox" checked="checked"/>
+                                    <span class="wl-check__box"></span>
+                                    <span class="wl-check__label">Video</span>
+                                </label>
+                                <label class="wl-check">
+                                    <input type="checkbox"/>
+                                    <span class="wl-check__box"></span>
+                                    <span class="wl-check__label">Face</span>
+                                </label>
+                                <label class="wl-check">
+                                    <input type="checkbox"/>
+                                    <span class="wl-check__box"></span>
+                                    <span class="wl-check__label">Check-In</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="wl-foot">
+                            <button class="wl-cancel" type="button" data-wl-close="1">Cancel</button>
+                            <button class="wl-save" type="button">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>

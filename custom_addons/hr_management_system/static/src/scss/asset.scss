@@ -1,0 +1,56 @@
+// ============================================================
+//  ADD NEW ASSET modal  (Setup page → "Assets" card)
+//  Reuses .nr-modal shell + .ea-label/.ea-input/.ea-req/.ea-hint + .seg
+// ============================================================
+
+.asset-modal .nr-modal__dialog { width: 720px; max-width: 94vw; }
+
+/* header */
+.asset-head { display: flex; align-items: flex-start; gap: 14px; flex: 0 0 auto; padding: 24px 26px 20px; }
+.asset-head__ic { width: 44px; height: 44px; flex: 0 0 auto; border-radius: 11px; background: #e0f0f4; color: $c-teal; display: inline-flex; align-items: center; justify-content: center; svg { width: 22px; height: 22px; } }
+.asset-head__tt { flex: 1; min-width: 0; }
+.asset-head__title { font-size: 20px; font-weight: 800; color: $c-ink; }
+.asset-head__sub { margin-top: 3px; font-size: 13px; color: $c-muted; }
+.asset-head__x { width: 34px; height: 34px; flex: 0 0 auto; border: 1px solid $c-line; border-radius: 999px; background: #fff; color: $c-body; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; &:hover { background: #f4f6f8; } }
+
+/* body + sections */
+.asset-body { flex: 1; min-height: 0; overflow: auto; padding: 0 26px 24px; }
+.asset-sec { padding-top: 18px; margin-top: 18px; border-top: 1px solid $c-line; }
+.asset-sec__label { margin-bottom: 14px; font-size: 11px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; color: $c-muted; }
+
+/* category cards */
+.asset-cats { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+@media (max-width: 620px) { .asset-cats { grid-template-columns: repeat(3, 1fr); } }
+.asset-cat { display: flex; flex-direction: column; align-items: center; gap: 9px; padding: 14px 8px; border: 1px solid $c-line; border-radius: 11px; background: #fff; cursor: pointer; transition: border-color 0.12s, box-shadow 0.12s; }
+.asset-cat:hover { border-color: #cfd6db; }
+.asset-cat__ic { width: 40px; height: 40px; border-radius: 10px; background: #f3f5f7; color: $c-body; display: inline-flex; align-items: center; justify-content: center; transition: background 0.12s, color 0.12s; svg { width: 20px; height: 20px; } }
+.asset-cat__name { font-size: 12.5px; font-weight: 600; color: $c-body; }
+.asset-cat.is-active { border-color: $c-teal; box-shadow: 0 0 0 3px rgba(3, 101, 127, 0.12); }
+.asset-cat.is-active .asset-cat__ic { background: $c-teal; color: #fff; }
+.asset-cat.is-active .asset-cat__name { color: $c-teal; }
+
+/* field rows */
+.asset-field { margin-bottom: 16px; &:last-child { margin-bottom: 0; } }
+.asset-field--mt { margin-top: 16px; }
+.asset-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.asset-row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+@media (max-width: 620px) { .asset-row2, .asset-row3 { grid-template-columns: 1fr; } }
+
+/* prefixed inputs ($ and person icon) */
+.asset-prefix { position: relative; display: flex; align-items: center; }
+.asset-prefix__sym { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 14px; color: $c-body; pointer-events: none; }
+.asset-prefix .asset-prefix__sym ~ .ea-input, .asset-prefix__sym + .ea-input { padding-left: 28px; }
+.asset-prefix__ic { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: $c-muted; pointer-events: none; display: inline-flex; svg { width: 18px; height: 18px; } }
+.asset-prefix--icon .ea-input { padding-left: 40px; }
+
+/* assignment row */
+.asset-assign { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.asset-assign__q { font-size: 14px; font-weight: 700; color: $c-ink; }
+.asset-seg { background: #f1f3f5; border: none; flex: 0 0 auto; }
+.asset-seg .seg__btn { color: $c-body; cursor: pointer; border: none; background: transparent; }
+.asset-seg .seg__btn.is-active { background: #fff; color: $c-teal; box-shadow: 0 1px 3px rgba(16, 48, 57, 0.14); }
+
+/* footer */
+.asset-foot { display: flex; align-items: center; justify-content: flex-end; gap: 12px; margin-top: 22px; padding-top: 18px; border-top: 1px solid $c-line; }
+.asset-cancel { height: 44px; padding: 0 22px; border: 1px solid $c-line; border-radius: 10px; background: #fff; color: $c-body; font-size: 14px; font-weight: 600; cursor: pointer; &:hover { background: #f4f6f8; } }
+.asset-save { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 24px; border: none; border-radius: 10px; background: linear-gradient(90deg, $c-teal-deep, $c-teal); color: #fff; font-size: 14px; font-weight: 700; cursor: pointer; &:hover { filter: brightness(1.08); } svg { width: 16px; height: 16px; } }

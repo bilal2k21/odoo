@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================
+         SETTINGS → SETUP  (/settings/setup)
+    ============================================================= -->
+    <template id="setup_page" name="Setup">
+        <t t-set="active" t-value="'settings'"/>
+        <t t-set="section" t-value="'Settings'"/>
+        <t t-set="page_name" t-value="'Setup'"/>
+        <t t-call="hr_management_system.dashboard_layout">
+
+            <div class="set-head">
+                <h1 class="set-head__title">Setup</h1>
+                <p class="set-head__sub">Manage Setup and their access permissions across the organization</p>
+            </div>
+
+            <div class="set-tabsrow">
+                <div class="req-tabs">
+                    <span class="req-tab is-active">Organization</span>
+                    <span class="req-tab">Time</span>
+                    <span class="req-tab">Pay</span>
+                    <span class="req-tab">Security</span>
+                    <span class="req-tab">Integrations</span>
+                    <span class="req-tab">Utility</span>
+                </div>
+                <div class="set-search">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg>
+                    <input type="text" placeholder="Search settings..."/>
+                </div>
+            </div>
+
+            <div class="set-grid">
+                <a href="/settings/company-profile" class="set-card">
+                    <span class="set-card__ic set-card__ic--red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 7h2M9 11h2M9 15h2M14 7h1M14 11h1M14 15h1"/></svg></span>
+                    <span class="set-card__name">Company Profile</span>
+                </a>
+                <div class="set-card">
+                    <span class="set-card__ic set-card__ic--blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="7" width="8" height="14" rx="1"/><rect x="13" y="3" width="8" height="18" rx="1"/><path d="M6 11h2M6 15h2M16 7h2M16 11h2M16 15h2"/></svg></span>
+                    <span class="set-card__name">Multi organization</span>
+                </div>
+                <a href="/settings/work-locations" class="set-card">
+                    <span class="set-card__ic set-card__ic--teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+                    <span class="set-card__name">Work Locations</span>
+                </a>
+                <a href="/settings/assets" class="set-card">
+                    <span class="set-card__ic set-card__ic--green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span>
+                    <span class="set-card__name">Assets</span>
+                </a>
+                <div class="set-card">
+                    <span class="set-card__ic set-card__ic--blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="9" y="3" width="6" height="5" rx="1"/><rect x="3" y="16" width="6" height="5" rx="1"/><rect x="15" y="16" width="6" height="5" rx="1"/><path d="M12 8v4M6 16v-2h12v2"/></svg></span>
+                    <span class="set-card__name">Departments</span>
+                </div>
+                <div class="set-card">
+                    <span class="set-card__ic set-card__ic--pink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M20.6 13.4 12 22l-9-9V4a1 1 0 0 1 1-1h8z"/><circle cx="7.5" cy="7.5" r="1.3"/></svg></span>
+                    <span class="set-card__name">Designations</span>
+                </div>
+
+                <div class="set-card">
+                    <span class="set-card__ic set-card__ic--teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 5.5a3 3 0 0 1 0 6M21 20a6 6 0 0 0-4-5.6"/></svg></span>
+                    <span class="set-card__name">Employee Groups</span>
+                </div>
+                <div class="set-card">
+                    <span class="set-card__ic set-card__ic--purple"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="m12 2 2.9 6.3 6.9.6-5.2 4.5 1.6 6.8L12 17l-6.2 3.7 1.6-6.8L2.2 8.9l6.9-.6z"/></svg></span>
+                    <span class="set-card__name">Employee Grades</span>
+                </div>
+                <div class="set-card">
+                    <span class="set-card__ic set-card__ic--teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></span>
+                    <span class="set-card__name">Docs</span>
+                </div>
+                <div class="set-card">
+                    <span class="set-card__ic set-card__ic--dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></span>
+                    <span class="set-card__name">Events</span>
+                </div>
+                <div class="set-card">
+                    <span class="set-card__ic set-card__ic--orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span>
+                    <span class="set-card__name">Master Data</span>
+                </div>
+                <div class="set-card">
+                    <span class="set-card__ic set-card__ic--blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="m8 12 3 3 5-6"/></svg></span>
+                    <span class="set-card__name">Approval Configuration</span>
+                </div>
+
+                <div class="set-card">
+                    <span class="set-card__ic set-card__ic--red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+                    <span class="set-card__name">Email Notification</span>
+                </div>
+                <div class="set-card">
+                    <span class="set-card__ic set-card__ic--gray"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M9 6h12M9 12h12M9 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg></span>
+                    <span class="set-card__name">CheckList Configuration</span>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>

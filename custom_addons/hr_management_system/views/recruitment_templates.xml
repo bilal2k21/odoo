@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================
+         RECRUITMENT  (/recruitment)   Context: jobs (list)
+    ============================================================= -->
+    <template id="recruitment_page" name="Recruitment">
+        <t t-set="active" t-value="'recruitment'"/>
+        <t t-set="page_name" t-value="'Recruitment'"/>
+        <t t-call="hr_management_system.dashboard_layout">
+
+            <div class="rec-head">
+                <div>
+                    <h1 class="rec-head__title">Recruitment</h1>
+                    <p class="rec-head__sub">9 open roles across Metaviz Group · 312 active candidates in pipeline.</p>
+                </div>
+                <button type="button" class="btn-ghost">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 15V3M8 7l4-4 4 4M4 21h16"/></svg>
+                    Export
+                </button>
+            </div>
+
+            <!-- KPIs -->
+            <div class="rec-kpis">
+                <div class="rec-kpi rec-kpi--teal">
+                    <div class="rec-kpi__top">
+                        <span class="rec-kpi__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span>
+                        <span class="rec-kpi__trend rec-kpi__trend--green">+2 this month</span>
+                    </div>
+                    <div class="rec-kpi__label">Open Roles</div>
+                    <div class="rec-kpi__val">14</div>
+                    <div class="rec-kpi__foot">5 depts</div>
+                </div>
+                <div class="rec-kpi rec-kpi--blue">
+                    <div class="rec-kpi__top">
+                        <span class="rec-kpi__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 5.2a3.2 3.2 0 0 1 0 6.1M21.5 20a6 6 0 0 0-4.5-5.8"/></svg></span>
+                        <span class="rec-kpi__trend rec-kpi__trend--blue">+48 this week</span>
+                    </div>
+                    <div class="rec-kpi__label">Candidates</div>
+                    <div class="rec-kpi__val">18</div>
+                    <div class="rec-kpi__foot">in pipeline</div>
+                </div>
+                <div class="rec-kpi rec-kpi--purple">
+                    <div class="rec-kpi__top">
+                        <span class="rec-kpi__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></span>
+                        <span class="rec-kpi__trend rec-kpi__trend--muted">14 scheduled</span>
+                    </div>
+                    <div class="rec-kpi__label">In Interview</div>
+                    <div class="rec-kpi__val">16</div>
+                    <div class="rec-kpi__foot">this week</div>
+                </div>
+                <div class="rec-kpi rec-kpi--orange">
+                    <div class="rec-kpi__top">
+                        <span class="rec-kpi__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/></svg></span>
+                        <span class="rec-kpi__trend rec-kpi__trend--muted">6 awaiting</span>
+                    </div>
+                    <div class="rec-kpi__label">Offers Out</div>
+                    <div class="rec-kpi__val">2</div>
+                    <div class="rec-kpi__foot">2 verbal</div>
+                </div>
+                <div class="rec-kpi rec-kpi--green">
+                    <div class="rec-kpi__top">
+                        <span class="rec-kpi__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+                        <span class="rec-kpi__trend rec-kpi__trend--green">-3d vs last qtr</span>
+                    </div>
+                    <div class="rec-kpi__label">Time to Hire</div>
+                    <div class="rec-kpi__val">24 <small>days</small></div>
+                    <div class="rec-kpi__foot">avg cycle</div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="ad-tabs">
+                <span class="ad-tab is-active">Jobs <span class="ad-tab__n">9</span></span>
+                <a class="ad-tab" href="/recruitment/candidates">Candidates <span class="ad-tab__n">312</span></a>
+                <a class="ad-tab" href="/recruitment/pipeline">Pipeline</a>
+            </div>
+
+            <!-- Toolbar -->
+            <div class="rec-toolbar">
+                <div class="rec-fpills">
+                    <span class="rec-fpill is-active">All 9</span>
+                    <span class="rec-fpill"><i style="background:#16a34a"></i> Open 6</span>
+                    <span class="rec-fpill"><i style="background:#f29a2e"></i> Paused 1</span>
+                    <span class="rec-fpill"><i style="background:#8a97a0"></i> Draft 2</span>
+                </div>
+                <div class="rec-right">
+                    <div class="rec-search">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg>
+                        <input type="text" placeholder="Filter jobs..."/>
+                    </div>
+                    <span class="rec-sort">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18M6 12h12M10 18h4"/></svg>
+                        Newest
+                    </span>
+                </div>
+            </div>
+
+            <!-- Jobs table -->
+            <div class="rec-card">
+                <table class="rec-table">
+                    <thead>
+                        <tr><th>Role</th><th>Department</th><th>Location</th><th>Pipeline</th><th>Hiring Mgr</th><th>Status</th><th></th></tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="jobs" t-as="j">
+                            <tr>
+                                <td>
+                                    <div class="rec-role">
+                                        <span class="rec-role__code" t-attf-style="background:#{j['cc']}"><t t-out="j['c']"/></span>
+                                        <div><div class="rec-role__title"><t t-out="j['t']"/></div><div class="rec-role__meta"><t t-out="j['ty']"/></div></div>
+                                    </div>
+                                </td>
+                                <td><t t-out="j['dp']"/></td>
+                                <td><span class="rec-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><t t-out="j['lo']"/></span></td>
+                                <td>
+                                    <t t-if="j['ap']">
+                                        <div class="rec-pipe">
+                                            <span class="rec-pipe__bar"><i style="background:#d6dde2;flex:4"></i><i style="background:#2f72c4;flex:3"></i><i style="background:#7c5cde;flex:2"></i><i style="background:#f29a2e;flex:1"></i></span>
+                                            <span class="rec-pipe__n"><t t-out="j['ap']"/> <small>applied</small></span>
+                                        </div>
+                                    </t>
+                                    <t t-else=""><span class="rec-pipe__none">No applicants yet</span></t>
+                                </td>
+                                <td><span class="rec-mgr" t-attf-style="background:#{j['mc']}"><t t-out="j['mgr']"/></span></td>
+                                <td><span t-attf-class="rec-status rec-status--#{j['st']}"><t t-out="j['sl']"/></span></td>
+                                <td><span class="rec-rowmenu"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="19" r="1.6"/></svg></span></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+                <div class="rec-foot">Showing all 9 jobs</div>
+            </div>
+        </t>
+    </template>
+
+</odoo>

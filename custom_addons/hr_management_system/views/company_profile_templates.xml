@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================
+         SETTINGS → COMPANY PROFILE  (/settings/company-profile)
+    ============================================================= -->
+    <template id="company_profile_page" name="Company Profile">
+        <t t-set="active" t-value="'settings'"/>
+        <t t-set="section" t-value="'Settings'"/>
+        <t t-set="subsection" t-value="'Setup'"/>
+        <t t-set="page_name" t-value="'Company Profile'"/>
+        <t t-call="hr_management_system.dashboard_layout">
+
+            <div class="set-head">
+                <h1 class="set-head__title">Company Profile</h1>
+                <p class="set-head__sub">Manage Setup and their access permissions across the organization</p>
+            </div>
+
+            <!-- Tabs + Cancel / Save -->
+            <div class="cp-tabsrow">
+                <div class="req-tabs">
+                    <span class="req-tab is-active">General</span>
+                    <span class="req-tab">Policies</span>
+                    <span class="req-tab">Other</span>
+                    <span class="req-tab">AI Request</span>
+                </div>
+                <div class="cp-actions">
+                    <button class="cp-cancel" type="button">Cancel</button>
+                    <button class="cp-save" type="button">Save</button>
+                </div>
+            </div>
+
+            <!-- Company Information card -->
+            <div class="cp-card">
+                <h2 class="cp-card__title">Company Information</h2>
+
+                <div class="cp-grid">
+                    <!-- Row 1 -->
+                    <div class="cp-field">
+                        <label class="ea-label">Company Name</label>
+                        <input class="ea-input" type="text" value="Metaviz"/>
+                        <div class="ea-hint">This is your registered business name which will appear in all the forms and pay slips.</div>
+                    </div>
+                    <div class="cp-field">
+                        <label class="ea-label">Website <span class="ea-req">*</span></label>
+                        <input class="ea-input" type="text" value="https://www.metaviz.pro"/>
+                    </div>
+                    <div class="cp-field">
+                        <label class="ea-label">Email</label>
+                        <input class="ea-input" type="text" value="info@metaviz.pro"/>
+                    </div>
+                    <div class="cp-field"></div>
+
+                    <!-- Row 2 -->
+                    <div class="cp-field">
+                        <label class="ea-label">Company Type</label>
+                        <div class="nr-caret">
+                            <select class="nr-select">
+                                <option>Private Limited Company</option>
+                                <option>Public Limited Company</option>
+                                <option>Sole Proprietorship</option>
+                                <option>Partnership</option>
+                            </select>
+                            <span class="nr-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"/></svg></span>
+                        </div>
+                    </div>
+                    <div class="cp-field">
+                        <label class="ea-label">NTN No</label>
+                        <input class="ea-input" type="text" placeholder="Enter NTN number"/>
+                    </div>
+                    <div class="cp-field">
+                        <label class="ea-label">Company Logo Upload</label>
+                        <div class="cp-upload">
+                            <button class="cp-upload__btn" type="button">
+                                Upload File
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"/></svg>
+                            </button>
+                            <span class="cp-upload__file">metaviz-logo.svg</span>
+                        </div>
+                        <div class="ea-hint">Upload Company Logo, size must be less than 500kb</div>
+                    </div>
+                    <div class="cp-field">
+                        <label class="ea-label">Company Logo</label>
+                        <div class="cp-logo">
+                            <img src="/hr_management_system/static/src/img/metaviz-logo.svg" alt="Metaviz"/>
+                            <span class="cp-logo__word">METAVIZ</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- floating chat bubble -->
+            <button class="cp-fab" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M21 11.5a8.5 8.5 0 0 1-12.2 7.7L3 21l1.8-5.8A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01"/></svg>
+            </button>
+        </t>
+    </template>
+
+</odoo>

@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================
+         SETTINGS → ASSETS (list)  (/settings/assets)
+    ============================================================= -->
+    <template id="assets_page" name="Assets Details">
+        <t t-set="active" t-value="'settings'"/>
+        <t t-set="section" t-value="'Settings'"/>
+        <t t-set="subsection" t-value="'Setup'"/>
+        <t t-set="page_name" t-value="'Assets'"/>
+        <t t-call="hr_management_system.dashboard_layout">
+
+            <div class="asl-head">
+                <h1 class="set-head__title">Assets Details</h1>
+                <p class="set-head__sub">Every device and item the company owns, who holds it, and its status.</p>
+            </div>
+
+            <div class="asl-card">
+                <!-- toolbar -->
+                <div class="asl-toolbar">
+                    <span class="asl-count">Showing 10 of 348 assets</span>
+                    <div class="asl-tools">
+                        <div class="asl-search">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg>
+                            <input type="text" placeholder="Search Assets"/>
+                        </div>
+                        <div class="asl-chips">
+                            <span class="asl-chip asl-chip--green">Fresh</span>
+                            <span class="asl-chip asl-chip--blue">Assigned</span>
+                            <span class="asl-chip asl-chip--amber">Damaged</span>
+                            <span class="asl-chip asl-chip--pink">Disposed</span>
+                            <span class="asl-chip asl-chip--rose">Sold</span>
+                        </div>
+                        <button class="asl-create" type="button" data-asset-open="1">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 5v14M5 12h14"/></svg>
+                            Create Asset
+                        </button>
+                    </div>
+                </div>
+
+                <!-- table -->
+                <div class="asl-tablewrap">
+                    <table class="asl-table">
+                        <thead>
+                            <tr>
+                                <th>SerialNo <svg class="asl-sort" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"/></svg></th>
+                                <th>Product Name <svg class="asl-sort" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"/></svg></th>
+                                <th>Holder Name</th>
+                                <th>Purchase Date <svg class="asl-sort" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"/></svg></th>
+                                <th>Status</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="assets" t-as="a">
+                                <tr>
+                                    <td><span class="asl-serial"><t t-out="a['serial']"/></span></td>
+                                    <td>
+                                        <div class="asl-product">
+                                            <span class="asl-thumb">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg>
+                                                <span class="asl-thumb__t">NO IMAGE</span>
+                                            </span>
+                                            <div>
+                                                <div class="asl-product__name"><t t-out="a['product']"/></div>
+                                                <div class="asl-product__type"><t t-out="a['type']"/></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <t t-if="a['holder']">
+                                            <div class="asl-holder">
+                                                <span class="asl-av" t-attf-style="background:#{a['av']}"><t t-out="a['initials']"/></span>
+                                                <div>
+                                                    <div class="asl-holder__name"><t t-out="a['holder']"/></div>
+                                                    <div class="asl-holder__dept"><t t-out="a['dept']"/></div>
+                                                </div>
+                                            </div>
+                                        </t>
+                                        <t t-else="">
+                                            <span class="asl-unassigned">— Unassigned</span>
+                                        </t>
+                                    </td>
+                                    <td class="asl-date"><t t-out="a['date']"/></td>
+                                    <td>
+                                        <span t-attf-class="asl-status asl-status--#{a['scls']}">
+                                            <span class="asl-status__dot"></span>
+                                            <t t-out="a['status']"/>
+                                        </span>
+                                    </td>
+                                    <td class="asl-arrow-cell">
+                                        <a href="#" class="asl-arrow">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- footer -->
+                <div class="asl-foot">
+                    <span class="asl-foot__info">Showing 1-10 of 348</span>
+                    <div class="asl-pager">
+                        <a href="#" class="asl-pager__nav">‹</a>
+                        <span class="asl-pager__pg is-active">1</span>
+                        <a href="#" class="asl-pager__pg">2</a>
+                        <a href="#" class="asl-pager__pg">3</a>
+                        <span class="asl-pager__dots">…</span>
+                        <a href="#" class="asl-pager__pg">35</a>
+                        <a href="#" class="asl-pager__nav">›</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- floating chat bubble -->
+            <button class="cp-fab" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M21 11.5a8.5 8.5 0 0 1-12.2 7.7L3 21l1.8-5.8A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01"/></svg>
+            </button>
+
+            <!-- ===== Add new asset modal ("Create Asset" se khulta hai) ===== -->
+            <div class="nr-modal asset-modal" data-asset-modal="1">
+                <div class="nr-modal__overlay" data-asset-close="1"></div>
+                <div class="nr-modal__dialog">
+                    <div class="asset-head">
+                        <span class="asset-head__ic">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg>
+                        </span>
+                        <div class="asset-head__tt">
+                            <h2 class="asset-head__title">Add new asset</h2>
+                            <p class="asset-head__sub">Register a piece of equipment and optionally assign it to an employee.</p>
+                        </div>
+                        <button class="asset-head__x" type="button" data-asset-close="1">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                        </button>
+                    </div>
+
+                    <div class="asset-body">
+                        <!-- CATEGORY -->
+                        <div class="asset-sec">
+                            <div class="asset-sec__label">Category</div>
+                            <div class="asset-cats">
+                                <div class="asset-cat">
+                                    <span class="asset-cat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M2 20h20"/></svg></span>
+                                    <span class="asset-cat__name">Laptop</span>
+                                </div>
+                                <div class="asset-cat is-active">
+                                    <span class="asset-cat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>
+                                    <span class="asset-cat__name">Monitor</span>
+                                </div>
+                                <div class="asset-cat">
+                                    <span class="asset-cat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg></span>
+                                    <span class="asset-cat__name">Phone</span>
+                                </div>
+                                <div class="asset-cat">
+                                    <span class="asset-cat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="2" width="16" height="20" rx="2.5"/><path d="M11 18h2"/></svg></span>
+                                    <span class="asset-cat__name">Tablet</span>
+                                </div>
+                                <div class="asset-cat">
+                                    <span class="asset-cat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M12 14v4M8 21h8"/></svg></span>
+                                    <span class="asset-cat__name">Accessories</span>
+                                </div>
+                                <div class="asset-cat">
+                                    <span class="asset-cat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m12 2 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5M3 17l9 5 9-5"/></svg></span>
+                                    <span class="asset-cat__name">Software</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ASSET DETAILS -->
+                        <div class="asset-sec">
+                            <div class="asset-sec__label">Asset details</div>
+                            <div class="asset-field">
+                                <label class="ea-label">Asset name <span class="ea-req">*</span></label>
+                                <input class="ea-input" type="text" value="Mac 2024"/>
+                            </div>
+                            <div class="asset-row2">
+                                <div class="asset-field">
+                                    <label class="ea-label">Brand / manufacturer</label>
+                                    <input class="ea-input" type="text" value="apple"/>
+                                </div>
+                                <div class="asset-field">
+                                    <label class="ea-label">Model</label>
+                                    <input class="ea-input" type="text" value="A2345"/>
+                                </div>
+                            </div>
+                            <div class="asset-row2">
+                                <div class="asset-field">
+                                    <label class="ea-label">Serial number <span class="ea-req">*</span></label>
+                                    <input class="ea-input" type="text" value="C0sd234"/>
+                                </div>
+                                <div class="asset-field">
+                                    <label class="ea-label">Asset tag</label>
+                                    <input class="ea-input" type="text" value="MVA-1211"/>
+                                    <div class="ea-hint">Auto-generated · editable</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PURCHASE & WARRANTY -->
+                        <div class="asset-sec">
+                            <div class="asset-sec__label">Purchase &amp; warranty</div>
+                            <div class="asset-row3">
+                                <div class="asset-field">
+                                    <label class="ea-label">Purchase date</label>
+                                    <input class="ea-input" type="date" value="2026-06-22"/>
+                                </div>
+                                <div class="asset-field">
+                                    <label class="ea-label">Purchase cost</label>
+                                    <div class="asset-prefix">
+                                        <span class="asset-prefix__sym">$</span>
+                                        <input class="ea-input" type="text" value="50"/>
+                                    </div>
+                                </div>
+                                <div class="asset-field">
+                                    <label class="ea-label">Warranty until</label>
+                                    <input class="ea-input" type="date" value="2026-06-10"/>
+                                </div>
+                            </div>
+                            <div class="asset-row3">
+                                <div class="asset-field">
+                                    <label class="ea-label">Vendor / supplier</label>
+                                    <input class="ea-input" type="text" placeholder="e.g. Apple Business"/>
+                                </div>
+                                <div class="asset-field">
+                                    <label class="ea-label">Condition</label>
+                                    <input class="ea-input" type="text" value="New"/>
+                                </div>
+                                <div class="asset-field">
+                                    <label class="ea-label">Location</label>
+                                    <input class="ea-input" type="text" value="Lahore HQ"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ASSIGNMENT -->
+                        <div class="asset-sec">
+                            <div class="asset-sec__label">Assignment</div>
+                            <div class="asset-assign">
+                                <div>
+                                    <div class="asset-assign__q">Assign to an employee now?</div>
+                                    <div class="ea-hint">Leave as "Keep in storage" to add it as available stock.</div>
+                                </div>
+                                <div class="seg asset-seg">
+                                    <button class="seg__btn" type="button">Keep in storage</button>
+                                    <button class="seg__btn is-active" type="button">Assign now</button>
+                                </div>
+                            </div>
+                            <div class="asset-field asset-field--mt">
+                                <label class="ea-label">Employee</label>
+                                <div class="asset-prefix asset-prefix--icon">
+                                    <span class="asset-prefix__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="3.4"/><path d="M5 20a7 7 0 0 1 14 0"/></svg></span>
+                                    <input class="ea-input" type="text" value="Aarav Hegde · Senior Engineer"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FOOTER -->
+                        <div class="asset-foot">
+                            <button class="asset-cancel" type="button" data-asset-close="1">Cancel</button>
+                            <button class="asset-save" type="button">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 5v14M5 12h14"/></svg>
+                                Add asset
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>
