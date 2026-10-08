@@ -1,0 +1,47 @@
+// ============================================================
+//  EMAILS / NOTIFICATIONS center  (/notifications)
+//  Reuses .rp-stats/.rp-stat for the stat cards
+//  (distinct from the .notif-* drawer in notifications.scss)
+// ============================================================
+
+.noti-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+.noti-markall { display: inline-flex; align-items: center; gap: 8px; height: 42px; padding: 0 18px; border: 1px solid $c-line; border-radius: 10px; background: #fff; color: $c-body; font-size: 13.5px; font-weight: 600; cursor: pointer; white-space: nowrap; &:hover { border-color: #cfd6db; background: #f9fafb; } svg { width: 16px; height: 16px; color: $c-teal; } }
+
+.noti-card { background: #fff; border: 1px solid $c-line; border-radius: 16px; overflow: hidden; }
+
+/* tabs */
+.noti-tabs { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; padding: 14px 16px; border-bottom: 1px solid $c-line; }
+.noti-tab { display: inline-flex; align-items: center; gap: 7px; padding: 8px 16px; border-radius: 8px; font-size: 13.5px; font-weight: 600; color: $c-body; cursor: pointer; &:hover { background: #f4f6f8; } &.is-active { background: $c-teal; color: #fff; } }
+.noti-tab__n { display: inline-flex; align-items: center; justify-content: center; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px; background: #e0564b; color: #fff; font-size: 11px; font-weight: 700; }
+
+/* list */
+.noti-list { display: flex; flex-direction: column; }
+.noti-item { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px; border-bottom: 1px solid #eef1f4; transition: background 0.12s; &:hover { background: #fafbfc; } }
+.noti-item.is-unread { background: #f3f9fb; &:hover { background: #edf5f8; } }
+
+.noti-item__ic { width: 40px; height: 40px; flex: 0 0 auto; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; svg { width: 20px; height: 20px; } }
+.noti-item__ic--green  { background: #e3f6ec; color: #16a34a; }
+.noti-item__ic--orange { background: #fef1df; color: #e0872f; }
+.noti-item__ic--purple { background: #efeafb; color: #7c5cde; }
+.noti-item__ic--teal   { background: #e0f0f4; color: #0a7e9b; }
+.noti-item__ic--blue   { background: #e6f0fc; color: #2f72c4; }
+.noti-item__ic--gray   { background: #eceff2; color: #6b7785; }
+
+.noti-item__body { flex: 1; min-width: 0; }
+.noti-item__top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.noti-item__title { font-size: 14px; font-weight: 700; color: $c-ink; }
+.noti-item__time { flex: 0 0 auto; font-size: 12px; color: $c-muted; white-space: nowrap; }
+.noti-item__desc { margin-top: 3px; font-size: 13px; line-height: 1.5; color: $c-body; }
+.noti-item__tag { display: inline-flex; align-items: center; margin-top: 8px; font-size: 11px; font-weight: 600; border-radius: 6px; padding: 3px 9px; }
+.noti-tag--green  { background: #e3f6ec; color: #1f9d57; }
+.noti-tag--orange { background: #fef1df; color: #c9871a; }
+.noti-tag--purple { background: #efeafb; color: #7c5cde; }
+.noti-tag--teal   { background: #e0f0f4; color: #0a7e9b; }
+.noti-tag--blue   { background: #e6f0fc; color: #3b6fd4; }
+.noti-tag--gray   { background: #eceff2; color: #6b7785; }
+
+.noti-item__dot { width: 9px; height: 9px; flex: 0 0 auto; margin-top: 6px; border-radius: 50%; background: #2f72c4; }
+
+/* footer */
+.noti-foot { padding: 16px; text-align: center; }
+.noti-foot__more { font-size: 13px; font-weight: 600; color: $c-teal; text-decoration: none; &:hover { text-decoration: underline; } }

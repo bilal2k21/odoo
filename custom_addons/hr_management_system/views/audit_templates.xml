@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================
+         SETTINGS → AUDIT LOGS  (/settings/audit)
+    ============================================================= -->
+    <template id="audit_page" name="Audit Logs">
+        <t t-set="active" t-value="'settings'"/>
+        <t t-set="section" t-value="'Settings'"/>
+        <t t-set="subnav" t-value="'audit'"/>
+        <t t-set="page_name" t-value="'Audit Logs'"/>
+        <t t-call="hr_management_system.dashboard_layout">
+
+            <div class="aud-head">
+                <div>
+                    <h1 class="set-head__title">Audit Logs</h1>
+                    <p class="set-head__sub">Track every action across the organization — who did what, and when.</p>
+                </div>
+                <button class="aud-export" type="button">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v12M8 11l4 4 4-4M4 21h16"/></svg>
+                    Export CSV
+                </button>
+            </div>
+
+            <!-- Stat cards (reuse .rp-stats/.rp-stat design) -->
+            <div class="rp-stats">
+                <div class="rp-stat">
+                    <div class="rp-stat__label">Total Events</div>
+                    <div class="rp-stat__row">
+                        <span class="rp-stat__ic rp-stat__ic--blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></span>
+                        <span class="rp-stat__num">1,248</span>
+                    </div>
+                </div>
+                <div class="rp-stat">
+                    <div class="rp-stat__label">Today</div>
+                    <div class="rp-stat__row">
+                        <span class="rp-stat__ic rp-stat__ic--green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></span>
+                        <span class="rp-stat__num">36</span>
+                    </div>
+                </div>
+                <div class="rp-stat">
+                    <div class="rp-stat__label">Failed Attempts</div>
+                    <div class="rp-stat__row">
+                        <span class="rp-stat__ic rp-stat__ic--orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></span>
+                        <span class="rp-stat__num">3</span>
+                    </div>
+                </div>
+                <div class="rp-stat">
+                    <div class="rp-stat__label">Active Users</div>
+                    <div class="rp-stat__row">
+                        <span class="rp-stat__ic rp-stat__ic--purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 5.2a3.2 3.2 0 0 1 0 6.1M21.5 20a6 6 0 0 0-4.5-5.8"/></svg></span>
+                        <span class="rp-stat__num">42</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table card -->
+            <div class="aud-card">
+                <div class="aud-toolbar">
+                    <div class="aud-search">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg>
+                        <input type="text" placeholder="Search logs by user, module or action..."/>
+                    </div>
+                    <div class="aud-chips">
+                        <span class="aud-chip is-active">All</span>
+                        <span class="aud-chip">Login</span>
+                        <span class="aud-chip">Create</span>
+                        <span class="aud-chip">Update</span>
+                        <span class="aud-chip">Delete</span>
+                        <span class="aud-chip">Export</span>
+                    </div>
+                </div>
+
+                <div class="aud-tablewrap">
+                    <table class="aud-table">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>User</th>
+                                <th>Action</th>
+                                <th>Module</th>
+                                <th>Details</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="logs" t-as="l">
+                                <tr>
+                                    <td>
+                                        <div class="aud-time">
+                                            <span class="aud-time__date"><t t-out="l['date']"/></span>
+                                            <span class="aud-time__clock"><t t-out="l['time']"/></span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="aud-user">
+                                            <span class="aud-av" t-attf-style="background:#{l['av']}"><t t-out="l['initials']"/></span>
+                                            <div>
+                                                <div class="aud-user__name"><t t-out="l['user']"/></div>
+                                                <div class="aud-user__role"><t t-out="l['role']"/></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span t-attf-class="aud-act aud-act--#{l['acls']}">
+                                            <span class="aud-act__dot"></span>
+                                            <t t-out="l['action']"/>
+                                        </span>
+                                    </td>
+                                    <td class="aud-module"><t t-out="l['module']"/></td>
+                                    <td class="aud-detail"><t t-out="l['detail']"/></td>
+                                    <td>
+                                        <span t-attf-class="aud-status aud-status--#{l['scls']}"><t t-out="l['status']"/></span>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="aud-foot">
+                    <span class="aud-foot__info">Showing 1-10 of 1,248 events</span>
+                    <div class="aud-pager">
+                        <a href="#" class="aud-pager__nav">‹</a>
+                        <span class="aud-pager__pg is-active">1</span>
+                        <a href="#" class="aud-pager__pg">2</a>
+                        <a href="#" class="aud-pager__pg">3</a>
+                        <span class="aud-pager__dots">…</span>
+                        <a href="#" class="aud-pager__pg">125</a>
+                        <a href="#" class="aud-pager__nav">›</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- floating chat bubble -->
+            <button class="cp-fab" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M21 11.5a8.5 8.5 0 0 1-12.2 7.7L3 21l1.8-5.8A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01"/></svg>
+            </button>
+        </t>
+    </template>
+
+</odoo>

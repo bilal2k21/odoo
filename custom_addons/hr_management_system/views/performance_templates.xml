@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================
+         PERFORMANCE  (/performance)
+    ============================================================= -->
+    <template id="performance_page" name="Performance">
+        <t t-set="active" t-value="'performance'"/>
+        <t t-set="topbar_hide" t-value="True"/>
+        <t t-set="page_name" t-value="'Performance'"/>
+        <t t-call="hr_management_system.dashboard_layout">
+
+            <div class="perf-head">
+                <div>
+                    <h1 class="set-head__title">Performance</h1>
+                    <p class="set-head__sub">Track reviews, goals and top performers across the organization.</p>
+                </div>
+                <div class="perf-head__right">
+                    <span class="perf-cycle">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>
+                        Review Cycle: Q3 2026
+                    </span>
+                    <button class="perf-start" type="button">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 5v14M5 12h14"/></svg>
+                        Start Review
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stat cards (reuse .rp-stats/.rp-stat) -->
+            <div class="rp-stats">
+                <div class="rp-stat">
+                    <div class="rp-stat__label">Average Rating</div>
+                    <div class="rp-stat__row">
+                        <span class="rp-stat__ic rp-stat__ic--orange"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="m12 2 2.9 6.3 6.9.6-5.2 4.5 1.6 6.8L12 17l-6.2 3.7 1.6-6.8L2.2 8.9l6.9-.6z"/></svg></span>
+                        <span class="rp-stat__num">4.3</span>
+                    </div>
+                </div>
+                <div class="rp-stat">
+                    <div class="rp-stat__label">Reviews Completed</div>
+                    <div class="rp-stat__row">
+                        <span class="rp-stat__ic rp-stat__ic--green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="m8 12 3 3 5-6"/></svg></span>
+                        <span class="rp-stat__num">186</span>
+                    </div>
+                </div>
+                <div class="rp-stat">
+                    <div class="rp-stat__label">Goals Achieved</div>
+                    <div class="rp-stat__row">
+                        <span class="rp-stat__ic rp-stat__ic--blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></span>
+                        <span class="rp-stat__num">78%</span>
+                    </div>
+                </div>
+                <div class="rp-stat">
+                    <div class="rp-stat__label">Pending Reviews</div>
+                    <div class="rp-stat__row">
+                        <span class="rp-stat__ic rp-stat__ic--purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+                        <span class="rp-stat__num">12</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Goals + Top Performers -->
+            <div class="perf-cols">
+                <div class="perf-card">
+                    <div class="perf-card__head">
+                        <h2 class="perf-card__title">Performance Goals</h2>
+                        <span class="perf-card__meta">Q3 2026</span>
+                    </div>
+                    <t t-foreach="goals" t-as="g">
+                        <div class="perf-goal">
+                            <div class="perf-goal__top">
+                                <span class="perf-goal__title"><t t-out="g['title']"/></span>
+                                <span class="perf-goal__pct"><t t-out="g['pct']"/>%</span>
+                            </div>
+                            <div class="perf-goal__bar">
+                                <span t-attf-class="perf-goal__fill perf-goal__fill--#{g['color']}" t-attf-style="width:#{g['pct']}%"></span>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+
+                <div class="perf-card">
+                    <div class="perf-card__head">
+                        <h2 class="perf-card__title">Top Performers</h2>
+                        <a href="#" class="perf-card__all">View all</a>
+                    </div>
+                    <t t-foreach="performers" t-as="p">
+                        <div class="perf-top">
+                            <span class="perf-top__av" t-attf-style="background:#{p['av']}"><t t-out="p['initials']"/></span>
+                            <div class="perf-top__body">
+                                <div class="perf-top__name"><t t-out="p['name']"/></div>
+                                <div class="perf-top__role"><t t-out="p['role']"/></div>
+                            </div>
+                            <span class="perf-top__score">
+                                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="m12 2 2.9 6.3 6.9.6-5.2 4.5 1.6 6.8L12 17l-6.2 3.7 1.6-6.8L2.2 8.9l6.9-.6z"/></svg>
+                                <t t-out="p['score']"/>
+                            </span>
+                        </div>
+                    </t>
+                </div>
+            </div>
+
+            <!-- Recent Reviews -->
+            <div class="perf-table-card">
+                <div class="perf-card__head perf-card__head--pad">
+                    <h2 class="perf-card__title">Recent Reviews</h2>
+                    <a href="#" class="perf-card__all">View all</a>
+                </div>
+                <div class="perf-tablewrap">
+                    <table class="perf-table">
+                        <thead>
+                            <tr>
+                                <th>Employee</th>
+                                <th>Review Cycle</th>
+                                <th>Score</th>
+                                <th class="perf-ta-right">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="reviews" t-as="r">
+                                <tr>
+                                    <td>
+                                        <div class="perf-emp">
+                                            <span class="perf-emp__av" t-attf-style="background:#{r['av']}"><t t-out="r['initials']"/></span>
+                                            <div>
+                                                <div class="perf-emp__name"><t t-out="r['emp']"/></div>
+                                                <div class="perf-emp__role"><t t-out="r['role']"/></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="perf-cycle-cell"><t t-out="r['cycle']"/></td>
+                                    <td>
+                                        <span class="perf-score">
+                                            <t t-if="r['score'] != '—'">
+                                                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="m12 2 2.9 6.3 6.9.6-5.2 4.5 1.6 6.8L12 17l-6.2 3.7 1.6-6.8L2.2 8.9l6.9-.6z"/></svg>
+                                            </t>
+                                            <t t-out="r['score']"/>
+                                        </span>
+                                    </td>
+                                    <td class="perf-ta-right">
+                                        <span t-attf-class="perf-status perf-status--#{r['scls']}">
+                                            <span class="perf-status__dot"></span>
+                                            <t t-out="r['status']"/>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- floating chat bubble -->
+            <button class="cp-fab" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M21 11.5a8.5 8.5 0 0 1-12.2 7.7L3 21l1.8-5.8A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01"/></svg>
+            </button>
+        </t>
+    </template>
+
+</odoo>

@@ -1,0 +1,61 @@
+// ============================================================
+//  AUDIT LOGS  (/settings/audit)
+//  Reuses .rp-stats/.rp-stat for the stat cards
+// ============================================================
+
+.aud-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+.aud-export { display: inline-flex; align-items: center; gap: 8px; height: 42px; padding: 0 18px; border: 1px solid $c-line; border-radius: 10px; background: #fff; color: $c-body; font-size: 13.5px; font-weight: 600; cursor: pointer; white-space: nowrap; &:hover { border-color: #cfd6db; background: #f9fafb; } svg { width: 16px; height: 16px; } }
+
+.rp-stats + .aud-card { margin-top: 20px; }
+
+.aud-card { background: #fff; border: 1px solid $c-line; border-radius: 14px; overflow: hidden; }
+
+/* toolbar */
+.aud-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 16px 18px; border-bottom: 1px solid $c-line; }
+.aud-search { position: relative; display: flex; align-items: center; flex: 1; min-width: 220px; max-width: 360px; svg { position: absolute; left: 14px; width: 15px; height: 15px; color: $c-muted; } input { width: 100%; height: 42px; border: 1px solid $c-line; border-radius: 10px; background: #fff; padding: 0 14px 0 38px; font-size: 13.5px; color: $c-ink; &::placeholder { color: $c-muted; } &:focus { outline: none; border-color: $c-teal-light; } } }
+.aud-chips { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.aud-chip { font-size: 12.5px; font-weight: 600; color: $c-body; background: #f0f2f5; border-radius: 8px; padding: 7px 14px; cursor: pointer; &:hover { background: #e6eaee; } }
+.aud-chip.is-active { background: $c-teal; color: #fff; }
+
+/* table */
+.aud-tablewrap { overflow-x: auto; }
+.aud-table { width: 100%; border-collapse: collapse; min-width: 900px; }
+.aud-table thead th { text-align: left; padding: 13px 18px; font-size: 12px; font-weight: 600; letter-spacing: 0.2px; text-transform: uppercase; color: $c-muted; background: #f9fafb; border-bottom: 1px solid $c-line; white-space: nowrap; }
+.aud-table tbody td { padding: 14px 18px; border-bottom: 1px solid #eef1f4; font-size: 13.5px; color: $c-body; vertical-align: middle; }
+.aud-table tbody tr:last-child td { border-bottom: none; }
+.aud-table tbody tr:hover td { background: #fafbfc; }
+
+.aud-time__date { display: block; font-size: 13.5px; font-weight: 600; color: $c-ink; white-space: nowrap; }
+.aud-time__clock { display: block; margin-top: 1px; font-size: 12px; color: $c-muted; }
+
+.aud-user { display: flex; align-items: center; gap: 11px; }
+.aud-av { width: 34px; height: 34px; flex: 0 0 auto; border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; font-weight: 700; }
+.aud-user__name { font-size: 13.5px; font-weight: 600; color: $c-ink; white-space: nowrap; }
+.aud-user__role { margin-top: 1px; font-size: 12px; color: $c-muted; }
+
+.aud-module { font-weight: 600; color: $c-ink; white-space: nowrap; }
+.aud-detail { color: $c-body; }
+
+/* action badge */
+.aud-act { display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; font-weight: 600; border-radius: 999px; padding: 5px 12px; white-space: nowrap; }
+.aud-act__dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.aud-act--login   { background: #e0f0f4; color: #0a7e9b; }
+.aud-act--create  { background: #e3f6ec; color: #1f9d57; }
+.aud-act--update  { background: #e6f0fc; color: #3b6fd4; }
+.aud-act--delete  { background: #fde3e1; color: #e0564b; }
+.aud-act--approve { background: #e7f6ed; color: #16a34a; }
+.aud-act--export  { background: #efeafb; color: #7c5cde; }
+.aud-act--logout  { background: #eef1f4; color: #6b7785; }
+
+/* status badge */
+.aud-status { display: inline-flex; align-items: center; font-size: 12.5px; font-weight: 600; border-radius: 999px; padding: 5px 12px; white-space: nowrap; }
+.aud-status--success { background: #e3f6ec; color: #1f9d57; }
+.aud-status--failed  { background: #fde3e1; color: #e0564b; }
+
+/* footer */
+.aud-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 15px 18px; }
+.aud-foot__info { font-size: 13px; color: $c-muted; }
+.aud-pager { display: inline-flex; align-items: center; gap: 6px; }
+.aud-pager__nav { width: 30px; height: 30px; border: 1px solid $c-line; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; color: $c-body; font-size: 15px; text-decoration: none; &:hover { background: #f4f6f8; } }
+.aud-pager__pg { min-width: 30px; height: 30px; padding: 0 6px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: $c-body; text-decoration: none; &:hover { background: #f4f6f8; } &.is-active { background: $c-teal; color: #fff; } }
+.aud-pager__dots { padding: 0 2px; color: $c-muted; }

@@ -10,6 +10,9 @@
         <t t-set="active" t-value="active or ''"/>
         <t t-set="section" t-value="section or ''"/>
         <t t-set="subsection" t-value="subsection or ''"/>
+        <t t-set="subnav" t-value="subnav or 'setup'"/>
+        <t t-set="topbar_action" t-value="topbar_action or ''"/>
+        <t t-set="topbar_hide" t-value="topbar_hide or False"/>
         <t t-set="page_name" t-value="page_name or 'Dashboard'"/>
         <t t-set="page_title" t-value="page_name + ' · Metaviz HR Suite'"/>
 
@@ -77,9 +80,9 @@
                         </a>
                         <t t-if="active == 'settings'">
                             <div class="nav__sub">
-                                <a class="nav__subitem is-active" href="/settings/setup">Setup</a>
-                                <a class="nav__subitem" href="#">Roles &amp; Permissions</a>
-                                <a class="nav__subitem" href="#">Audit Logs</a>
+                                <a t-attf-class="nav__subitem #{'is-active' if subnav == 'setup' else ''}" href="/settings/setup">Setup</a>
+                                <a t-attf-class="nav__subitem #{'is-active' if subnav == 'roles' else ''}" href="/settings/roles">Roles &amp; Permissions</a>
+                                <a t-attf-class="nav__subitem #{'is-active' if subnav == 'audit' else ''}" href="/settings/audit">Audit Logs</a>
                             </div>
                         </t>
                     </nav>
@@ -124,10 +127,20 @@
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.5 21a2 2 0 0 1-3 0"/></svg>
                                 <span class="dot"></span>
                             </button>
-                            <button class="btn-dark" type="button" data-nr-open="1">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 5v14M5 12h14"/></svg>
-                                New request
-                            </button>
+                            <t t-if="not topbar_hide">
+                                <t t-if="topbar_action">
+                                    <button class="btn-dark" type="button">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 5v14M5 12h14"/></svg>
+                                        <t t-out="topbar_action"/>
+                                    </button>
+                                </t>
+                                <t t-else="">
+                                    <button class="btn-dark" type="button" data-nr-open="1">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 5v14M5 12h14"/></svg>
+                                        New request
+                                    </button>
+                                </t>
+                            </t>
                         </div>
                     </header>
 

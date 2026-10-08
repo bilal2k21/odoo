@@ -54,6 +54,11 @@ class HrmsPortal(http.Controller):
     def settings_company_profile(self, **kwargs):
         return request.render('hr_management_system.company_profile_page')
 
+    # ---- SETTINGS → EMAIL NOTIFICATION ----  URL: http://localhost:8069/settings/email-notification
+    @http.route('/settings/email-notification', type='http', auth='public', website=False)
+    def settings_email_notification(self, **kwargs):
+        return request.render('hr_management_system.email_notification_page')
+
     # ---- SETTINGS → WORK LOCATIONS (list) ----  URL: http://localhost:8069/settings/work-locations
     @http.route('/settings/work-locations', type='http', auth='public', website=False)
     def settings_work_locations(self, **kwargs):
@@ -86,6 +91,37 @@ class HrmsPortal(http.Controller):
             {'serial': 'MV-MOB-014', 'product': 'Galaxy S22',     'type': 'Mobile',  'holder': '',                 'dept': '',             'initials': '',   'av': '',        'date': '30/03/2022', 'status': 'Sold',      'scls': 'rose'},
         ]
         return request.render('hr_management_system.assets_page', {'assets': assets})
+
+    # ---- SETTINGS → ROLES & PERMISSIONS ----  URL: http://localhost:8069/settings/roles
+    @http.route('/settings/roles', type='http', auth='public', website=False)
+    def settings_roles(self, **kwargs):
+        roles = [
+            {'letter': 'X', 'av': '#e5564b', 'name': 'xyz',       'desc': 'Pre-filled from HR Template', 'users': 0,  'perms': '9 Permissions',  'all_access': False, 'scope': 'Entire Organization'},
+            {'letter': 'C', 'av': '#2b3440', 'name': 'CEO',       'desc': 'No description',              'users': 1,  'perms': 'All Access',     'all_access': True,  'scope': 'Entire Organization'},
+            {'letter': 'H', 'av': '#16a34a', 'name': 'HR',        'desc': 'No description',              'users': 5,  'perms': '25 Permissions', 'all_access': False, 'scope': 'Team Members'},
+            {'letter': 'F', 'av': '#2f72c4', 'name': 'Finance',   'desc': 'No description',              'users': 4,  'perms': '22 Permissions', 'all_access': False, 'scope': 'Department Only'},
+            {'letter': 'M', 'av': '#e0872f', 'name': 'Manager',   'desc': 'No description',              'users': 6,  'perms': '18 Permissions', 'all_access': False, 'scope': 'Department Only'},
+            {'letter': 'T', 'av': '#0a9e86', 'name': 'Team Lead', 'desc': 'No description',              'users': 8,  'perms': '12 Permissions', 'all_access': False, 'scope': 'Team Members'},
+            {'letter': 'E', 'av': '#8a97a0', 'name': 'Employee',  'desc': 'No description',              'users': 25, 'perms': '6 Permissions',  'all_access': False, 'scope': 'Own Data Only'},
+        ]
+        return request.render('hr_management_system.roles_page', {'roles': roles})
+
+    # ---- SETTINGS → AUDIT LOGS ----  URL: http://localhost:8069/settings/audit
+    @http.route('/settings/audit', type='http', auth='public', website=False)
+    def settings_audit(self, **kwargs):
+        logs = [
+            {'date': '07 Oct 2026', 'time': '10:42 AM', 'user': 'Mujahid Ali',       'role': 'HR Manager',        'initials': 'MA', 'av': '#e0872f', 'action': 'Update',  'acls': 'update',  'module': 'Roles & Permissions', 'detail': 'Updated permissions for "HR" role',          'status': 'Success', 'scls': 'success'},
+            {'date': '07 Oct 2026', 'time': '09:15 AM', 'user': 'Mujahid Ali',       'role': 'HR Manager',        'initials': 'MA', 'av': '#e0872f', 'action': 'Login',   'acls': 'login',   'module': 'Authentication',      'detail': 'Signed in from Chrome · Lahore, PK',          'status': 'Success', 'scls': 'success'},
+            {'date': '06 Oct 2026', 'time': '06:30 PM', 'user': 'Priya Sundaram',    'role': 'HR Specialist',     'initials': 'PS', 'av': '#0a7e9b', 'action': 'Create',  'acls': 'create',  'module': 'Employees',           'detail': 'Added new employee "Marcus Kline"',           'status': 'Success', 'scls': 'success'},
+            {'date': '06 Oct 2026', 'time': '04:12 PM', 'user': 'Eleanor Whitfield', 'role': 'VP Engineering',    'initials': 'EW', 'av': '#d4578a', 'action': 'Approve', 'acls': 'approve', 'module': 'Leave',               'detail': 'Approved leave request #LV-2041',             'status': 'Success', 'scls': 'success'},
+            {'date': '06 Oct 2026', 'time': '02:58 PM', 'user': 'Marcus Kline',      'role': 'Finance Analyst',   'initials': 'MK', 'av': '#16a34a', 'action': 'Export',  'acls': 'export',  'module': 'Payroll',             'detail': 'Exported payroll report (Sep 2026)',          'status': 'Success', 'scls': 'success'},
+            {'date': '06 Oct 2026', 'time': '11:05 AM', 'user': 'Unknown',           'role': '—',                 'initials': '??', 'av': '#8a97a0', 'action': 'Login',   'acls': 'login',   'module': 'Authentication',      'detail': 'Failed login attempt (wrong password)',       'status': 'Failed',  'scls': 'failed'},
+            {'date': '05 Oct 2026', 'time': '05:47 PM', 'user': 'Kwame Roux',        'role': 'Customer Success',  'initials': 'KR', 'av': '#c98a1d', 'action': 'Delete',  'acls': 'delete',  'module': 'Assets',              'detail': 'Removed asset "MV-LAP-097"',                  'status': 'Success', 'scls': 'success'},
+            {'date': '05 Oct 2026', 'time': '03:21 PM', 'user': 'Leila Moretti',     'role': 'Marketing Lead',    'initials': 'LM', 'av': '#7c5cde', 'action': 'Update',  'acls': 'update',  'module': 'Attendance',          'detail': 'Edited attendance regulation for 3 days',     'status': 'Success', 'scls': 'success'},
+            {'date': '05 Oct 2026', 'time': '10:30 AM', 'user': 'Mujahid Ali',       'role': 'HR Manager',        'initials': 'MA', 'av': '#e0872f', 'action': 'Create',  'acls': 'create',  'module': 'Settings',            'detail': 'Created work location "Head Office"',         'status': 'Success', 'scls': 'success'},
+            {'date': '04 Oct 2026', 'time': '09:02 AM', 'user': 'Nadir Bao',         'role': 'Product Designer',  'initials': 'NB', 'av': '#2f72c4', 'action': 'Logout',  'acls': 'logout',  'module': 'Authentication',      'detail': 'Signed out',                                  'status': 'Success', 'scls': 'success'},
+        ]
+        return request.render('hr_management_system.audit_page', {'logs': logs})
 
     # ---- COMPANY DOCUMENTS ----  URL: http://localhost:8069/documents
     @http.route('/documents', type='http', auth='public', website=False)
@@ -253,18 +289,69 @@ class HrmsPortal(http.Controller):
         ]
         return request.render('hr_management_system.attendance_detail_page', {'cal': cal})
 
+    # ---- EMAILS / NOTIFICATIONS (center) ----  URL: http://localhost:8069/notifications
+    @http.route('/notifications', type='http', auth='public', website=False)
+    def notifications(self, **kwargs):
+        notes = [
+            {'type': 'Approval',  'icls': 'green',  'title': 'Your Leave Application Is Approved',       'desc': 'Your leave from 20 Apr to 22 Apr 2026 has been approved by Eleanor Whitfield.', 'time': '2h ago',    'unread': True},
+            {'type': 'Approval',  'icls': 'orange', 'title': 'New Leave Request Awaiting Your Approval', 'desc': 'Priya Sundaram applied for 3 days of annual leave (05–07 Oct).',                 'time': '4h ago',    'unread': True},
+            {'type': 'Payroll',   'icls': 'purple', 'title': 'September Payslip Is Ready',               'desc': 'Your payslip for September 2026 has been generated and emailed to you.',         'time': 'Today',     'unread': True},
+            {'type': 'Document',  'icls': 'teal',   'title': 'Document Expiring Soon',                   'desc': 'Your "Employment Contract" expires in 14 days. Please renew it.',                'time': 'Yesterday', 'unread': True},
+            {'type': 'Mention',   'icls': 'blue',   'title': 'Mujahid Ali mentioned you',               'desc': '“@you can you review the Q4 hiring plan before Friday?”',                        'time': 'Yesterday', 'unread': False},
+            {'type': 'Employee',  'icls': 'green',  'title': 'New Employee Onboarded',                   'desc': 'Marcus Kline (Finance Analyst) joined the organization today.',                  'time': '2 days ago', 'unread': False},
+            {'type': 'Attendance','icls': 'blue',   'title': 'Attendance Regulation Approved',           'desc': 'Your attendance regulation for 28 Apr 2026 has been approved.',                 'time': '3 days ago', 'unread': False},
+            {'type': 'System',    'icls': 'gray',   'title': 'Scheduled Maintenance',                    'desc': 'The system will be briefly unavailable on 12 Oct, 1:00–2:00 AM PKT.',           'time': '5 days ago', 'unread': False},
+        ]
+        return request.render('hr_management_system.notifications_page', {'notes': notes})
+
+    # ---- REPORTS ----  URL: http://localhost:8069/reports
+    @http.route('/reports', type='http', auth='public', website=False)
+    def reports(self, **kwargs):
+        recent = [
+            {'name': 'October Attendance Summary', 'type': 'Attendance',  'tcls': 'blue',   'date': '07 Oct 2026', 'size': '1.2 MB'},
+            {'name': 'September Payroll Report',    'type': 'Payroll',     'tcls': 'purple', 'date': '01 Oct 2026', 'size': '840 KB'},
+            {'name': 'Q3 Leave Report',            'type': 'Leave',       'tcls': 'teal',   'date': '30 Sep 2026', 'size': '512 KB'},
+            {'name': 'Employee Directory',         'type': 'Employee',    'tcls': 'green',  'date': '28 Sep 2026', 'size': '2.1 MB'},
+            {'name': 'Recruitment Funnel Q3',      'type': 'Recruitment', 'tcls': 'orange', 'date': '25 Sep 2026', 'size': '680 KB'},
+            {'name': 'Asset Inventory Report',     'type': 'Asset',       'tcls': 'dark',   'date': '20 Sep 2026', 'size': '430 KB'},
+        ]
+        return request.render('hr_management_system.reports_page', {'recent': recent})
+
+    # ---- PERFORMANCE ----  URL: http://localhost:8069/performance
+    @http.route('/performance', type='http', auth='public', website=False)
+    def performance(self, **kwargs):
+        goals = [
+            {'title': 'Complete Q3 performance reviews', 'pct': 88, 'color': 'green'},
+            {'title': 'Reduce attrition to under 8%',     'pct': 72, 'color': 'teal'},
+            {'title': 'Improve average eNPS to 45',       'pct': 60, 'color': 'orange'},
+            {'title': 'Manager 1:1 coverage',             'pct': 95, 'color': 'blue'},
+        ]
+        performers = [
+            {'name': 'Eleanor Whitfield', 'role': 'VP Engineering',  'initials': 'EW', 'av': '#d4578a', 'score': '4.9'},
+            {'name': 'Aarav Hegde',       'role': 'Senior Engineer', 'initials': 'AH', 'av': '#e0872f', 'score': '4.8'},
+            {'name': 'Priya Sundaram',    'role': 'HR Specialist',   'initials': 'PS', 'av': '#0a7e9b', 'score': '4.7'},
+            {'name': 'Marcus Kline',      'role': 'Finance Analyst', 'initials': 'MK', 'av': '#16a34a', 'score': '4.6'},
+        ]
+        reviews = [
+            {'emp': 'Aarav Hegde',    'initials': 'AH', 'av': '#e0872f', 'role': 'Senior Engineer', 'cycle': 'Q3 2026', 'score': '4.8', 'status': 'Completed',   'scls': 'green'},
+            {'emp': 'Nadir Bao',      'initials': 'NB', 'av': '#2f72c4', 'role': 'Product Designer', 'cycle': 'Q3 2026', 'score': '4.2', 'status': 'Completed',   'scls': 'green'},
+            {'emp': 'Leila Moretti',  'initials': 'LM', 'av': '#7c5cde', 'role': 'Marketing Lead',   'cycle': 'Q3 2026', 'score': '—',   'status': 'In Progress', 'scls': 'blue'},
+            {'emp': 'Tomás Okafor',   'initials': 'TO', 'av': '#e5564b', 'role': 'QA Engineer',      'cycle': 'Q3 2026', 'score': '—',   'status': 'Pending',     'scls': 'orange'},
+            {'emp': 'Kwame Roux',     'initials': 'KR', 'av': '#c98a1d', 'role': 'Customer Success', 'cycle': 'Q3 2026', 'score': '3.9', 'status': 'Completed',   'scls': 'green'},
+            {'emp': 'Priya Sundaram', 'initials': 'PS', 'av': '#0a7e9b', 'role': 'HR Specialist',    'cycle': 'Q3 2026', 'score': '4.7', 'status': 'Completed',   'scls': 'green'},
+        ]
+        return request.render('hr_management_system.performance_page', {
+            'goals': goals, 'performers': performers, 'reviews': reviews,
+        })
+
     # ---- COMING SOON ----  baaki sab nav items
     # Ek hi route multiple paths handle karta hai; title path se banta hai.
     _COMING_SOON = {
         'employees': 'Employees',
-        'performance': 'Performance',
-        'notifications': 'Emails / Notifications',
-        'reports': 'Reports',
     }
 
     @http.route(
-        ['/employees',
-         '/performance', '/notifications', '/reports'],
+        ['/employees'],
         type='http', auth='public', website=False,
     )
     def coming_soon(self, **kwargs):

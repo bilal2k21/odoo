@@ -1,0 +1,63 @@
+// ============================================================
+//  PERFORMANCE  (/performance)
+//  Reuses .rp-stats/.rp-stat for the stat cards
+// ============================================================
+
+.perf-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+.perf-head__right { display: inline-flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.perf-cycle { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 16px; border: 1px solid $c-line; border-radius: 10px; background: #fff; color: $c-body; font-size: 13.5px; font-weight: 600; white-space: nowrap; svg { width: 16px; height: 16px; color: $c-teal; } }
+.perf-start { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 20px; border: none; border-radius: 10px; background: linear-gradient(90deg, $c-teal-deep, $c-teal); color: #fff; font-size: 14px; font-weight: 700; cursor: pointer; white-space: nowrap; &:hover { filter: brightness(1.08); } svg { width: 16px; height: 16px; } }
+
+/* two-column: goals + top performers */
+.perf-cols { display: grid; grid-template-columns: 1.3fr 1fr; gap: 20px; margin-top: 20px; margin-bottom: 20px; align-items: start; }
+@media (max-width: 960px) { .perf-cols { grid-template-columns: 1fr; } }
+
+.perf-card { background: #fff; border: 1px solid $c-line; border-radius: 16px; padding: 20px 22px; }
+.perf-card__head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+.perf-card__head--pad { margin-bottom: 0; padding: 20px 22px; border-bottom: 1px solid $c-line; }
+.perf-card__title { font-size: 16px; font-weight: 800; color: $c-ink; }
+.perf-card__meta { font-size: 12.5px; font-weight: 600; color: $c-muted; }
+.perf-card__all { font-size: 13px; font-weight: 600; color: $c-teal; text-decoration: none; &:hover { text-decoration: underline; } }
+
+/* goals progress */
+.perf-goal { margin-bottom: 18px; &:last-child { margin-bottom: 0; } }
+.perf-goal__top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+.perf-goal__title { font-size: 13.5px; font-weight: 600; color: $c-ink; }
+.perf-goal__pct { flex: 0 0 auto; font-size: 13px; font-weight: 700; color: $c-body; }
+.perf-goal__bar { height: 8px; border-radius: 999px; background: #eef1f4; overflow: hidden; }
+.perf-goal__fill { display: block; height: 100%; border-radius: 999px; }
+.perf-goal__fill--green  { background: #16a34a; }
+.perf-goal__fill--teal   { background: #0a7e9b; }
+.perf-goal__fill--orange { background: #e0872f; }
+.perf-goal__fill--blue   { background: #2f72c4; }
+
+/* top performers */
+.perf-top { display: flex; align-items: center; gap: 12px; padding: 11px 0; border-top: 1px solid #eef1f4; &:first-of-type { border-top: none; } }
+.perf-top__av { width: 38px; height: 38px; flex: 0 0 auto; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 13px; font-weight: 700; }
+.perf-top__body { flex: 1; min-width: 0; }
+.perf-top__name { font-size: 13.5px; font-weight: 700; color: $c-ink; }
+.perf-top__role { margin-top: 1px; font-size: 12px; color: $c-muted; }
+.perf-top__score { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 5px; font-size: 13.5px; font-weight: 700; color: $c-ink; svg { width: 15px; height: 15px; color: #f29a2e; } }
+
+/* recent reviews table */
+.perf-table-card { background: #fff; border: 1px solid $c-line; border-radius: 16px; overflow: hidden; }
+.perf-tablewrap { overflow-x: auto; }
+.perf-table { width: 100%; border-collapse: collapse; min-width: 640px; }
+.perf-table thead th { text-align: left; padding: 12px 22px; font-size: 12px; font-weight: 600; letter-spacing: 0.2px; text-transform: uppercase; color: $c-muted; background: #f9fafb; border-bottom: 1px solid $c-line; white-space: nowrap; }
+.perf-ta-right { text-align: right; }
+.perf-table tbody td { padding: 13px 22px; border-bottom: 1px solid #eef1f4; font-size: 13.5px; color: $c-body; vertical-align: middle; }
+.perf-table tbody tr:last-child td { border-bottom: none; }
+.perf-table tbody tr:hover td { background: #fafbfc; }
+
+.perf-emp { display: flex; align-items: center; gap: 11px; }
+.perf-emp__av { width: 34px; height: 34px; flex: 0 0 auto; border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; font-weight: 700; }
+.perf-emp__name { font-size: 13.5px; font-weight: 600; color: $c-ink; white-space: nowrap; }
+.perf-emp__role { margin-top: 1px; font-size: 12px; color: $c-muted; }
+.perf-cycle-cell { color: $c-body; white-space: nowrap; }
+.perf-score { display: inline-flex; align-items: center; gap: 5px; font-weight: 700; color: $c-ink; svg { width: 14px; height: 14px; color: #f29a2e; } }
+
+.perf-status { display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; font-weight: 600; border-radius: 999px; padding: 5px 12px; white-space: nowrap; }
+.perf-status__dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.perf-status--green  { background: #e3f6ec; color: #1f9d57; }
+.perf-status--blue   { background: #e6f0fc; color: #3b6fd4; }
+.perf-status--orange { background: #fef1df; color: #c9871a; }

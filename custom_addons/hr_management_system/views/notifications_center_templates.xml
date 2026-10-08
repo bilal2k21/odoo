@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================
+         EMAILS / NOTIFICATIONS center  (/notifications)
+    ============================================================= -->
+    <template id="notifications_page" name="Emails / Notifications">
+        <t t-set="active" t-value="'notifications'"/>
+        <t t-set="page_name" t-value="'Emails / Notifications'"/>
+        <t t-call="hr_management_system.dashboard_layout">
+
+            <div class="noti-head">
+                <div>
+                    <h1 class="set-head__title">Emails / Notifications</h1>
+                    <p class="set-head__sub">Stay on top of approvals, mentions, and system alerts.</p>
+                </div>
+                <button class="noti-markall" type="button">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5M22 10l-7.5 7.5"/></svg>
+                    Mark all as read
+                </button>
+            </div>
+
+            <!-- Stat cards (reuse .rp-stats/.rp-stat) -->
+            <div class="rp-stats">
+                <div class="rp-stat">
+                    <div class="rp-stat__label">Unread</div>
+                    <div class="rp-stat__row">
+                        <span class="rp-stat__ic rp-stat__ic--blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.5 21a2 2 0 0 1-3 0"/></svg></span>
+                        <span class="rp-stat__num">12</span>
+                    </div>
+                </div>
+                <div class="rp-stat">
+                    <div class="rp-stat__label">Approvals</div>
+                    <div class="rp-stat__row">
+                        <span class="rp-stat__ic rp-stat__ic--green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="m8 12 3 3 5-6"/></svg></span>
+                        <span class="rp-stat__num">4</span>
+                    </div>
+                </div>
+                <div class="rp-stat">
+                    <div class="rp-stat__label">Mentions</div>
+                    <div class="rp-stat__row">
+                        <span class="rp-stat__ic rp-stat__ic--purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4"/><path d="M16 12v1.5a2.5 2.5 0 0 0 5 0V12a9 9 0 1 0-3.5 7.1"/></svg></span>
+                        <span class="rp-stat__num">1</span>
+                    </div>
+                </div>
+                <div class="rp-stat">
+                    <div class="rp-stat__label">Total</div>
+                    <div class="rp-stat__row">
+                        <span class="rp-stat__ic rp-stat__ic--orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+                        <span class="rp-stat__num">128</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- List card -->
+            <div class="noti-card">
+                <div class="noti-tabs">
+                    <span class="noti-tab is-active">All</span>
+                    <span class="noti-tab">Unread <span class="noti-tab__n">12</span></span>
+                    <span class="noti-tab">Approvals</span>
+                    <span class="noti-tab">Mentions</span>
+                    <span class="noti-tab">System</span>
+                </div>
+
+                <div class="noti-list">
+                    <t t-foreach="notes" t-as="n">
+                        <div t-attf-class="noti-item #{'is-unread' if n['unread'] else ''}">
+                            <span t-attf-class="noti-item__ic noti-item__ic--#{n['icls']}">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+                            </span>
+                            <div class="noti-item__body">
+                                <div class="noti-item__top">
+                                    <span class="noti-item__title"><t t-out="n['title']"/></span>
+                                    <span class="noti-item__time"><t t-out="n['time']"/></span>
+                                </div>
+                                <div class="noti-item__desc"><t t-out="n['desc']"/></div>
+                                <span t-attf-class="noti-item__tag noti-tag--#{n['icls']}"><t t-out="n['type']"/></span>
+                            </div>
+                            <t t-if="n['unread']">
+                                <span class="noti-item__dot" title="Unread"></span>
+                            </t>
+                        </div>
+                    </t>
+                </div>
+
+                <div class="noti-foot">
+                    <a href="#" class="noti-foot__more">Load older notifications</a>
+                </div>
+            </div>
+
+            <!-- floating chat bubble -->
+            <button class="cp-fab" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M21 11.5a8.5 8.5 0 0 1-12.2 7.7L3 21l1.8-5.8A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01"/></svg>
+            </button>
+        </t>
+    </template>
+
+</odoo>
