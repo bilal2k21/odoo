@@ -99,3 +99,32 @@ $p-green: #16a34a; $p-orange: #f29a2e; $p-red: #e5564b; $p-blue: #2f72c4;
 .pay-b-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; font-size: 13px; color: $p-body; border-top: 1px solid #f1f4f6; b { color: $p-ink; font-weight: 700; } }
 .pay-b-row:first-of-type { border-top: none; }
 .pay-b-link { margin-top: 12px; font-size: 12.5px; font-weight: 600; color: $c-teal; cursor: pointer; }
+
+/* run history table — narrow screens pe horizontally scroll */
+.pay-tablewrap { overflow-x: auto; }
+.pay-table { min-width: 680px; }
+
+/* ================= Responsive ================= */
+/* (pay-cols stack + kpis 5->3 at <=1150, pay-bottom 3->1 at <=1000 — upar defined hain) */
+
+@media (max-width: 900px) {
+    .pay-hero { flex-direction: column; gap: 20px; }
+    .pay-approve { width: 100%; }
+    .pay-kpis { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .pay-head { flex-direction: column; }
+    .pay-head__actions { width: 100%; }
+    .pay-hero { padding: 20px 18px; }
+    .pay-hero__title { font-size: 20px; }
+    .pay-hero__btns { flex-wrap: wrap; }
+}
+
+@media (max-width: 480px) {
+    .pay-kpis { grid-template-columns: 1fr; }
+    .pay-head__actions { flex-direction: column; }
+    .pay-hero__btns { flex-direction: column; }
+    .pay-hero__btn1, .pay-hero__btn2 { width: 100%; justify-content: center; }
+    .pay-foot { flex-direction: column; gap: 10px; align-items: flex-start; }
+}

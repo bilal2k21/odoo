@@ -99,6 +99,7 @@
                                 <div class="rec-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg><input type="text" placeholder="Filter documents..."/></div>
                             </div>
                         </div>
+                        <div class="rec-tablewrap">
                         <table class="rec-table">
                             <thead><tr><th>Document</th><th>Category</th><th>Type</th><th>Uploaded By</th><th>Date</th><th>Status</th></tr></thead>
                             <tbody>
@@ -114,6 +115,7 @@
                                 </t>
                             </tbody>
                         </table>
+                        </div>
                         <div class="pay-foot">
                             <span class="pay-foot__info">Showing 6 of 486 documents</span>
                             <div class="pay-pager"><a href="#">‹</a><span class="is-active">1</span><a href="#">2</a><a href="#">3</a><span class="dots">…</span><a href="#">81</a><a href="#">›</a></div>
@@ -157,7 +159,8 @@
                     <div><div class="pay-card__title">Expiring Soon</div><div class="pay-card__sub">Documents nearing their expiry date · next 30 days</div></div>
                     <span class="pay-card__link">View all →</span>
                 </div>
-                <table class="rec-table">
+                <div class="rec-tablewrap">
+                <table class="rec-table doc-table--sm">
                     <thead><tr><th>Document</th><th>Expiry Date</th><th>Days Remaining</th><th>Status</th></tr></thead>
                     <tbody>
                         <t t-foreach="expiring" t-as="e">
@@ -170,6 +173,7 @@
                         </t>
                     </tbody>
                 </table>
+                </div>
                 <div class="doc-foot">17 documents expiring within 30 days</div>
             </div>
 

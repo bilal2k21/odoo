@@ -9,6 +9,7 @@
 /* ---- stat cards ---- */
 .rp-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-bottom: 20px; }
 @media (max-width: 900px) { .rp-stats { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 420px) { .rp-stats { grid-template-columns: 1fr; } }
 .rp-stat { background: #fff; border: 1px solid $c-line; border-radius: 14px; padding: 18px 20px; }
 .rp-stat__label { font-size: 13px; color: $c-muted; margin-bottom: 14px; }
 .rp-stat__row { display: flex; align-items: center; gap: 14px; }

@@ -161,3 +161,32 @@ $ea-field: #f6f8fa;
 
 /* ---- Floating chat button ---- */
 .ea-fab { position: fixed; right: 24px; bottom: 24px; width: 52px; height: 52px; border-radius: 50%; background: $c-teal; color: #fff; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px rgba(3, 101, 127, 0.35); cursor: pointer; z-index: 50; svg { width: 22px; height: 22px; } }
+
+/* ================= Responsive ================= */
+/* (2-column layout already stacks at <=1100px — see .ea-wrap above) */
+
+/* --- Tablet portrait / large phone --- */
+@media (max-width: 768px) {
+    .ea-head { flex-direction: column; gap: 14px; }
+    .ea-head .btn-ghost { align-self: flex-start; }
+    .ea-types { grid-template-columns: repeat(2, 1fr); }
+    .ea-step { padding: 18px 16px; }
+}
+
+/* --- Phone --- */
+@media (max-width: 560px) {
+    .ea-grid { grid-template-columns: 1fr; }
+    .ea-fromto { flex-direction: column; align-items: stretch; gap: 10px; }
+    .ea-fromto__arrow { align-self: center; padding: 0; transform: rotate(90deg); }
+    .ea-foot { flex-direction: column; align-items: stretch; gap: 14px; }
+    .ea-foot__btns { width: 100%; }
+    .ea-foot__btns .btn-outline, .ea-foot__btns .btn-solid { flex: 1; justify-content: center; }
+}
+
+/* --- Small phone --- */
+@media (max-width: 440px) {
+    .ea-types { grid-template-columns: 1fr; }
+    .sum-row { flex-direction: column; }
+    .sum-arrow { align-self: center; transform: rotate(90deg); }
+    .ea-fab { right: 16px; bottom: 16px; width: 48px; height: 48px; }
+}

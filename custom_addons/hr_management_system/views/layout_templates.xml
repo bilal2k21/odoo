@@ -23,8 +23,8 @@
                 <!-- JS raw static files ke zariye (NOT asset bundle) taake
                      plain vanilla JS normally execute ho — koi odoo.define wrap nahi.
                      v= query cache-bust ke liye; JS change pe number barha dena. -->
-                <script type="text/javascript" src="/hr_management_system/static/src/js/auth.js?v=16"></script>
-                <script type="text/javascript" src="/hr_management_system/static/src/js/dashboard.js?v=16"></script>
+                <script type="text/javascript" src="/hr_management_system/static/src/js/auth.js?v=17"></script>
+                <script type="text/javascript" src="/hr_management_system/static/src/js/dashboard.js?v=17"></script>
             </body>
         </html>
     </template>

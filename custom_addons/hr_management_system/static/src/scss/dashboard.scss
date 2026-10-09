@@ -20,6 +20,11 @@ $purple:     #7c5cde;
     color: $ink;
 }
 
+/* Mobile drawer backdrop + hamburger — desktop pe hidden, mobile media query me on */
+.app__backdrop { display: none; }
+.topbar__collapse .ic-menu { display: none; }
+.topbar__collapse svg { flex: 0 0 auto; }
+
 /* ================= SIDEBAR ================= */
 .sidebar {
     width: 236px;
@@ -351,11 +356,72 @@ $purple:     #7c5cde;
 }
 
 /* ================= Responsive ================= */
+
+/* --- Laptop / small desktop --- */
+@media (max-width: 1200px) {
+    .app__content { padding: 22px 20px 32px; }
+    .topbar { padding: 12px 20px; }
+}
+
+/* --- Tablet (landscape) --- */
 @media (max-width: 1024px) {
     .kpis { grid-template-columns: repeat(2, 1fr); }
+    .topbar__search { max-width: 260px; margin-left: 10px; }
 }
-@media (max-width: 760px) {
-    .sidebar { display: none; }
-    .kpis { grid-template-columns: 1fr; }
+
+/* --- Tablet (portrait) / large phone: sidebar -> off-canvas drawer --- */
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed; top: 0; left: 0; z-index: 120;
+        width: 258px; flex: 0 0 258px; height: 100vh;
+        transform: translateX(-100%);
+        transition: transform 0.22s ease;
+        box-shadow: 0 12px 40px rgba(10, 40, 50, 0.22);
+    }
+    .app.nav-open .sidebar { transform: translateX(0); }
+
+    .app__backdrop {
+        display: block; position: fixed; inset: 0; z-index: 110;
+        background: rgba(16, 48, 57, 0.45);
+        opacity: 0; visibility: hidden;
+        transition: opacity 0.2s ease, visibility 0.2s ease;
+    }
+    .app.nav-open .app__backdrop { opacity: 1; visibility: visible; }
+
+    /* hamburger dikhao, chevron chhupao */
+    .topbar__collapse .ic-collapse { display: none; }
+    .topbar__collapse .ic-menu { display: inline-flex; }
+
+    .topbar { padding: 10px 14px; gap: 10px; }
     .topbar__search { display: none; }
+    .topbar__crumb { font-size: 12.5px; gap: 6px; }
+
+    .app__content { padding: 16px 14px 28px; }
+
+    .page-head { flex-direction: column; align-items: stretch; gap: 14px; }
+    .page-head__right { justify-content: space-between; flex-wrap: wrap; }
+
+    .kpis { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+
+    .card__head { flex-direction: column; align-items: flex-start; }
+    .card__actions { width: 100%; }
+    .btn-ghost { flex: 1; justify-content: center; }
+}
+
+/* --- Phone --- */
+@media (max-width: 520px) {
+    .kpis { grid-template-columns: 1fr; }
+    .page-head__title { font-size: 20px; }
+    .page-head__sub { font-size: 13px; }
+    .btn-dark { padding: 0 12px; gap: 6px; }
+    .date-pill { height: 34px; font-size: 12px; }
+    .seg__btn { padding: 6px 11px; font-size: 12px; }
+}
+
+/* --- Small phone --- */
+@media (max-width: 380px) {
+    .topbar { gap: 8px; }
+    .topbar__icons { gap: 6px; }
+    .icon-btn { width: 34px; height: 34px; }
+    .topbar__crumb { max-width: 110px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 }

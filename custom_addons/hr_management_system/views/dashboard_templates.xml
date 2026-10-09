@@ -109,7 +109,8 @@
                 <main class="app__main">
                     <header class="topbar">
                         <span class="topbar__collapse">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"/></svg>
+                            <svg class="ic-collapse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"/></svg>
+                            <svg class="ic-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
                         </span>
                         <div class="topbar__crumb">HR <span>/</span> <t t-if="section"><t t-out="section"/> <span>/</span> </t><t t-if="subsection"><t t-out="subsection"/> <span>/</span> </t><b><t t-out="page_name"/></b></div>
 
@@ -148,6 +149,9 @@
                         <t t-out="0"/>
                     </div>
                 </main>
+
+                <!-- Mobile drawer backdrop (sidebar off-canvas ke peeche) -->
+                <div class="app__backdrop" data-nav-close="1"></div>
             </div>
 
             <!-- New Request modal (topbar "New request" button se khulta hai) -->

@@ -61,4 +61,24 @@ $r-line: #e9edf0; $r-ink: #103039; $r-muted: #8a97a0; $r-body: #5b6b73;
 .rec-rowmenu { color: $r-muted; cursor: pointer; }
 .rec-foot { padding: 14px 18px; font-size: 12.5px; color: $r-muted; }
 
+/* jobs table — narrow screens pe horizontally scroll (card overflow:hidden ke andar) */
+.rec-tablewrap { overflow-x: auto; }
+.rec-table { min-width: 860px; }
+
+/* ================= Responsive ================= */
 @media (max-width: 1150px) { .rec-kpis { grid-template-columns: repeat(3, 1fr); } }
+
+@media (max-width: 768px) {
+    .rec-head { flex-direction: column; }
+    .rec-kpis { grid-template-columns: repeat(2, 1fr); }
+    .rec-toolbar { align-items: stretch; }
+    .rec-right { margin-left: 0; width: 100%; }
+    .rec-search { flex: 1; input { width: 100%; } }
+}
+
+@media (max-width: 480px) {
+    .rec-kpis { grid-template-columns: 1fr; }
+    .rec-fpills { flex-wrap: wrap; }
+    .rec-right { flex-wrap: wrap; }
+    .rec-sort { flex: 0 0 auto; }
+}

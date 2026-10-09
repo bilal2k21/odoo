@@ -115,6 +115,7 @@
                                 Filter
                             </button>
                         </div>
+                        <div class="pay-tablewrap">
                         <table class="pay-table">
                             <thead>
                                 <tr><th>Pay Period</th><th>Pay Date</th><th>Headcount</th><th>Gross</th><th>Deductions</th><th>Net Paid</th><th>Status</th></tr>
@@ -141,6 +142,7 @@
                                 </t>
                             </tbody>
                         </table>
+                        </div>
                         <div class="pay-foot">
                             <span class="pay-foot__info">6 of 184</span>
                             <div class="pay-pager">

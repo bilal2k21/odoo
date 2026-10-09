@@ -57,3 +57,10 @@
 
 .rep-dl-cell { text-align: right; }
 .rep-dl { width: 34px; height: 34px; border: 1px solid $c-line; border-radius: 8px; background: #fff; color: $c-teal; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; &:hover { background: #eef5f7; border-color: #cfe6ec; } svg { width: 16px; height: 16px; } }
+
+/* ================= Responsive ================= */
+/* (library cards 4->2->1 at 1100/620, recent table scrolls — upar defined) */
+@media (max-width: 560px) {
+    .rep-head { flex-direction: column; }
+    .rep-card__head { gap: 10px; }
+}

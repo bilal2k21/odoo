@@ -98,6 +98,7 @@
 
             <!-- Jobs table -->
             <div class="rec-card">
+                <div class="rec-tablewrap">
                 <table class="rec-table">
                     <thead>
                         <tr><th>Role</th><th>Department</th><th>Location</th><th>Pipeline</th><th>Hiring Mgr</th><th>Status</th><th></th></tr>
@@ -129,6 +130,7 @@
                         </t>
                     </tbody>
                 </table>
+                </div>
                 <div class="rec-foot">Showing all 9 jobs</div>
             </div>
         </t>

@@ -5,15 +5,28 @@
 (function () {
     var KEY = "hrms_sidebar_collapsed";
 
-    // Page load pe pichli collapsed state wapas lagao
+    var MOBILE = 768;   // <= iss width pe sidebar off-canvas drawer banta hai
+
+    // Page load pe pichli collapsed state wapas lagao (sirf desktop pe)
     function applySaved() {
         var app = document.querySelector(".app");
-        if (app && localStorage.getItem(KEY) === "1") {
+        if (app && localStorage.getItem(KEY) === "1" && window.innerWidth > MOBILE) {
             app.classList.add("is-collapsed");
         }
     }
     applySaved();
     document.addEventListener("DOMContentLoaded", applySaved);
+
+    // Viewport resize pe conflicting state hatao (mobile <-> desktop)
+    window.addEventListener("resize", function () {
+        var app = document.querySelector(".app");
+        if (!app) return;
+        if (window.innerWidth <= MOBILE) {
+            app.classList.remove("is-collapsed");   // mobile pe collapse nahi, drawer hota hai
+        } else {
+            app.classList.remove("nav-open");        // desktop pe drawer band
+        }
+    });
 
     // ---- Multi-step wizard (Create from Template modal) ----
     // Panels [data-step-panel], footers [data-foot-panel], stepper [data-ind]/[data-line]
@@ -86,9 +99,23 @@
         if (target) {
             var app = document.querySelector(".app");
             if (app) {
-                var collapsed = app.classList.toggle("is-collapsed");
-                try { localStorage.setItem(KEY, collapsed ? "1" : "0"); } catch (ex) {}
+                if (window.innerWidth <= MOBILE) {
+                    // Mobile: sidebar ko drawer ki tarah khol/band karo
+                    app.classList.toggle("nav-open");
+                } else {
+                    // Desktop: icon-only collapse (state yaad rakho)
+                    var collapsed = app.classList.toggle("is-collapsed");
+                    try { localStorage.setItem(KEY, collapsed ? "1" : "0"); } catch (ex) {}
+                }
             }
+            return;
+        }
+
+        // Mobile drawer band karo (backdrop click)
+        var navClose = e.target.closest && e.target.closest("[data-nav-close]");
+        if (navClose) {
+            var appNc = document.querySelector(".app");
+            if (appNc) { appNc.classList.remove("nav-open"); }
             return;
         }
 
